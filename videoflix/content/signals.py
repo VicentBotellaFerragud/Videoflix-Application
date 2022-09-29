@@ -3,6 +3,7 @@ import os
 from django.dispatch import receiver
 from .models import Video
 from django.db.models.signals import post_save, post_delete
+from .tasks import convert480p, convert720p
 
 """
 Called whenever a video is created or edited.
@@ -14,6 +15,7 @@ def video_post_save(sender, instance, created, **kwargs):
 
     if created:
         print("new video created!")
+        print(instance.video_file.path)
 
 """
 Called whenever a video is deleted. It deletes the video file from the videos folder. Without this function video objects could be 
