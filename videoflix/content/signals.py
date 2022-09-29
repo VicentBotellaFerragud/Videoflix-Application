@@ -15,8 +15,10 @@ def video_post_save(sender, instance, created, **kwargs):
 
     if created:
         print("new video created!")
-        print(instance.video_file.path)
-        convert480p(instance.video_file.path)
+        video_path_as_str = str(instance.video_file)
+        modified_video_path = '.' + video_path_as_str[6:]
+        print(modified_video_path)
+        convert480p(modified_video_path)
 
 """
 Called whenever a video is deleted. It deletes the video file from the videos folder. Without this function video objects could be 
