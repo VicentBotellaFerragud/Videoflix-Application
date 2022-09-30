@@ -17,7 +17,6 @@ def video_post_save(sender, instance, created, **kwargs):
         print("new video created!")
         video_path_as_str = str(instance.video_file)
         modified_video_path = '.' + video_path_as_str[6:]
-        print(modified_video_path)
         convert480p(modified_video_path)
 
 """
@@ -30,5 +29,13 @@ def video_post_delete(sender, instance, **kwargs):
     
     if instance.video_file:
         if os.path.isfile(instance.video_file.path):
-            print(instance.video_file.path)
             os.remove(instance.video_file.path)
+
+            """
+            SOMETHING LIKE THIS COULD BE USEFUL IN THE FUTURE
+
+            video_path_as_str = str(instance.video_file)
+            same_video_with_other_format_path = video_path_as_str[:-4] + '_480p.mp4'
+            same_video_with_other_format_path
+            os.remove(same_video_with_other_format_path)
+            """
