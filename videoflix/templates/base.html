@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videoflix-Application</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- <script src="{% static 'js/script.js' %}" defer></script> -->
+
+</head>
+
+<body>
+
+    <nav>
+
+        {% if request.user.is_authenticated %}
+
+        {% load static %}
+        <a href="/logout/"><img src="{% static 'img/logout.png' %}" title="log out"></a>
+
+        <h1>Hi {{ request.user }}! <span class="smartphone-dnone">Enjoy Videoflix</span> &#128516;</h1>
+
+        {% else %}
+
+        <h1>You are not logged in yet...</h1>
+
+        {% endif %}
+
+    </nav>
+
+    <!-- {% if request.get_full_path == "/chatroom/" %}
+
+    <div class="search-bar-container">
+
+        <input type="text" class="search-bar" placeholder="Search for messages.." id="searchBar"
+            onkeyup="searchForMessages()">
+
+    </div>
+
+    {% endif %} -->
+
+    <div class="dynamic-content-container">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+
+</body>
+
+</html>

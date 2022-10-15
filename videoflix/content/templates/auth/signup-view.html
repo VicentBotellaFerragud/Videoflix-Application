@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="wrapper">
+
+    <form class="signup-form" action="/signup/" method="POST">
+
+        <h2>Sign Up</h2>
+        
+        {% csrf_token %}
+        <input type="text" name="newUsername" placeholder="Enter a username">
+
+        <input type="email" name="newEmail" placeholder="Enter an email">
+        
+        <input type="password" name="newPassword" placeholder="Enter a password">
+        
+        <input type="password" name="repeatPassword" placeholder="Repeat the password">
+
+        {% if anyFieldEmpty %}
+
+        <span class="warning-span">All fields must be filled</span>
+
+        {% endif %}
+
+        {% if passwordsDifferent %}
+
+        <span class="warning-span">Password must be the same in both fields</span>
+
+        {% endif %}
+
+        {% if usernameAlreadyExists %}
+
+        <span class="warning-span">This username already exists</span>
+
+        {% endif %}
+
+        <button>Sign Up</button>
+
+    </form>
+
+    <span class="redirect-to-login-span">Already have an account? Click <a href="/login/">here</a> to go back to the
+        login view.</span>
+
+</div>
+
+{% endblock %}

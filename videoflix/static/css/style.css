@@ -1,0 +1,217 @@
+/* Global/'base.html' style */
+
+::-webkit-scrollbar {
+    width: 7.5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: ghostwhite;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(180.2deg, rgb(30, 33, 48) 6.8%, rgb(74, 98, 110) 131%);   
+}
+
+nav {
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+nav a {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    right: 1rem;
+    top: 15px;
+}
+
+nav img {
+    height: 25px;
+    width: 25px;
+}
+
+nav h1 {
+    margin-inline: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+nav h1 span {
+    margin-left: .25rem;
+}
+
+.dynamic-content-container {
+   height: calc(100vh - 135px);
+   padding: 16px;
+}
+
+.wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.warning-span {
+    margin-bottom: .5rem;
+    color: red;
+    font-size: 12px;
+    text-align: center;
+}
+
+.d-none {
+    display: none;
+}
+
+/* Login style */
+
+.login-form {
+    min-width: 20vw;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form h2 {
+    margin-bottom: 1.5rem;
+}
+
+.login-form input {
+    width: 80%;
+    height: 1.5rem;
+    margin-bottom: 1rem;
+    padding-inline: 1rem;
+    border: none;
+    color: ghostwhite;
+    border-bottom: 1px solid ghostwhite;
+    background-color: transparent;
+    text-align: center;
+}
+
+.login-form input:focus {
+    outline: none;
+}
+
+.login-form button {
+    width: 100%;
+    height: 2rem;
+    border-radius: 10px;
+    color: #E50914;
+    border: 1px solid #E50914;;
+    font-weight: bold;
+    background-color: transparent;
+    transition: .5s;
+    margin-top: 1rem;
+}
+
+.login-form button:hover {
+    cursor: pointer;
+    background-color: #E50914;
+    color: white;
+    letter-spacing: 2.5px;
+}
+
+.redirect-to-signup-span {
+    margin-top: 1rem;
+    font-size: 12px;
+    text-align: center;
+}
+
+.signup-successful-span {
+    margin-bottom: .5rem;
+    color: #a4e9d5;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Signup style */
+
+.signup-form {
+    min-width: 20vw;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-form h2 {
+    margin-bottom: 1.5rem;
+}
+
+.signup-form input {
+    width: 80%;
+    height: 1.5rem;
+    margin-bottom: 1rem;
+    padding-inline: 1rem;
+    border: none;
+    color: ghostwhite;
+    border-bottom: 1px solid ghostwhite;
+    background-color: transparent;
+    text-align: center;
+}
+
+.signup-form input:focus {
+    outline: none;
+}
+
+.signup-form button {
+    width: 100%;
+    height: 2rem;
+    border-radius: 10px;
+    color: #E50914;
+    border: 1px solid #E50914;
+    font-weight: bold;
+    background-color: transparent;
+    transition: .5s;
+    margin-top: 1rem;
+}
+
+.signup-form button:hover {
+    cursor: pointer;
+    background-color: #E50914;
+    color: white;
+    letter-spacing: 2.5px;
+}
+
+.redirect-to-login-span {
+    margin-top: 1rem;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Videoflix home page style */
+
+/* For smartphones */
+
+@media ( max-width: 520px ) {
+    .smartphone-dnone {
+        display: none;
+    }
+
+    nav h1 {
+        font-size: 16px;
+    }
+}

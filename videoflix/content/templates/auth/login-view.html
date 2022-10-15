@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="wrapper">
+
+    {% if not request.user.is_authenticated %}
+
+    <form class="login-form" action="/login/" method="POST">
+
+        <h2>Log In</h2>
+
+        {% csrf_token %}
+        <input type="hidden" name="redirect" value="{{ redirect }}">
+
+        <input type="text" name="username" placeholder="Enter your username">
+
+        <input type="password" name="password" placeholder="Enter your password">
+
+        {% if wrongPassword %}
+
+        <span class="warning-span">Wrong username or password</span>
+
+        {% endif %}
+
+        {% if signupSuccessful %}
+
+        <span class="signup-successful-span">You have successfully signed up!</span>
+
+        {% endif %}
+
+        <button>Log In</button>
+
+    </form>
+
+    <span class="redirect-to-signup-span">Don't have an account yet? Click <a href="/signup/">here</a> to create
+        one.</span>
+
+    {% else %}
+
+    <span class="redirect-to-home-span">You are already logged in! Click <a href="/home/">here</a> to go back to
+        the Videoflix home page.</span>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
