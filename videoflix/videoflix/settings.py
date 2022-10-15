@@ -40,9 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'content.apps.ContentConfig',
+
+    'debug_toolbar',
 ]
 
+"""
+The order of MIDDLEWARE is important. You should include the Debug Toolbar middleware as early as possible in the list. 
+However, it must come after any other middleware that encodes the responses content, such as GZipMiddleware.
+"""
+
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +60,23 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+"""
+Could have a use in the future!
+
+def show_toolbar(request):    
+    # Oder nur für einen User?    
+    return not request.is_ajax() and request.user and request.user.username == "Vincent"    
+    # return False
+    
+DEBUG_TOOLBAR_CONFIG = {    
+    'SHOW_TOOLBAR_CALLBACK': show_toolbar,
+}
+"""
 
 CACHES = {
     "default": {

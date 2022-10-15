@@ -3,6 +3,7 @@ async-timeout==4.0.2
 Deprecated==1.2.13
 Django==4.0.4
 django-cors-headers==3.13.0
+django-debug-toolbar==3.7.0
 django-redis==5.2.0
 packaging==21.3
 pyparsing==3.0.9
