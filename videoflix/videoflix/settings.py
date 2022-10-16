@@ -44,7 +44,23 @@ INSTALLED_APPS = [
     'content.apps.ContentConfig',
 
     'debug_toolbar',
+
+    'django_rq',
 ]
+
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+        'PASSWORD': 'foobared',
+        'DEFAULT_TIMEOUT': 360,
+    },
+}
+
+"""
+RQ_EXCEPTION_HANDLERS = ['path.to.my.handler'] # If you need custom exception handlers
+"""
 
 """
 The order of MIDDLEWARE is important. You should include the Debug Toolbar middleware as early as possible in the list. 
