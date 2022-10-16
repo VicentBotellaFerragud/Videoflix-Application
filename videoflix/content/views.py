@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.views.decorators.cache import cache_page
+
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 # Create your views here.
 
@@ -79,6 +84,7 @@ def signupFn(request):
 Renders the videoflix home view.
 """
 @login_required(login_url = '/login/')
+@cache_page(CACHE_TTL)
 def index(request):  
     
     return render(request, 'videoflix/index.html')
