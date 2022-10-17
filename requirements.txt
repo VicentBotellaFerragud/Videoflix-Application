@@ -15,7 +15,7 @@ python-dateutil==2.8.2
 pytz==2022.1
 redis==4.3.4
 rq==1.11.1
-rq-win==0.4.0
+git+https://github.com/michaelbrooks/rq-win.git#egg=rq-win
 six==1.16.0
 sqlparse==0.4.2
 times==0.7
