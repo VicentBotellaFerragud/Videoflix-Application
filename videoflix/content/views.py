@@ -4,8 +4,10 @@ from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
 from django.views.decorators.cache import cache_page
+from .forms import NewUserForm
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
@@ -15,33 +17,41 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 Redirects the user to the videoflix home page as soons as the app loads.
 """
 def redirectToHome(request):
-    
+
     response = redirect('/home/')
     
     return response
-
 
 """
 Renders the login view and logs in the user if he/she fulfills the if conditions.
 """
 def loginFn(request):
-    
+
     redirect = request.GET.get('next')
     
-    if request.method == 'POST':
-        user = authenticate(username = request.POST['username'], password = request.POST['password'])
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
 
-        if user:
-            login(request, user)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username = username, password = password)
 
-            if redirect:
-                return HttpResponseRedirect(request.POST.get('next'))
-            
+            if user is not None:
+                login(request, user)
+
+                if redirect:
+                    return HttpResponseRedirect(request.POST.get('next'))
+
+                else:
+                    return redirectToHome(request)
+
             else:
-                return HttpResponseRedirect('/home/')
-        
+                return render(request, 'auth/login-view.html', {'errors': form.errors, 'redirect': redirect})
         else:
-            return render(request, 'auth/login-view.html', {'wrongPassword': True, 'redirect': redirect})
+            return render(request, 'auth/login-view.html', {'errors': form.errors, 'redirect': redirect})
+
+    form = AuthenticationForm()
 
     return render(request, 'auth/login-view.html', {'redirect': redirect})
 
@@ -49,33 +59,16 @@ def loginFn(request):
 Renders the signup view and signs up the user if he/she fulfills the if conditions.
 """
 def signupFn(request):
-    
-    newUsername = request.POST.get('newUsername')
-    newPassword = request.POST.get('newPassword')
-    repeatPassword = request.POST.get('repeatPassword')
 
-    if request.method == 'POST':
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return render(request, 'auth/login-view.html', {'signupSuccessful': True})
         
-        if newUsername != '' and newPassword != '' and repeatPassword !='': 
-
-            if newPassword == repeatPassword: 
-
-                try: 
-                    user= User.objects.get(username = newUsername)
-                    return render(request, 'auth/signup-view.html', {'usernameAlreadyExists': True})  
-
-                except User.DoesNotExist: 
-                    user = User.objects.create_user(username = newUsername, password = newPassword)
-                    user.save()
-                    return render(request, 'auth/login-view.html', {'signupSuccessful': True})
-
-            else:
-
-                return render(request, 'auth/signup-view.html', {'passwordsDifferent': True})
-
         else:
-            return render(request, 'auth/signup-view.html', {'anyFieldEmpty': True})
-
+            return render(request, 'auth/signup-view.html', {'errors': form.errors})
     
     return render(request, 'auth/signup-view.html')
 
@@ -92,9 +85,8 @@ def index(request):
 Logs out the user and redirects the user to the videoflix home page.
 """
 def logoutFn(request):
-    
+     
     logout(request)
-
     response = redirect('/home/')
     
     return response

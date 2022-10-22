@@ -10,15 +10,17 @@
 
         {% csrf_token %}
         <input type="hidden" name="redirect" value="{{ redirect }}">
+        <input type="text" name="username" placeholder="Enter your username" required>
+        <input type="password" name="password" placeholder="Enter your password" required>
 
-        <input type="text" name="username" placeholder="Enter your username">
+        {% if errors %}
+        {% for error in errors %}
 
-        <input type="password" name="password" placeholder="Enter your password">
-
-        {% if wrongPassword %}
-
+        {% if error == '__all__' %}
         <span class="warning-span">Wrong username or password</span>
+        {% endif %}
 
+        {% endfor %}
         {% endif %}
 
         {% if signupSuccessful %}
@@ -36,8 +38,8 @@
 
     {% else %}
 
-    <span class="redirect-to-home-span">You are already logged in! Click <a href="/home/">here</a> to go back to
-        the Videoflix home page.</span>
+    <span class="redirect-to-home-span">You are already logged in! Click <a href="/home/">here</a> to go back to the
+        Videoflix home page.</span>
 
     {% endif %}
 

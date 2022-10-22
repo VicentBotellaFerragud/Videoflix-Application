@@ -1,36 +1,39 @@
 {% extends "base.html" %} {% block content %}
 
+{% load crispy_forms_tags %}
+
 <div class="wrapper">
 
     <form class="signup-form" action="/signup/" method="POST">
 
         <h2>Sign Up</h2>
-        
+
         {% csrf_token %}
-        <input type="text" name="newUsername" placeholder="Enter a username">
+        <input type="text" name="username" placeholder="Enter a username" required>
+        <input type="email" name="email" placeholder="Enter an email" required>
+        <input type="password" name="password1" placeholder="Enter a password" required>
+        <input type="password" name="password2" placeholder="Repeat the password" required>
 
-        <input type="email" name="newEmail" placeholder="Enter an email">
-        
-        <input type="password" name="newPassword" placeholder="Enter a password">
-        
-        <input type="password" name="repeatPassword" placeholder="Repeat the password">
+        <ul class="password-constraints">
+            <span>Please consider this when choosing a password:</span>
+            <li>Your password can’t be too similar to your other personal information.</li>
+            <li>Your password must contain at least 8 characters.</li>
+            <li>Your password can’t be a commonly used password.</li>
+            <li>Your password can’t be entirely numeric.</li>
+        </ul>
 
-        {% if anyFieldEmpty %}
+        {% if errors %}
+        {% for error in errors %}
 
-        <span class="warning-span">All fields must be filled</span>
-
+        {% if error == 'username' %}
+        <span class="warning-span">This username is already in use</span>
+        {% elif error == 'email' %}
+        <span class="warning-span">This email format is not correct</span>
+        {% else %}
+        <span class="warning-span">Your password has to meet the conditions and has to be the same in both fields</span>
         {% endif %}
 
-        {% if passwordsDifferent %}
-
-        <span class="warning-span">Password must be the same in both fields</span>
-
-        {% endif %}
-
-        {% if usernameAlreadyExists %}
-
-        <span class="warning-span">This username already exists</span>
-
+        {% endfor %}
         {% endif %}
 
         <button>Sign Up</button>

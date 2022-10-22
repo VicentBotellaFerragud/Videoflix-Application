@@ -22,7 +22,7 @@
 
 body {
     height: 100vh;
-    background: linear-gradient(180.2deg, rgb(30, 33, 48) 6.8%, rgb(74, 98, 110) 131%);   
+    background: linear-gradient(180.2deg, rgb(30, 33, 48) 6.8%, rgb(74, 98, 110) 131%);
 }
 
 nav {
@@ -58,8 +58,8 @@ nav h1 span {
 }
 
 .dynamic-content-container {
-   height: calc(100vh - 135px);
-   padding: 16px;
+    height: calc(100vh - 135px);
+    padding: 16px;
 }
 
 .wrapper {
@@ -84,7 +84,7 @@ nav h1 span {
 /* Login style */
 
 .login-form {
-    min-width: 20vw;
+    min-width: 30vw;
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.15);
     border-radius: 10px;
@@ -118,7 +118,8 @@ nav h1 span {
     height: 2rem;
     border-radius: 10px;
     color: #E50914;
-    border: 1px solid #E50914;;
+    border: 1px solid #E50914;
+    ;
     font-weight: bold;
     background-color: transparent;
     transition: .5s;
@@ -148,7 +149,7 @@ nav h1 span {
 /* Signup style */
 
 .signup-form {
-    min-width: 20vw;
+    min-width: 30vw;
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.15);
     border-radius: 10px;
@@ -196,6 +197,16 @@ nav h1 span {
     letter-spacing: 2.5px;
 }
 
+.password-constraints {
+    font-size: 11px;
+    margin-bottom: 1rem;
+}
+
+.password-constraints li {
+    margin-left: 1rem;
+    margin-top: .25rem;
+}
+
 .redirect-to-login-span {
     margin-top: 1rem;
     font-size: 12px;
@@ -206,7 +217,7 @@ nav h1 span {
 
 /* For smartphones */
 
-@media ( max-width: 520px ) {
+@media (max-width: 520px) {
     .smartphone-dnone {
         display: none;
     }
