@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'import_export',
 ]
 
+IMPORT_EXPORT_USE_TRANSACTIONS = True
+
 RQ_QUEUES = {
     'default': {
         'HOST': 'localhost',
