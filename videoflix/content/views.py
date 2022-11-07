@@ -76,7 +76,7 @@ def signupFn(request):
 Renders the videoflix home view.
 """
 @login_required(login_url = '/login/')
-@cache_page(CACHE_TTL)
+# @cache_page(CACHE_TTL) --> This prevents the username from not being updated in the "base.html" file. Why?
 def index(request):  
     
     return render(request, 'videoflix/index.html')
