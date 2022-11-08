@@ -197,12 +197,30 @@ nav h1 span {
     letter-spacing: 2.5px;
 }
 
+.close-form-button{
+    cursor: pointer;
+    width: 80%;
+    height: 2rem;
+    border-radius: 10px;
+    color: #E50914;
+    border: 1px solid #E50914;
+    font-weight: bold;
+    background-color: transparent;
+    margin-top: 1rem;
+}
+
 .add-video-button{
     background: none;
     cursor: pointer;
     height: 4rem;
     width: 4rem;
     border-radius: 100%;
+    font-size: 40px;
+    border: none;
+    background-color: rgb(30, 33, 48);
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
 }
 
 .whole-div{
@@ -224,10 +242,20 @@ nav h1 span {
 }
 
 .add-video-form-div{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
     height: 40vh;
     width: 60%;
     background-color: rgba(3, 3, 3, 0.411);
     border-radius: 20px;
+}
+
+.input-div{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 
 .password-constraints {
