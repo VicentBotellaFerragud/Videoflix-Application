@@ -197,6 +197,39 @@ nav h1 span {
     letter-spacing: 2.5px;
 }
 
+.add-video-button{
+    background: none;
+    cursor: pointer;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 100%;
+}
+
+.whole-div{
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.191);
+}
+
+.show-add-video-form-div{
+    visibility: visible;
+}
+
+.add-video-form-div{
+    height: 40vh;
+    width: 60%;
+    background-color: rgba(3, 3, 3, 0.411);
+    border-radius: 20px;
+}
+
 .password-constraints {
     font-size: 11px;
     margin-bottom: 1rem;
