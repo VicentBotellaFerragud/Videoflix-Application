@@ -12,10 +12,8 @@ Called whenever a video is created or edited.
 def video_post_save(sender, instance, created, **kwargs): 
 
     if created:
-        video_path_as_str = str(instance.video_file)
-        modified_video_path = '.' + video_path_as_str[6:]
         queue = django_rq.get_queue('default', autocommit = True)
-        queue.enqueue(convert480p, modified_video_path)
+        queue.enqueue(convert480p, instance.video_file.path)
 
 """
 Called whenever a video is deleted. It deletes the video file from the videos folder. Without this function video objects could be 
