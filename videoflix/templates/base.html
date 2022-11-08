@@ -10,18 +10,8 @@
     
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!--<script defer src="{% static 'js/closeOrOpenForm.js' %}"></script>-->
+    <script defer src="{% static 'staticfiles/js/closeOrOpenForm.js' %}"></script>
 </head>
-
-<script>
-    function openForm(){
-    document.getElementById("id1").classList.add("show-add-video-form-div");
-}
-
-function closeForm(){
-    document.getElementById("id1").classList.remove("show-add-video-form-div");
-}
-</script>
 
 <body>
 
