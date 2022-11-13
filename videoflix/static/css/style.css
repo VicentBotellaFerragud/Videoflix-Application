@@ -85,6 +85,10 @@ nav h1 span {
     visibility: hidden;
 }
 
+.remove-transition {
+    transition: none;
+}
+
 /* Login style */
 
 .login-form {
@@ -219,17 +223,14 @@ nav h1 span {
 /* Videoflix home page style */
 
 .add-video-button {
-    background: none;
+    display: flex;
     cursor: pointer;
-    height: 4rem;
-    width: 4rem;
-    border-radius: 100%;
-    font-size: 40px;
+    border-radius: 50%;
     border: none;
-    background-color: rgb(30, 33, 48);
     position: absolute;
-    bottom: 50px;
-    right: 50px;
+    bottom: 1rem;
+    right: 1rem;
+    width: 3rem;
 }
 
 .close-form-button {

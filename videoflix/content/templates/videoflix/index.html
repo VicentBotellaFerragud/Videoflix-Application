@@ -1,23 +1,24 @@
 {% extends "base.html" %} {% block content %}
 
-<h1>This is the Videoflix home page!</h1>
-
 <div class="wrapper">
 
-    <form id="addVideoForm" class="add-video-form">
+    <form id="addVideoForm" class="add-video-form hidden" action="/home/" method="POST">
 
         <h2>Add Video</h2>
 
+        {% csrf_token %}
         <input type="text" name="videoTitle" placeholder="Title" required>
         <input type="text" name="videoDescription" placeholder="Description" required>
         <input type="file" name="videoFile" required>
 
-        <button>ADD</button>
+        <button id="addVideoButton">Add Video</button>
 
     </form>
 
 </div>
 
-<button id="addVideoButton" class="add-video-button" onclick="showOrHideForm()" title="add video">+</button>
+{% load static %}
+<img src="{% static 'img/add.png' %}" title="add video" onclick="openOrCloseForm()" id="openOrCloseFormbutton"
+    default-src="{% static 'img/add.png' %}" alternative-src="{% static 'img/close.png' %}" class="add-video-button">
 
 {% endblock %}
