@@ -1,22 +1,23 @@
 {% extends "base.html" %} {% block content %}
 
 <h1>This is the Videoflix home page!</h1>
-<button class="add-video-button" onclick="openForm()">+</button>
-    <div id="id1" class="whole-div">
-        <div class="add-video-form-div">
-            <h2>Add Video</h2>
-            <div class="input-div">
-                <label for="">Title</label>
-                <input type="text">
-                <label for="">Description</label>
-                <input type="text">
-                <label for="">Creation Date</label>
-                <input type="date">
-                <label for="">Video File</label>
-                <input type="file">
-            </div>
-            <button onclick="closeForm()" class="close-form-button">Close</button>
-        </div>
-    </div>
+
+<div class="wrapper">
+
+    <form id="addVideoForm" class="add-video-form">
+
+        <h2>Add Video</h2>
+
+        <input type="text" name="videoTitle" placeholder="Title" required>
+        <input type="text" name="videoDescription" placeholder="Description" required>
+        <input type="file" name="videoFile" required>
+
+        <button>ADD</button>
+
+    </form>
+
+</div>
+
+<button id="addVideoButton" class="add-video-button" onclick="showOrHideForm()" title="add video">+</button>
 
 {% endblock %}

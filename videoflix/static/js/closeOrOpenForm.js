@@ -1,9 +1,9 @@
-//These are the functions for the Homepage where 
-//you can open and Close the form to add an Video
-function openForm(){
-    document.getElementById("id1").classList.add("show-add-video-form-div");
-}
+//Global variables:
+const form = document.getElementById("addVideoForm");
+const button = document.getElementById("addVideoButton");
 
-function closeForm(){
-    document.getElementById("id1").classList.remove("show-add-video-form-div");
+function showOrHideForm() {
+
+    form.classList.toggle("hidden");
+    
 }
