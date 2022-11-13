@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.cache import cache_page
-from .forms import NewUserForm
+from .forms import NewUserForm, NewVideoForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -80,7 +80,8 @@ Renders the videoflix home view.
 def index(request):  
 
     if request.method == "POST":
-        print("jeje")
+        form = NewVideoForm(request.POST)
+        files = request.FILES
     
     return render(request, 'videoflix/index.html')
 

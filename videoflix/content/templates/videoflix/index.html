@@ -7,9 +7,9 @@
         <h2>Add Video</h2>
 
         {% csrf_token %}
-        <input type="text" name="videoTitle" placeholder="Title" required>
-        <input type="text" name="videoDescription" placeholder="Description" required>
-        <input type="file" name="videoFile" required>
+        <input type="text" name="title" placeholder="Title" required>
+        <input type="text" name="description" placeholder="Description" required>
+        <input type="file" name="video_file" required>
 
         <button id="addVideoButton">Add Video</button>
 
@@ -18,7 +18,7 @@
 </div>
 
 {% load static %}
-<img src="{% static 'img/add.png' %}" title="add video" onclick="openOrCloseForm()" id="openOrCloseFormbutton"
+<img src="{% static 'img/add.png' %}" onclick="openOrCloseForm()" id="openOrCloseFormbutton"
     default-src="{% static 'img/add.png' %}" alternative-src="{% static 'img/close.png' %}" class="add-video-button">
 
 {% endblock %}

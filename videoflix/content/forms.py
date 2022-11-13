@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Video
 
 # Create your forms here.
 
@@ -20,3 +21,9 @@ class NewUserForm(UserCreationForm):
 			user.save()
 
 		return user
+
+class NewVideoForm(forms.ModelForm):
+
+	class Meta:
+		model = Video
+		fields = ("title", "description", "video_file")
