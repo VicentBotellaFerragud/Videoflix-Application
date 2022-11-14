@@ -7,8 +7,8 @@
     <div class="video-container">
 
         <h3>{{ video.title }}</h3>
-        <video controls>
-            <source src="{{ video.url }}" type='video/mp4'>
+        <video controls style="width: 40%;">
+            <source src="{{ video.video_file.url }}" type='video/mp4'>
         </video>
         <h6>{{ video.created_at }}</h6>
 
