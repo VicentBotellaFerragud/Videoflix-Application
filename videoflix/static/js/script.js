@@ -11,12 +11,12 @@ function openOrCloseForm() {
     
     if (form.className === "add-video-form hidden") {
 
-        addVideoButton.classList.add("remove-transition");
+        addVideoButton.classList.add("transition-none");
         openOrCloseFormButton.setAttribute("src", DefaultSrc);
 
     } else {
 
-        addVideoButton.classList.remove("remove-transition");
+        addVideoButton.classList.remove("transition-none");
         openOrCloseFormButton.setAttribute("src", AlternativeSrc);
 
     }

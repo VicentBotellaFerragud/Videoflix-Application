@@ -8,6 +8,7 @@ from django.views.decorators.cache import cache_page
 from .forms import NewUserForm, NewVideoForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from .models import Video
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
@@ -65,10 +66,13 @@ def signupFn(request):
 
         if form.is_valid():
             form.save()
+            form = NewUserForm()
             return render(request, 'auth/login-view.html', {'signupSuccessful': True})
         
         else:
             return render(request, 'auth/signup-view.html', {'errors': form.errors})
+
+    form = NewUserForm()
     
     return render(request, 'auth/signup-view.html')
 
@@ -77,13 +81,23 @@ Renders the videoflix home view.
 """
 @login_required(login_url = '/login/')
 # @cache_page(CACHE_TTL) --> This prevents the username from not being updated in the "base.html" file. Why?
-def index(request):  
+def index(request):
+
+    videos = Video.objects.filter(creator = request.user) 
 
     if request.method == "POST":
-        form = NewVideoForm(request.POST)
-        files = request.FILES
+        form = NewVideoForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            instance = form.save(commit = False)
+            instance.creator = request.user
+            instance.save()
+            form = NewVideoForm()
+            return redirectToHome(request)
+
+    form = NewVideoForm()
     
-    return render(request, 'videoflix/index.html')
+    return render(request, 'videoflix/index.html', {'videos': videos})
 
 """
 Logs out the user and redirects the user to the videoflix home page.

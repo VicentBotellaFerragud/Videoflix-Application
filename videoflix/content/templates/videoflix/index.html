@@ -1,24 +1,40 @@
 {% extends "base.html" %} {% block content %}
 
-<div class="wrapper">
+<div class="videos-wrapper">
 
-    <form id="addVideoForm" class="add-video-form hidden" action="/home/" method="POST">
+    {% for video in videos %}
+
+    <div class="video-container">
+
+        <h3>{{ video.title }}</h3>
+        <video controls>
+            <source src="{{ video.url }}" type='video/mp4'>
+        </video>
+        <h6>{{ video.created_at }}</h6>
+
+    </div>
+
+    {% endfor %}
+
+    <form id="addVideoForm" class="add-video-form hidden" action="" method="POST" enctype="multipart/form-data" return
+        false>
 
         <h2>Add Video</h2>
 
         {% csrf_token %}
         <input type="text" name="title" placeholder="Title" required>
         <input type="text" name="description" placeholder="Description" required>
-        <input type="file" name="video_file" required>
+        <input type="file" name="video_file" class="video-file-input" required>
 
-        <button id="addVideoButton">Add Video</button>
+        <button id="addVideoButton" class="transition-none">Add Video</button>
 
     </form>
 
-</div>
+    {% load static %}
+    <img src="{% static 'img/add.png' %}" onclick="openOrCloseForm()" id="openOrCloseFormbutton"
+        default-src="{% static 'img/add.png' %}" alternative-src="{% static 'img/close.png' %}"
+        class="add-video-button">
 
-{% load static %}
-<img src="{% static 'img/add.png' %}" onclick="openOrCloseForm()" id="openOrCloseFormbutton"
-    default-src="{% static 'img/add.png' %}" alternative-src="{% static 'img/close.png' %}" class="add-video-button">
+</div>
 
 {% endblock %}

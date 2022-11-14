@@ -11,7 +11,7 @@ class VideoResource(resources.ModelResource):
         model = Video
 
 class VideoAdmin(ImportExportModelAdmin):
-    fields = ('title', 'description', 'created_at', 'video_file',)    
-    list_display = ('title', 'description', 'created_at', 'video_file',)
- 
+    fields = ('title', 'description', 'created_at', 'video_file', 'creator',)    
+    list_display = ('title', 'description', 'created_at', 'video_file', 'creator',)
+
 admin.site.register(Video, VideoAdmin)

@@ -58,8 +58,8 @@ nav h1 span {
 }
 
 .dynamic-content-container {
-    height: calc(100vh - 135px);
-    padding: 16px;
+    height: calc(100vh - 55px - 2rem);
+    padding: 1rem;
 }
 
 .wrapper {
@@ -85,8 +85,8 @@ nav h1 span {
     visibility: hidden;
 }
 
-.remove-transition {
-    transition: none;
+.transition-none {
+    transition: none !important;
 }
 
 /* Login style */
@@ -222,6 +222,26 @@ nav h1 span {
 
 /* Videoflix home page style */
 
+.videos-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.video-container {
+    margin-right: 1rem;
+}
+
+.video-container h3 {
+    text-align: center;
+}
+
+.video-container video {
+    margin-block: .5rem;
+    border-radius: 10px;
+}
+
 .add-video-button {
     display: flex;
     cursor: pointer;
@@ -233,21 +253,11 @@ nav h1 span {
     width: 3rem;
 }
 
-.close-form-button {
-    background: none;
-    cursor: pointer;
-    height: 4rem;
-    width: 4rem;
-    border-radius: 100%;
-    font-size: 40px;
-    border: none;
-    background-color: rgb(30, 33, 48);
-    position: absolute;
-    bottom: 50px;
-    right: 50px;
-}
-
 .add-video-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     min-width: 30vw;
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.15);
@@ -275,6 +285,12 @@ nav h1 span {
 
 .add-video-form input:focus {
     outline: none;
+}
+
+.video-file-input {
+    margin-top: 1rem;
+    width: fit-content !important;
+    border-bottom: none !important;
 }
 
 .add-video-form button {
