@@ -4,7 +4,7 @@
 
 <div class="wrapper">
 
-    <form class="signup-form" action="/signup/" method="POST">
+    <form class="signup-form" action="/signup/" method="POST" return false>
 
         <h2>Sign Up</h2>
 
@@ -32,6 +32,14 @@
         {% else %}
         <span class="warning-span">Your password has to meet the conditions and has to be the same in both fields</span>
         {% endif %}
+
+        {% endfor %}
+        {% endif %}
+
+        {% if email_sent_notification %}
+        {% for line in email_sent_notification %}
+
+        <p class="email-sent-span">{{ line }}</p>
 
         {% endfor %}
         {% endif %}

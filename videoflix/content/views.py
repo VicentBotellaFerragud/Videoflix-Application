@@ -65,10 +65,15 @@ def signupFn(request):
         form = NewUserForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            user = form.save(commit = False)
+            user.is_active = False
+            user.save()
+            email_sent_notification = activateEmail(request, user, form.cleaned_data.get('email'))
             form = NewUserForm()
 
-            return render(request, 'auth/login-view.html', {'signupSuccessful': True})
+            return render(request, 'auth/signup-view.html', {'email_sent_notification': email_sent_notification})
+
+            # return render(request, 'auth/login-view.html', {'signupSuccessful': True})
         
         else:
             return render(request, 'auth/signup-view.html', {'errors': form.errors})
@@ -76,6 +81,13 @@ def signupFn(request):
     form = NewUserForm()
     
     return render(request, 'auth/signup-view.html')
+
+def activateEmail(request, user, to_email):
+
+    email_sent_notification_top = 'Confirmation email was sent to "{}"'.format(to_email)
+    email_sent_notification_bottom = 'Click on the link inside to finish the signup process'
+
+    return [email_sent_notification_top, email_sent_notification_bottom]
 
 """
 Renders the home view and stores in the app the videos the user uploads.
