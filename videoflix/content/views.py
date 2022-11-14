@@ -6,7 +6,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.cache import cache_page
 from .forms import NewUserForm, NewVideoForm
-from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Video
 
@@ -15,7 +14,7 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 # Create your views here.
 
 """
-Redirects the user to the videoflix home page as soons as the app loads.
+Redirects the user to the home page.
 """
 def redirectToHome(request):
 
@@ -24,7 +23,8 @@ def redirectToHome(request):
     return response
 
 """
-Renders the login view and logs in the user if he/she fulfills the if conditions.
+Renders the login view, logs in the user if he/she fulfills the if conditions and redirects him/her either to the home page 
+or to the url that he/she has entered.
 """
 def loginFn(request):
 
@@ -57,7 +57,7 @@ def loginFn(request):
     return render(request, 'auth/login-view.html', {'redirect': redirect})
 
 """
-Renders the signup view and signs up the user if he/she fulfills the if conditions.
+Renders the signup view, signs up the user if he/she fulfills the if conditions and redirects him/her to the login page.
 """
 def signupFn(request):
 
@@ -67,6 +67,7 @@ def signupFn(request):
         if form.is_valid():
             form.save()
             form = NewUserForm()
+
             return render(request, 'auth/login-view.html', {'signupSuccessful': True})
         
         else:
@@ -77,7 +78,7 @@ def signupFn(request):
     return render(request, 'auth/signup-view.html')
 
 """
-Renders the videoflix home view.
+Renders the home view and stores in the app the videos the user uploads.
 """
 @login_required(login_url = '/login/')
 # @cache_page(CACHE_TTL) --> This prevents the username from not being updated in the "base.html" file. Why?
@@ -93,6 +94,7 @@ def index(request):
             instance.creator = request.user
             instance.save()
             form = NewVideoForm()
+
             return redirectToHome(request)
 
     form = NewVideoForm()
@@ -100,11 +102,10 @@ def index(request):
     return render(request, 'videoflix/index.html', {'videos': videos})
 
 """
-Logs out the user and redirects the user to the videoflix home page.
+Logs out the user and redirects him/her to the home page.
 """
 def logoutFn(request):
      
     logout(request)
-    response = redirect('/home/')
-    
-    return response
+
+    return redirectToHome(request)
