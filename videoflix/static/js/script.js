@@ -5,6 +5,10 @@ const DefaultSrc = openOrCloseFormButton.getAttribute("default-src");
 const AlternativeSrc = openOrCloseFormButton.getAttribute("alternative-src");
 const addVideoButton = document.getElementById("addVideoButton");
 
+/**
+ * Displays/hides the "addVideoForm" and makes some small style changes in some elements of the home page depending on the state of 
+ * the form (if it's visible or not).
+ */
 function openOrCloseForm() {
 
     form.classList.toggle("hidden");
