@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'content.apps.ContentConfig',
+    'videoflix.content.apps.ContentConfig',
 
     'debug_toolbar',
 
@@ -114,7 +114,7 @@ CACHES = {
     }
 }
 
-ROOT_URLCONF = 'videoflix.urls'
+ROOT_URLCONF = 'videoflix.videoflix.urls'
 
 TEMPLATES = [
     {
@@ -135,7 +135,7 @@ TEMPLATES = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-WSGI_APPLICATION = 'videoflix.wsgi.application' 
+WSGI_APPLICATION = 'videoflix.videoflix.wsgi.application' 
 
 # Email settings details 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
