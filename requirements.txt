@@ -6,7 +6,7 @@ colorama==0.4.5
 defusedxml==0.7.1
 Deprecated==1.2.13
 diff-match-patch==20200713
-Django==4.0.4
+Django==3.2.16
 django-cors-headers==3.13.0
 django-debug-toolbar==3.7.0
 django-import-export==3.0.1
