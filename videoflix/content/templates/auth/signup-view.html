@@ -24,11 +24,17 @@
         {% for error in errors %}
 
         {% if error == 'username' %}
+
         <span class="warning-span">This username is already in use</span>
+
         {% elif error == 'email' %}
+
         <span class="warning-span">This email format is not correct</span>
+
         {% else %}
+
         <span class="warning-span">Your password has to meet the conditions and has to be the same in both fields</span>
+        
         {% endif %}
 
         {% endfor %}
