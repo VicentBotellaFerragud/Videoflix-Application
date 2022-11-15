@@ -48,8 +48,6 @@ INSTALLED_APPS = [
     'django_rq',
 
     'import_export',
-
-    'crispy_forms',
 ]
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
