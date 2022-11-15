@@ -8,6 +8,12 @@ from django.views.decorators.cache import cache_page
 from .forms import NewUserForm, NewVideoForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Video
+from .tokens import account_activation_token
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.core.mail import EmailMessage
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
@@ -84,10 +90,30 @@ def signupFn(request):
 
 def activateEmail(request, user, to_email):
 
-    email_sent_notification_top = 'Confirmation email was sent to "{}"'.format(to_email)
-    email_sent_notification_bottom = 'Click on the link inside to finish the signup process'
+    email_subject = 'Activate your user'
+    email_body = render_to_string('auth/activate-user-email.html', {
+        'user': user.username,
+        'domain': get_current_site(request).domain,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': account_activation_token.make_token(user),
+        'protocol': 'https' if request.is_secure() else 'http'
+    })
+    whole_email = EmailMessage(email_subject, email_body, to = [to_email])
 
-    return [email_sent_notification_top, email_sent_notification_bottom]
+    if whole_email.send():
+        email_sent_notification_top = 'Confirmation email was sent to "{}"'.format(to_email)
+        email_sent_notification_bottom = 'Click on the link inside to activate your user and finish the signup process'
+
+        return [email_sent_notification_top, email_sent_notification_bottom]
+
+    else:
+        email_sent_failure = 'It was not possible to send an email to "{}"'.format(to_email)
+
+        return email_sent_failure
+
+def activate(request, uidb64, token):
+
+    return redirectToHome(request)
 
 """
 Renders the home view and stores in the app the videos the user uploads.

@@ -21,11 +21,12 @@ from content import views
 
 urlpatterns = [
     path('', views.redirectToHome),
-    path('login/', views.loginFn),
-    path('signup/', views.signupFn),
-    path('home/', views.index),
-    path('logout/', views.logoutFn),
-    path('admin/', admin.site.urls),
-    path('__debug__/', include('debug_toolbar.urls')),
-    path('django-rq/', include('django_rq.urls')),
+    path('login/', views.loginFn, name = 'login'),
+    path('signup/', views.signupFn, name = 'signup'),
+    path('activate/<uidb64>/<token>', views.activate, name = 'activate'),
+    path('home/', views.index, name = 'home'),
+    path('logout/', views.logoutFn, name = 'logout'),
+    path('admin/', admin.site.urls, name = 'admin'),
+    path('__debug__/', include('debug_toolbar.urls'), name = 'debug'),
+    path('django-rq/', include('django_rq.urls'), name = 'django-rq'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
