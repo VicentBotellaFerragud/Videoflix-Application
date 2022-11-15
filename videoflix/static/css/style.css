@@ -218,6 +218,7 @@ nav h1 span {
     margin-bottom: .5rem;
     font-size: 12px;
     text-align: center;
+    color: lightyellow;
 }
 
 .redirect-to-login-span {

@@ -14,6 +14,8 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
@@ -113,7 +115,25 @@ def activateEmail(request, user, to_email):
 
 def activate(request, uidb64, token):
 
-    return redirectToHome(request)
+    User = get_user_model()
+
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk = uid)
+    
+    except:
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        successfully_signed_up_top = 'You have successfully signed up!'
+        successfully_signed_up_bottom = 'You can now log in with your credentials'
+
+        return render(request, 'auth/login-view.html', {'successfully_signed_up': [successfully_signed_up_top, successfully_signed_up_bottom]})
+    
+    else:
+        return render(request, 'auth/login-view.html', {'link_expired': True})
 
 """
 Renders the home view and stores in the app the videos the user uploads.

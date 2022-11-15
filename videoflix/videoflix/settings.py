@@ -139,7 +139,7 @@ WSGI_APPLICATION = 'videoflix.wsgi.application'
 
 # Email settings details 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
-EMAIL_HOST = 'mail.careers-portal.com' 
+EMAIL_HOST = 'smtp.gmail.com' 
 EMAIL_FROM = 'vicentbotella.93@gmail.com'
 EMAIL_HOST_USER = 'vicentbotella.93@gmail.com' 
 EMAIL_HOST_PASSWORD = 'hwbxnouyhddnvifc' 
