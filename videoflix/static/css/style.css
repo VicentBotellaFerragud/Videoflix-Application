@@ -324,6 +324,12 @@ nav h1 span {
     letter-spacing: 2.5px;
 }
 
+.datenschutz-impressum-div{
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+}
+
 /* For smartphones */
 
 @media (max-width: 520px) {
