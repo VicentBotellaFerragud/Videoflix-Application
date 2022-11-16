@@ -20,34 +20,6 @@
             <li>Your password can’t be entirely numeric.</li>
         </ul>
 
-        {% if errors %}
-        {% for error in errors %}
-
-        {% if error == 'username' %}
-
-        <span class="warning-span">This username is already in use</span>
-
-        {% elif error == 'email' %}
-
-        <span class="warning-span">This email format is not correct</span>
-
-        {% else %}
-
-        <span class="warning-span">Your password has to meet the conditions and has to be the same in both fields</span>
-        
-        {% endif %}
-
-        {% endfor %}
-        {% endif %}
-
-        {% if email_sent_notification %}
-        {% for line in email_sent_notification %}
-
-        <p class="email-sent-span">{{ line }}</p>
-
-        {% endfor %}
-        {% endif %}
-
         <button>Sign Up</button>
 
     </form>

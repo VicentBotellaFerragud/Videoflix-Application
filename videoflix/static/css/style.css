@@ -73,6 +73,18 @@ nav h1 span {
     max-width: 50%;
 }
 
+.privacy-imprint-div {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 50%;
+    bottom: 1rem;
+    font-size: 11px;
+}
+
 .wrapper {
     height: 100%;
     display: flex;
@@ -81,11 +93,44 @@ nav h1 span {
     justify-content: center;
 }
 
-.warning-span {
-    margin-bottom: .5rem;
-    color: red;
-    font-size: 12px;
+.alert {
+    position: relative;
     text-align: center;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.close-message-button {
+    position: absolute;
+    right: 1rem;
+    color: #191935;
+    border: none;
+    background-color: transparent;
+    width: 1rem;
+    border-radius: 50%;
+}
+
+.close-message-button:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.15);
 }
 
 .d-none {
@@ -157,13 +202,6 @@ nav h1 span {
     text-align: center;
 }
 
-.signup-successful-span {
-    margin-bottom: .5rem;
-    color: #a4e9d5;
-    font-size: 12px;
-    text-align: center;
-}
-
 /* Signup style */
 
 .signup-form {
@@ -223,13 +261,6 @@ nav h1 span {
 .password-constraints li {
     margin-left: 1rem;
     margin-top: .25rem;
-}
-
-.email-sent-span {
-    margin-bottom: .5rem;
-    font-size: 12px;
-    text-align: center;
-    color: lightyellow;
 }
 
 .redirect-to-login-span {
@@ -333,12 +364,6 @@ nav h1 span {
     background-color: #E50914;
     color: white;
     letter-spacing: 2.5px;
-}
-
-.datenschutz-impressum-div{
-    position: absolute;
-    left: 25px;
-    bottom: 25px;
 }
 
 /* For smartphones */

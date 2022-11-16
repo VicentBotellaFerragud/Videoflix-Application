@@ -16,6 +16,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from django.contrib.messages import get_messages
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
@@ -50,15 +51,25 @@ def loginFn(request):
                 login(request, user)
 
                 if redirect:
+                    messages.success(request, "You have successfully logged in!")
+
                     return HttpResponseRedirect(request.POST.get('next'))
 
                 else:
+                    messages.success(request, "You have successfully logged in!")
+
                     return redirectToHome(request)
 
             else:
-                return render(request, 'auth/login-view.html', {'errors': form.errors, 'redirect': redirect})
+                messages.error(request, "Wrong username or password :(")
+                storage = get_messages(request)
+
+                return render(request, 'auth/login-view.html', {'messages': storage})
         else:
-            return render(request, 'auth/login-view.html', {'errors': form.errors, 'redirect': redirect})
+            messages.error(request, "Wrong username or password :(")
+            storage = get_messages(request)
+
+            return render(request, 'auth/login-view.html', {'messages': storage})
 
     form = AuthenticationForm()
 
@@ -78,13 +89,26 @@ def signupFn(request):
             user.save()
             email_sent_notification = activateEmail(request, user, form.cleaned_data.get('email'))
             form = NewUserForm()
+            storage = get_messages(request)
 
-            return render(request, 'auth/signup-view.html', {'email_sent_notification': email_sent_notification})
-
-            # return render(request, 'auth/login-view.html', {'signupSuccessful': True})
+            return render(request, 'auth/signup-view.html', {'messages': storage})
         
         else:
-            return render(request, 'auth/signup-view.html', {'errors': form.errors})
+
+            for error in form.errors:
+
+                if error == 'username':
+                    messages.error(request, "Unfortunately this username is already in use.")
+
+                elif error == 'email':
+                    messages.error(request, "Please check the email format. It's not correct.")
+
+                else:
+                    messages.error(request, "Please remember that your password has to meet the conditions and has to be the same in both fields")
+
+                storage = get_messages(request)
+
+                return render(request, 'auth/signup-view.html', {'messages': storage})
 
     form = NewUserForm()
     
@@ -103,15 +127,10 @@ def activateEmail(request, user, to_email):
     whole_email = EmailMessage(email_subject, email_body, to = [to_email])
 
     if whole_email.send():
-        email_sent_notification_top = 'Confirmation email was sent to "{}"'.format(to_email)
-        email_sent_notification_bottom = 'Click on the link inside to activate your user and finish the signup process'
-
-        return [email_sent_notification_top, email_sent_notification_bottom]
+        messages.warning(request, 'Confirmation email was sent to "{}". Please click on the link inside to activate your user and finish the signup process.'.format(to_email))
 
     else:
-        email_sent_failure = 'It was not possible to send an email to "{}"'.format(to_email)
-
-        return email_sent_failure
+        messages.error('It was not possible to send an email to "{}"'.format(to_email))
 
 def activate(request, uidb64, token):
 
@@ -127,13 +146,16 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        successfully_signed_up_top = 'You have successfully signed up!'
-        successfully_signed_up_bottom = 'You can now log in with your credentials'
+        messages.success(request, "You have successfully signed up! You can now log in with your credentials :)")
+        storage = get_messages(request)
 
-        return render(request, 'auth/login-view.html', {'successfully_signed_up': [successfully_signed_up_top, successfully_signed_up_bottom]})
+        return render(request, 'auth/login-view.html', {'messages': storage})
     
     else:
-        return render(request, 'auth/login-view.html', {'link_expired': True})
+        messages.error(request, "The activation link has expired. Please repeat the whole process from the beginning.")
+        storage = get_messages(request)
+
+        return render(request, 'auth/login-view.html', {'messages': storage})
 
 """
 Renders the home view and stores in the app the videos the user uploads.
@@ -152,6 +174,7 @@ def index(request):
             instance.creator = request.user
             instance.save()
             form = NewVideoForm()
+            messages.success(request, "You have successfully added a video!")
 
             return redirectToHome(request)
 
@@ -165,6 +188,6 @@ Logs out the user and redirects him/her to the home page.
 def logoutFn(request):
      
     logout(request)
-    messages.success(request, "You have successfully logged out. See you soon :)" )
+    messages.success(request, "You have successfully logged out. See you soon :)")
 
     return redirectToHome(request)

@@ -13,32 +13,6 @@
         <input type="text" name="username" placeholder="Enter your username" required>
         <input type="password" name="password" placeholder="Enter your password" required>
 
-        {% if errors %}
-        {% for error in errors %}
-
-        {% if error == '__all__' %}
-
-        <span class="warning-span">Wrong username or password</span>
-        
-        {% endif %}
-
-        {% endfor %}
-        {% endif %}
-
-        {% if successfully_signed_up %}
-        {% for line in successfully_signed_up %}
-
-        <span class="signup-successful-span">{{ line }}</span>
-
-        {% endfor %}
-        {% endif %}
-
-        {% if link_expired %}
-
-        <span class="warning-span">Activation link expired, try to sign up again</span>
-
-        {% endif %}
-
         <button>Log In</button>
 
     </form>
