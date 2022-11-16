@@ -53,8 +53,3 @@ def video_post_delete(sender, instance, **kwargs):
 
         if os.path.isfile(instance.video_file.path):
             os.remove(instance.video_file.path)
-            video_path_as_str = str(instance.video_file.path)
-            same_video_with_480p_format_path = video_path_as_str[:-4] + '_480p.mp4'
-
-            if same_video_with_480p_format_path:
-                os.remove(same_video_with_480p_format_path)
