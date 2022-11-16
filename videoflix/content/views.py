@@ -14,8 +14,8 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
-from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
@@ -165,5 +165,6 @@ Logs out the user and redirects him/her to the home page.
 def logoutFn(request):
      
     logout(request)
+    messages.success(request, "You have successfully logged out. See you soon :)" )
 
     return redirectToHome(request)
