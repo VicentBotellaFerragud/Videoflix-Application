@@ -24,11 +24,19 @@
         <h2>Add Video</h2>
 
         {% csrf_token %}
-        <input type="text" name="title" placeholder="Title" required>
-        <input type="text" name="description" placeholder="Description" required>
-        <input type="file" name="video_file" class="video-file-input" required>
+        <input type="text" id="titleInput" name="title" placeholder="Title" required>
+        <input type="text" id="descriptionInput" name="description" placeholder="Description" required>
+        <input type="file" id="videoFileInput" name="video_file" class="video-file-input" required>
 
-        <button id="addVideoButton" class="transition-none">Add Video</button>
+        <div id="waitForDiv" class="wait-for-div" style="display: none;">
+
+            <p>Please wait a few seconds...</p>
+            <p>The app is analyzing your upload speed to choose the best conversion format for your video.</p>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+
+        </div>
+
+        <button id="addVideoButton" class="transition-none" onclick="displayWaitForDivAndHideAddVideoButton()">Add Video</button>
 
     </form>
 
@@ -52,11 +60,19 @@
         <h2>Add Video</h2>
 
         {% csrf_token %}
-        <input type="text" name="title" placeholder="Title" required>
-        <input type="text" name="description" placeholder="Description" required>
-        <input type="file" name="video_file" class="video-file-input" required>
+        <input type="text" id="titleInput" name="title" placeholder="Title" required>
+        <input type="text" id="descriptionInput" name="description" placeholder="Description" required>
+        <input type="file" id="videoFileInput" name="video_file" class="video-file-input" required>
 
-        <button id="addVideoButton" class="transition-none">Add Video</button>
+        <div id="waitForDiv" class="wait-for-div" style="display: none;">
+
+            <p>Please wait a few seconds...</p>
+            <p>The app is analyzing your upload speed to choose the best conversion format for your video.</p>
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+
+        </div>
+
+        <button id="addVideoButton" class="transition-none" onclick="displayWaitForDivAndHideAddVideoButton()">Add Video</button>
 
     </form>
 

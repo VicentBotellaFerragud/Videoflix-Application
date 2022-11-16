@@ -3,6 +3,10 @@ const form = document.getElementById("addVideoForm");
 const openOrCloseFormButton = document.getElementById("openOrCloseFormbutton");
 const DefaultSrc = openOrCloseFormButton.getAttribute("default-src");
 const AlternativeSrc = openOrCloseFormButton.getAttribute("alternative-src");
+const titleInput = document.getElementById("titleInput");
+const descriptionInput = document.getElementById("descriptionInput");
+const videoFileInput = document.getElementById("videoFileInput");
+const waitForDiv = document.getElementById("waitForDiv");
 const addVideoButton = document.getElementById("addVideoButton");
 
 /**
@@ -39,5 +43,20 @@ function closeMessage() {
         alertMessages[i].classList.add("hidden");
 
     }
+
+}
+
+/**
+ * Displays the "waitForDiv" and hides the "addVideoButton".
+ */
+function displayWaitForDivAndHideAddVideoButton() {
+
+    if (titleInput.value !== "" && descriptionInput.value !== "" && videoFileInput.value !== "") {
+
+        waitForDiv.style.display = waitForDiv.style.display === 'none' ? '' : 'none';
+
+    }
+    
+    addVideoButton.style.display = 'none';
 
 }
