@@ -60,6 +60,17 @@ nav h1 span {
 .dynamic-content-container {
     height: calc(100vh - 55px - 2rem);
     padding: 1rem;
+    position: relative;
+}
+
+.messages-div {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 50%;
 }
 
 .wrapper {
