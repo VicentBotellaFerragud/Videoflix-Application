@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block content %}
+
+{% if video %}
+
+<div class="wrapper">
+
+    <form method="POST" class="delete-video-form" return false>
+
+        {% csrf_token %}
+        <h3>Are you sure you want to delete the video "{{ video.title }}"?</h3>
+        <button class="confirm-video-deletion-button alert-danger">Yes, I want to delete this video.</button>
+
+    </form>
+
+    <a href="/home/"><button class="back-to-home-button">No, I want to go back to the home page.</button></a>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -12,7 +12,9 @@
         <video controls>
             <source src="{{ video.video_file.url }}" type='video/mp4'>
         </video>
-        <h6>{{ video.created_at }}</h6>
+
+        {% load static %}
+        <h6>{{ video.created_at }}<a href="/delete/{{ video.pk }}"><img src="{% static 'img/delete.png' %}" title="delete video"></a></h6>
 
     </div>
 
@@ -32,11 +34,17 @@
 
             <p>Please wait a few seconds...</p>
             <p>The app is analyzing your upload speed to choose the best conversion format for your video.</p>
-            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
 
         </div>
 
-        <button id="addVideoButton" class="transition-none" onclick="displayWaitForDivAndHideAddVideoButton()">Add Video</button>
+        <button id="addVideoButton" class="transition-none" onclick="displayWaitForDivAndHideAddVideoButton()">Add
+            Video</button>
 
     </form>
 
@@ -68,11 +76,17 @@
 
             <p>Please wait a few seconds...</p>
             <p>The app is analyzing your upload speed to choose the best conversion format for your video.</p>
-            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
 
         </div>
 
-        <button id="addVideoButton" class="transition-none" onclick="displayWaitForDivAndHideAddVideoButton()">Add Video</button>
+        <button id="addVideoButton" class="transition-none" onclick="displayWaitForDivAndHideAddVideoButton()">Add
+            Video</button>
 
     </form>
 

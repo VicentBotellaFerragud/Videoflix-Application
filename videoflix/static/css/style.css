@@ -297,6 +297,15 @@ nav h1 span {
     background-color: black;
 }
 
+.video-container h6 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.video-container h6 img {
+    width: 1rem;
+}
+
 .add-video-button {
     display: flex;
     cursor: pointer;
@@ -421,6 +430,48 @@ nav h1 span {
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* Delete video view style */
+
+.delete-video-form {
+    text-align: center;
+}
+
+.delete-video-form h3 {
+    margin-bottom: 1rem;
+}
+
+.confirm-video-deletion-button {
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    font-size: 16px;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+
+.confirm-video-deletion-button:hover {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    cursor: pointer;
+}
+
+.back-to-home-button {
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    font-size: 16px;
+    border-radius: 10px;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+
+.back-to-home-button:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    cursor: pointer;
 }
 
 /* For smartphones */

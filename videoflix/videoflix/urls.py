@@ -20,12 +20,13 @@ from django.conf.urls.static import static
 from videoflix.content import views
 
 urlpatterns = [
-    path('', views.redirectToHome),
-    path('login/', views.loginFn, name = 'login'),
-    path('signup/', views.signupFn, name = 'signup'),
-    path('activate/<uidb64>/<token>', views.activate, name = 'activate'),
+    path('', views.redirect_to_home),
+    path('login/', views.log_in, name = 'login'),
+    path('signup/', views.sign_up, name = 'signup'),
+    path('activate/<uidb64>/<token>', views.activate_user, name = 'activate'),
     path('home/', views.index, name = 'home'),
-    path('logout/', views.logoutFn, name = 'logout'),
+    path('delete/<int:pk>', views.delete_video, name = 'delete-video'),
+    path('logout/', views.log_out, name = 'logout'),
     path('admin/', admin.site.urls, name = 'admin'),
     path('__debug__/', include('debug_toolbar.urls'), name = 'debug'),
     path('django-rq/', include('django_rq.urls'), name = 'django-rq'),

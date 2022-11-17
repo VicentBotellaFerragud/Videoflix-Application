@@ -25,7 +25,7 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 """
 Redirects the user to the home page.
 """
-def redirectToHome(request):
+def redirect_to_home(request):
 
     response = redirect('/home/')
     
@@ -35,7 +35,7 @@ def redirectToHome(request):
 Renders the login view, logs in the user if he/she fulfills the if conditions and redirects him/her either to the home page 
 or to the url that he/she has entered.
 """
-def loginFn(request):
+def log_in(request):
 
     redirect = request.GET.get('next')
     
@@ -58,27 +58,27 @@ def loginFn(request):
                 else:
                     messages.success(request, "You have successfully logged in!")
 
-                    return redirectToHome(request)
+                    return redirect_to_home(request)
 
             else:
                 messages.error(request, "Wrong username or password :(")
                 storage = get_messages(request)
 
-                return render(request, 'auth/login-view.html', {'messages': storage})
+                return render(request, 'auth/login.html', {'messages': storage})
         else:
             messages.error(request, "Wrong username or password :(")
             storage = get_messages(request)
 
-            return render(request, 'auth/login-view.html', {'messages': storage})
+            return render(request, 'auth/login.html', {'messages': storage})
 
     form = AuthenticationForm()
 
-    return render(request, 'auth/login-view.html', {'redirect': redirect})
+    return render(request, 'auth/login.html', {'redirect': redirect})
 
 """
 Renders the signup view, signs up the user if he/she fulfills the if conditions and redirects him/her to the login page.
 """
-def signupFn(request):
+def sign_up(request):
 
     if request.method == "POST":
         form = NewUserForm(request.POST)
@@ -87,11 +87,11 @@ def signupFn(request):
             user = form.save(commit = False)
             user.is_active = False
             user.save()
-            email_sent_notification = activateEmail(request, user, form.cleaned_data.get('email'))
+            send_email(request, user, form.cleaned_data.get('email'))
             form = NewUserForm()
             storage = get_messages(request)
 
-            return render(request, 'auth/signup-view.html', {'messages': storage})
+            return render(request, 'auth/signup.html', {'messages': storage})
         
         else:
 
@@ -104,17 +104,20 @@ def signupFn(request):
                     messages.error(request, "Please check the email format. It's not correct.")
 
                 else:
-                    messages.error(request, "Please remember that your password has to meet the conditions and has to be the same in both fields")
+                    messages.error(request, "Please remember that your password has to meet the conditions and has to be the same in both fields.")
 
                 storage = get_messages(request)
 
-                return render(request, 'auth/signup-view.html', {'messages': storage})
+                return render(request, 'auth/signup.html', {'messages': storage})
 
     form = NewUserForm()
     
-    return render(request, 'auth/signup-view.html')
+    return render(request, 'auth/signup.html')
 
-def activateEmail(request, user, to_email):
+"""
+Sends an email with an activation link (unique for each user) to the passed-in email address.
+"""
+def send_email(request, user, to_email):
 
     email_subject = 'Activate your user'
     email_body = render_to_string('auth/activate-user-email.html', {
@@ -132,7 +135,10 @@ def activateEmail(request, user, to_email):
     else:
         messages.error('It was not possible to send an email to "{}"'.format(to_email))
 
-def activate(request, uidb64, token):
+"""
+Activates the user so that he/she can use his/her credentials to log in.
+"""
+def activate_user(request, uidb64, token):
 
     User = get_user_model()
 
@@ -149,13 +155,13 @@ def activate(request, uidb64, token):
         messages.success(request, "You have successfully signed up! You can now log in with your credentials :)")
         storage = get_messages(request)
 
-        return render(request, 'auth/login-view.html', {'messages': storage})
+        return render(request, 'auth/login.html', {'messages': storage})
     
     else:
         messages.error(request, "The activation link has expired. Please repeat the whole process from the beginning.")
         storage = get_messages(request)
 
-        return render(request, 'auth/login-view.html', {'messages': storage})
+        return render(request, 'auth/login.html', {'messages': storage})
 
 """
 Renders the home view and stores in the app the videos the user uploads.
@@ -176,18 +182,34 @@ def index(request):
             form = NewVideoForm()
             messages.success(request, "You have successfully added a video!")
 
-            return redirectToHome(request)
+            return redirect_to_home(request)
 
     form = NewVideoForm()
     
     return render(request, 'videoflix/index.html', {'videos': videos})
 
 """
+Renders the delete video view and deletes the passed-in video.
+"""
+@login_required(login_url = '/login/')
+def delete_video(request, pk):
+
+    video_to_delete = Video.objects.get(pk = pk)
+
+    if request.method == "POST":
+        video_to_delete.delete()
+        messages.success(request, 'You have successfully deleted the video "{}"!'.format(video_to_delete.title))
+
+        return redirect_to_home(request)
+
+    return render(request, 'videoflix/delete-video.html', {'video': video_to_delete})
+
+"""
 Logs out the user and redirects him/her to the home page.
 """
-def logoutFn(request):
+def log_out(request):
      
     logout(request)
     messages.success(request, "You have successfully logged out. See you soon :)")
 
-    return redirectToHome(request)
+    return redirect_to_home(request)
