@@ -96,18 +96,15 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-"""
-Could have a use in the future!
-
 def show_toolbar(request):    
     # Oder nur für einen User?    
-    return not request.is_ajax() and request.user and request.user.username == "Vincent"    
-    # return False
+    # return not request.is_ajax() and request.user and request.user.username == "Vicent"    
+    return False
     
 DEBUG_TOOLBAR_CONFIG = {    
     'SHOW_TOOLBAR_CALLBACK': show_toolbar,
 }
-"""
+
 
 CACHES = {
     "default": {
