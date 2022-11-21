@@ -11,7 +11,7 @@ Calculates the upload speed.
 """
 def calculate_upload_speed():
     
-    speed_test = speedtest.Speedtest()
+    speed_test = speedtest.Speedtest(secure = True)
     speed_test.get_best_server()
     upload_speed = speed_test.upload() 
     upload_speed_in_mbs = round(upload_speed / (10**6), 2)
