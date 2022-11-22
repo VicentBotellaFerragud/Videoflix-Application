@@ -35,7 +35,10 @@ SECRET_KEY = 'django-insecure-$1nm$u@)z(q!0-n=+gx^h55v76jc!_m!)o)j2chp0n$)v_wd^h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['vicentbotellaferragud.pythonanywhere.com']
+ALLOWED_HOSTS = [
+    'vicentbotellaferragud.pythonanywhere.com',
+    '127.0.0.1'
+]
 
 # Cache time to live is 15 minutes.
 CACHE_TTL = 60 * 15
