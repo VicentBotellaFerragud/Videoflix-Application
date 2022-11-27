@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from content import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('', views.redirect_to_home),
@@ -30,4 +31,4 @@ urlpatterns = [
     path('admin/', admin.site.urls, name = 'admin'),
     path('__debug__/', include('debug_toolbar.urls'), name = 'debug'),
     path('django-rq/', include('django_rq.urls'), name = 'django-rq'),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+] + staticfiles_urlpatterns() # + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
