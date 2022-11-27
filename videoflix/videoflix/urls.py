@@ -31,4 +31,4 @@ urlpatterns = [
     path('admin/', admin.site.urls, name = 'admin'),
     path('__debug__/', include('debug_toolbar.urls'), name = 'debug'),
     path('django-rq/', include('django_rq.urls'), name = 'django-rq'),
-] + staticfiles_urlpatterns() + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) # + staticfiles_urlpatterns()
