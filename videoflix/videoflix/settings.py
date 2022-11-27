@@ -37,7 +37,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'vicentbotellaferragud.pythonanywhere.com',
-    '127.0.0.1'
+    '127.0.0.1',
+    'alex-vincent.developerakademie.org',
 ]
 
 # Cache time to live is 15 minutes.
