@@ -20,7 +20,7 @@ def calculate_upload_speed():
 
 """
 Called whenever a video is created or edited.
-"""
+
 @receiver(post_save, sender = Video)
 def video_post_save(sender, instance, created, **kwargs): 
 
@@ -40,17 +40,17 @@ def video_post_save(sender, instance, created, **kwargs):
 
     else:
         print("Video could not be converted due to slow upload speed")
+"""
 
 """
 This is another version of the "video_post_save" function. In this function the videos are converted to 480p format only, without calculating 
 the upload speed.
-
+"""
 @receiver(post_save, sender = Video)
 def video_post_save(sender, instance, created, **kwargs):
 
     queue = django_rq.get_queue('default', autocommit = True)
     queue.enqueue(convert_video, instance.video_file.path, 480)
-"""
 
 """
 Called whenever a video is deleted. It deletes the video file from the videos folder. Without this function video objects could be 
