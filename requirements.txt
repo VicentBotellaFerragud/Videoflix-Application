@@ -13,6 +13,7 @@ django-import-export==3.0.1
 django-redis==5.2.0
 django-rq==2.5.1
 et-xmlfile==1.1.0
+gunicorn==20.1.0
 MarkupPy==1.14
 odfpy==1.4.1
 openpyxl==3.0.10
