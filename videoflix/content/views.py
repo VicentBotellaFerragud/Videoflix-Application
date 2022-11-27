@@ -125,7 +125,7 @@ def send_email(request, user, to_email):
         'domain': get_current_site(request).domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
-        'protocol': 'https' # if request.is_secure() else 'http'
+        'protocol': 'https' if request.is_secure() else 'http'
     })
     whole_email = EmailMessage(email_subject, email_body, to = [to_email])
 
