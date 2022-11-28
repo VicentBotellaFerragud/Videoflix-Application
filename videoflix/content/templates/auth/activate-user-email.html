@@ -3,3 +3,6 @@ Hello! Please click on the link below to activate your user and finish the signu
 
 https://{{ domain }}{% url 'activate' uidb64=uid token=token %}
 {% endautoescape %}
+
+<!-- http://{{ domain }}{% url 'activate' uidb64=uid token=token %} For development -->
+<!-- https://{{ domain }}{% url 'activate' uidb64=uid token=token %} For production -->
