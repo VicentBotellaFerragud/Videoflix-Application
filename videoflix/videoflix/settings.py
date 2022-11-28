@@ -67,7 +67,7 @@ IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 RQ_QUEUES = {
     'default': {
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1', # 'localhost',
         'PORT': 6379,
         'DB': 0,
         'PASSWORD': 'foobared',
