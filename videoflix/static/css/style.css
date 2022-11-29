@@ -99,6 +99,7 @@ nav h1 span {
     padding-inline: 2rem;
     padding-block: 1rem;
     border-radius: 10px;
+    z-index: 100;
 }
 
 .alert-success {
