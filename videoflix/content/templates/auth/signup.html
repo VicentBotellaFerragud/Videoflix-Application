@@ -7,17 +7,28 @@
         <h2>Sign Up</h2>
 
         {% csrf_token %}
-        <input type="text" name="username" placeholder="Enter a username" required>
+        <input id="usernameInput" type="text" name="username" placeholder="Enter a username" required>
         <input type="email" name="email" placeholder="Enter an email" required>
-        <input type="password" name="password1" placeholder="Enter a password" required>
+        <input id="passwordInput" type="password" name="password1" placeholder="Enter a password"
+            onkeyup="checkPasswordValidity()" required>
         <input type="password" name="password2" placeholder="Repeat the password" required>
 
         <ul class="password-constraints">
             <span>Please consider this when choosing a password:</span>
-            <li>Your password can’t be too similar to your other personal information.</li>
-            <li>Your password must contain at least 8 characters.</li>
-            <li>Your password can’t be a commonly used password.</li>
-            <li>Your password can’t be entirely numeric.</li>
+
+            {% load static %}
+            <li>Your password can’t be too similar to your other personal information.
+                <img id="condition1" src="{% static 'img/checked.png' %}">
+            </li>
+            <li>Your password must contain at least 8 characters.
+                <img id="condition2" src="{% static 'img/checked.png' %}">
+            </li>
+            <li>Your password can’t be a commonly used password.
+                <img id="condition3" src="{% static 'img/checked.png' %}">
+            </li>
+            <li>Your password can’t be entirely numeric.
+                <img id="condition4" src="{% static 'img/checked.png' %}">
+            </li>
         </ul>
 
         <button>Sign Up</button>

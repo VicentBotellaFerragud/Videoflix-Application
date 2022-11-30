@@ -265,6 +265,12 @@ nav h1 span {
     margin-top: .25rem;
 }
 
+.password-constraints img {
+    width: 15px;
+    margin-left: .25rem;
+    visibility: hidden;
+}
+
 .redirect-to-login-span {
     margin-top: 1rem;
     font-size: 12px;
