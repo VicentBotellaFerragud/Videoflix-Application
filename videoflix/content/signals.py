@@ -43,7 +43,7 @@ calculating the upload speed.
 def video_post_save(sender, instance, created, **kwargs):
 
     queue = django_rq.get_queue('default', autocommit = True)
-    queue.enqueue(convert_video, instance.video_file.path, 720)
+    queue.enqueue(convert_video, instance.video_file.path, 480)
 """
 
 @receiver(post_delete, sender = Video)
