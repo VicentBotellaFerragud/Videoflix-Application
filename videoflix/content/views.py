@@ -22,19 +22,12 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 # Create your views here.
 
-"""
-Redirects the user to the home page.
-"""
 def redirect_to_home(request):
 
     response = redirect('/home/')
     
     return response
 
-"""
-Renders the login view, logs in the user if he/she fulfills the if conditions and redirects him/her either to the home page 
-or to the url that he/she has entered.
-"""
 def log_in(request):
 
     redirect = request.GET.get('next')
@@ -75,9 +68,6 @@ def log_in(request):
 
     return render(request, 'auth/login.html', {'redirect': redirect})
 
-"""
-Renders the signup view, signs up the user if he/she fulfills the if conditions and redirects him/her to the login page.
-"""
 def sign_up(request):
 
     if request.method == "POST":
@@ -114,9 +104,6 @@ def sign_up(request):
     
     return render(request, 'auth/signup.html')
 
-"""
-Sends an email with an activation link (unique for each user) to the passed-in email address.
-"""
 def send_email(request, user, to_email):
 
     email_subject = 'Activate your user'
@@ -135,9 +122,6 @@ def send_email(request, user, to_email):
     else:
         messages.error('It was not possible to send an email to "{}"'.format(to_email))
 
-"""
-Activates the user so that he/she can use his/her credentials to log in.
-"""
 def activate_user(request, uidb64, token):
 
     User = get_user_model()
@@ -163,11 +147,7 @@ def activate_user(request, uidb64, token):
 
         return render(request, 'auth/login.html', {'messages': storage})
 
-"""
-Renders the home view and stores in the app the videos the user uploads.
-"""
 @login_required(login_url = '/login/')
-# @cache_page(CACHE_TTL) --> This prevents the username from not being updated in the "base.html" file. Why?
 def index(request):
 
     videos = Video.objects.filter(creator = request.user) 
@@ -188,9 +168,6 @@ def index(request):
     
     return render(request, 'videoflix/index.html', {'videos': videos})
 
-"""
-Renders the delete video view and deletes the passed-in video.
-"""
 @login_required(login_url = '/login/')
 def delete_video(request, pk):
 
@@ -204,9 +181,6 @@ def delete_video(request, pk):
 
     return render(request, 'videoflix/delete-video.html', {'video': video_to_delete})
 
-"""
-Logs out the user and redirects him/her to the home page.
-"""
 def log_out(request):
      
     logout(request)

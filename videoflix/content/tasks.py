@@ -1,8 +1,5 @@
 import subprocess
 
-"""
-Converts the format of the passed-in video.
-"""
 def convert_video(source, video_format):
 
     target = source[:-4] + '_{}p.mp4'.format(video_format)   

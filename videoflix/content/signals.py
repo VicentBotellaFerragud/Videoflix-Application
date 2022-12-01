@@ -6,9 +6,6 @@ from .tasks import convert_video
 import django_rq
 import speedtest
 
-"""
-Calculates the upload speed.
-"""
 def calculate_upload_speed():
     
     speed_test = speedtest.Speedtest(secure = True)
@@ -17,10 +14,6 @@ def calculate_upload_speed():
     upload_speed_in_mbs = round(upload_speed / (10**6), 2)
 
     return upload_speed_in_mbs
-
-"""
-Called whenever a video is created or edited.
-"""
 
 @receiver(post_save, sender = Video)
 def video_post_save(sender, instance, created, **kwargs): 
@@ -43,21 +36,16 @@ def video_post_save(sender, instance, created, **kwargs):
         print("Video could not be converted due to slow upload speed")
 
 """
-This is another version of the "video_post_save" function. In this function the videos are converted to 480p format only, without calculating 
-the upload speed.
+This is another version of the "video_post_save" function. In this function the videos are converted to 480p format only, without 
+calculating the upload speed.
 
 @receiver(post_save, sender = Video)
 def video_post_save(sender, instance, created, **kwargs):
 
     queue = django_rq.get_queue('default', autocommit = True)
-    queue.enqueue(convert_video, instance.video_file.path, 480)
+    queue.enqueue(convert_video, instance.video_file.path, 720)
 """
 
-"""
-Called whenever a video is deleted. It deletes the video file from the videos folder. Without this function video objects could be 
-deleted from de database, however the deletion of these would not automatically delete their video files (which are stored in the 
-videos folder, inside the media folder).
-"""
 @receiver(post_delete, sender = Video)
 def video_post_delete(sender, instance, **kwargs): 
     
@@ -65,3 +53,15 @@ def video_post_delete(sender, instance, **kwargs):
 
         if os.path.isfile(instance.video_file.path):
             os.remove(instance.video_file.path)
+            delete_converted_videos(instance.video_file.path, 480)
+            delete_converted_videos(instance.video_file.path, 720)
+            delete_converted_videos(instance.video_file.path, 1080)
+
+def delete_converted_videos(video_path, video_format):
+
+    try: 
+        converted_video = video_path[:-4] + '_{}p.mp4'.format(video_format)
+        os.remove(converted_video)
+
+    except Exception:
+        pass
