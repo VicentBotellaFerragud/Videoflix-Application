@@ -27,7 +27,7 @@
         {% csrf_token %}
         <input type="text" id="titleInput" name="title" placeholder="Title" required />
         <input type="text" id="descriptionInput" name="description" placeholder="Description" required />
-        <input type="file" id="videoFileInput" name="video_file" class="video-file-input" required />
+        <input type="file" id="videoFileInput" name="video_file" class="video-file-input" accept="video/*" required />
 
         <div id="waitForDiv" class="wait-for-div" style="display: none">
             <p>Please wait a few seconds...</p>
@@ -67,7 +67,7 @@
         {% csrf_token %}
         <input type="text" id="titleInput" name="title" placeholder="Title" required />
         <input type="text" id="descriptionInput" name="description" placeholder="Description" required />
-        <input type="file" id="videoFileInput" name="video_file" class="video-file-input" required />
+        <input type="file" id="videoFileInput" name="video_file" class="video-file-input" accept="video/*" required />
 
         <div id="waitForDiv" class="wait-for-div" style="display: none">
             <p>Please wait a few seconds...</p>

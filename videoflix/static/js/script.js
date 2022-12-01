@@ -48,10 +48,9 @@ function displayWaitForDivAndHideAddVideoButton() {
     if (titleInput.value !== "" && descriptionInput.value !== "" && videoFileInput.value !== "") {
 
         waitForDiv.style.display = waitForDiv.style.display === 'none' ? '' : 'none';
+        addVideoButton.style.display = 'none';
 
     }
-
-    addVideoButton.style.display = 'none';
 
 }
 
@@ -86,7 +85,6 @@ function checkSameAsUsername(string) {
     }
 
 }
-
 
 function checkNumberOfCharacters(string) {
 
