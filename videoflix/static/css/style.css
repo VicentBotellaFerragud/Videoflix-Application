@@ -257,7 +257,7 @@ nav h1 span {
 
 .password-constraints {
     font-size: 11px;
-    margin-bottom: 1rem;
+    margin-block: 1rem;
 }
 
 .password-constraints li {
