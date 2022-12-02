@@ -22,7 +22,10 @@
 
 body {
     height: 100vh;
-    background: linear-gradient(180.2deg, rgb(30, 33, 48) 6.8%, rgb(74, 98, 110) 131%);
+    /*background: linear-gradient(180.2deg, rgb(30, 33, 48) 6.8%, rgb(74, 98, 110) 131%);*/
+    background: url("/static/img/bg.jpg");
+    background-position: center;
+    background-position-x: right
 }
 
 nav {
@@ -152,7 +155,8 @@ nav h1 span {
 .login-form {
     min-width: 30vw;
     padding: 2rem;
-    background-color: #191935;
+    background-color: rgba(0, 0, 0, .75);
+    border: 1px solid #191935;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -209,7 +213,8 @@ nav h1 span {
 .signup-form {
     min-width: 30vw;
     padding: 2rem;
-    background-color: #191935;
+    background-color: rgba(0, 0, 0, .75);
+    border: 1px solid #191935;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -287,6 +292,10 @@ nav h1 span {
 
 .no-videos-span {
     text-align: center;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, .75);
+    border: 1px solid #191935;
+    border-radius: 10px;
 }
 
 .videos-wrapper {
