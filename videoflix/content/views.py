@@ -94,7 +94,7 @@ def sign_up(request):
                     messages.error(request, "Please check the email format. It's not correct.")
 
                 else:
-                    messages.error(request, "Please remember that your password has to meet the conditions and has to be the same in both fields.")
+                    messages.error(request, "Please remember that your password has to be the same in both fields.")
 
                 storage = get_messages(request)
 

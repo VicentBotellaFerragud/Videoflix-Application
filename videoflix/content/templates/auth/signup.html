@@ -14,20 +14,28 @@
         <input type="password" name="password2" placeholder="Repeat the password" required>
 
         <ul class="password-constraints">
-            <span>Please consider this when choosing a password:</span>
+            <span>Please consider this when choosing your password:</span>
 
             {% load static %}
-            <li>Your password can’t be too similar to your other personal information.
-                <img id="condition1" src="{% static 'img/checked.png' %}">
+            <li>
+                <img id="valid1" class="valid" src="{% static 'img/checked.png' %}">
+                <img id="invalid1" class="invalid" src="{% static 'img/close.png' %}">
+                It must contain at least 10 characters.
             </li>
-            <li>Your password must contain at least 8 characters.
-                <img id="condition2" src="{% static 'img/checked.png' %}">
+            <li>
+                <img id="valid2" class="valid" src="{% static 'img/checked.png' %}">
+                <img id="invalid2" class="invalid" src="{% static 'img/close.png' %}">
+                It must contain at least 1 letter.
             </li>
-            <li>Your password can’t be a commonly used password.
-                <img id="condition3" src="{% static 'img/checked.png' %}">
+            <li>
+                <img id="valid3" class="valid" src="{% static 'img/checked.png' %}">
+                <img id="invalid3" class="invalid" src="{% static 'img/close.png' %}">
+                It must contain at least 1 number.
             </li>
-            <li>Your password can’t be entirely numeric.
-                <img id="condition4" src="{% static 'img/checked.png' %}">
+            <li>
+                <img id="valid4" class="valid" src="{% static 'img/checked.png' %}">
+                <img id="invalid4" class="invalid" src="{% static 'img/close.png' %}">
+                It must contain at least 1 special character ([@_!#$%^&*()<>?/|}{~:]).
             </li>
         </ul>
 

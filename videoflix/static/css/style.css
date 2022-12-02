@@ -261,14 +261,20 @@ nav h1 span {
 }
 
 .password-constraints li {
-    margin-left: 1rem;
-    margin-top: .25rem;
+    display: flex;
+    align-items: center;
+    margin-top: .5rem;
 }
 
-.password-constraints img {
+.valid {
     width: 15px;
-    margin-left: .25rem;
-    visibility: hidden;
+    margin-right: .5rem;
+    display: none;
+}
+
+.invalid {
+    width: 15px;
+    margin-right: .5rem;
 }
 
 .redirect-to-login-span {
