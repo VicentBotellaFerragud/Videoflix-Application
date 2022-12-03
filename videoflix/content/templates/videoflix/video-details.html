@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block content %}
+
+{% if video %}
+
+<div class="wrapper">
+
+    <h1>Video details of {{ video.title }}</h1>
+    {% load static %}
+    <h2><a href="/delete-video/{{ video.pk }}"><img src="{% static 'img/delete.png' %}"></a></h2>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

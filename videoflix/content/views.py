@@ -54,12 +54,12 @@ def log_in(request):
                     return redirect_to_home(request)
 
             else:
-                messages.error(request, "Wrong username or password :(")
+                messages.error(request, "You have entered an invalid username or password.")
                 storage = get_messages(request)
 
                 return render(request, 'auth/login.html', {'messages': storage})
         else:
-            messages.error(request, "Wrong username or password :(")
+            messages.error(request, "You have entered an invalid username or password.")
             storage = get_messages(request)
 
             return render(request, 'auth/login.html', {'messages': storage})
@@ -136,7 +136,8 @@ def activate_user(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        messages.success(request, "You have successfully signed up! You can now log in with your credentials :)")
+        login(request, user)
+        messages.success(request, "You have successfully signed up!")
         storage = get_messages(request)
 
         return render(request, 'auth/login.html', {'messages': storage})
@@ -169,6 +170,13 @@ def index(request):
     return render(request, 'videoflix/index.html', {'videos': videos})
 
 @login_required(login_url = '/login/')
+def see_video_details(request, pk):
+
+    video_to_display = Video.objects.get(pk = pk)
+
+    return render(request, 'videoflix/video-details.html', {'video': video_to_display})
+
+@login_required(login_url = '/login/')
 def delete_video(request, pk):
 
     video_to_delete = Video.objects.get(pk = pk)
@@ -184,6 +192,6 @@ def delete_video(request, pk):
 def log_out(request):
      
     logout(request)
-    messages.success(request, "You have successfully logged out. See you soon :)")
+    messages.success(request, "You have successfully logged out. See you soon!")
 
     return redirect_to_home(request)

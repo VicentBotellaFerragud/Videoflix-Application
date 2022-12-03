@@ -21,13 +21,13 @@
         {% if request.user.is_authenticated %}
 
         {% load static %}
-        <a href="/logout/"><img src="{% static 'img/logout.png' %}" title="log out"></a>
+        <a href="/logout/"><img src="{% static 'img/logout.png' %}" class="log-out-buttnon"></a>
 
-        <h1>Hi {{ request.user }}! <span class="smartphone-dnone">Enjoy Videoflix</span> &#128516;</h1>
+        <h1>Welcome {{ request.user }}!</h1>
 
         {% else %}
 
-        <h1>You are not logged in yet...</h1>
+        <h1>Video<span>flix</span></h1>
 
         {% endif %}
 
@@ -37,7 +37,7 @@
 
         <div class="messages-div">
 
-        {% include 'messages.html' %}
+            {% include 'messages.html' %}
 
         </div>
 
@@ -49,7 +49,7 @@
 
             <a href="{% static 'pdf\Datenschutzerklärung.pdf' %}" target="_blank">Privacy</a>
             <a href="{% static 'pdf\Impressum.pdf' %}" target="_blank">Imprint</a>
-            
+
         </div>
 
     </div>

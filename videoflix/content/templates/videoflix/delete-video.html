@@ -12,7 +12,12 @@
 
     </form>
 
-    <a href="/home/"><button class="back-to-home-button">No, I want to go back to the home page.</button></a>
+    <a href="/video-details/{{ video.pk }}">
+        <button class="back-to-details-button">No, I want to go back to "{{ video.title }}" details.</button>
+    </a>
+    <a href="/home/">
+        <button class="back-to-home-button">No, I want to go back to the home page.</button>
+    </a>
 
 </div>
 
