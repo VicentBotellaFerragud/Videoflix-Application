@@ -140,7 +140,7 @@ def activate_user(request, uidb64, token):
         messages.success(request, "You have successfully signed up!")
         storage = get_messages(request)
 
-        return render(request, 'auth/login.html', {'messages': storage})
+        return render(request, 'videoflix/index.html', {'messages': storage})
     
     else:
         messages.error(request, "The activation link has expired. Please repeat the whole process from the beginning.")
