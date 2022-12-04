@@ -18,10 +18,7 @@ def calculate_upload_speed():
 @receiver(post_save, sender = Video)
 def video_post_save(sender, instance, created, **kwargs): 
 
-    try: 
-        Video.objects.get(pk = instance.pk)
-
-    except:
+    if created:
         upload_speed_in_mbs = calculate_upload_speed()
 
         if upload_speed_in_mbs <= 5:
