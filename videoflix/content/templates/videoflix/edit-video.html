@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block content %}
+
+{% if video %}
+
+<div class="wrapper">
+
+    <form class="edit-video-form" action="/edit-video/{{ video.pk }}" method="POST" enctype="multipart/form-data" return
+        false>
+        <h2>Edit Video</h2>
+
+        {% csrf_token %}
+        <input type="text" name="title" value="{{ video.title }}" maxlength="30" required />
+        <input type="text" name="description" value="{{ video.description }}" maxlength="400" required />
+
+        <button>Save Changes</button>
+    </form>
+
+    {% load static %}
+    <div class="edit-video-return-div">
+        <a href="/home/"><img class="back-to-home" src="{% static 'img/home.png' %}"></a>
+        <a href="/video-details/{{ video.pk }}"><img src="{% static 'img/back.png' %}"></a>
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

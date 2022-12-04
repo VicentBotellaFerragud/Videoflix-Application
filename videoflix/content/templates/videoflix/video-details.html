@@ -4,9 +4,23 @@
 
 <div class="wrapper">
 
-    <h1>Video details of {{ video.title }}</h1>
-    {% load static %}
-    <h2><a href="/delete-video/{{ video.pk }}"><img src="{% static 'img/delete.png' %}"></a></h2>
+    <div class="video-details-container">
+        <h3>{{ video.title }}</h3>
+        <video controls>
+            <source src="{{ video.video_file.url }}" type="video/mp4" />
+        </video>
+        <h4>{{ video.description }}</h4>
+
+        {% load static %}
+        <h6>
+            {{ video.created_at }}
+            <div>
+                <a href="/home/"><img src="{% static 'img/home.png' %}"></a>
+                <a href="/edit-video/{{ video.pk }}"><img src="{% static 'img/edit.png' %}"></a>
+                <a href="/delete-video/{{ video.pk }}"><img src="{% static 'img/delete.png' %}"></a>
+            </div>
+        </h6>
+    </div>
 
 </div>
 

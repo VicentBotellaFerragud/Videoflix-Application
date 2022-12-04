@@ -27,6 +27,7 @@ urlpatterns = [
     path('activate/<uidb64>/<token>', views.activate_user, name = 'activate'),
     path('home/', views.index, name = 'home'),
     path('video-details/<int:pk>', views.see_video_details, name = 'video-details'),
+    path('edit-video/<int:pk>', views.edit_video, name = 'edit-video'),
     path('delete-video/<int:pk>', views.delete_video, name = 'delete-video'),
     path('logout/', views.log_out, name = 'logout'),
     path('admin/', admin.site.urls, name = 'admin'),

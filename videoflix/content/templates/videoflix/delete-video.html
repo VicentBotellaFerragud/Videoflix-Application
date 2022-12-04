@@ -8,16 +8,15 @@
 
         {% csrf_token %}
         <h3>Are you sure you want to delete the video "{{ video.title }}"?</h3>
-        <button class="confirm-video-deletion-button alert-danger">Yes, I want to delete this video.</button>
+        <button class="confirm-video-deletion-button alert-danger">Delete Video</button>
 
     </form>
 
-    <a href="/video-details/{{ video.pk }}">
-        <button class="back-to-details-button">No, I want to go back to "{{ video.title }}" details.</button>
-    </a>
-    <a href="/home/">
-        <button class="back-to-home-button">No, I want to go back to the home page.</button>
-    </a>
+    {% load static %}
+    <div class="delete-video-return-div">
+        <a href="/home/"><img class="back-to-home" src="{% static 'img/home.png' %}"></a>
+        <a href="/video-details/{{ video.pk }}"><img src="{% static 'img/back.png' %}"></a>
+    </div>
 
 </div>
 

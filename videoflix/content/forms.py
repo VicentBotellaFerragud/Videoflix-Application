@@ -27,3 +27,9 @@ class NewVideoForm(forms.ModelForm):
 	class Meta:
 		model = Video
 		fields = ("title", "description", "video_file")
+
+class EditVideoForm(forms.ModelForm):
+
+	class Meta:
+		model = Video
+		fields = ("title", "description")

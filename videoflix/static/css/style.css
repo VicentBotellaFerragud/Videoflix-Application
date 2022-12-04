@@ -30,7 +30,7 @@ nav {
     height: 55px;
     display: flex;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, .5);
     position: relative;
 }
 
@@ -152,6 +152,10 @@ nav h1 span {
 .close-message-button:hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.15);
+}
+
+.back-to-home {
+    margin-right: .5rem;
 }
 
 .d-none {
@@ -341,7 +345,7 @@ nav h1 span {
     height: fit-content;
     width: calc(20% - 1rem);
     margin-right: 1rem;
-    padding: 0.5rem;
+    padding: .5rem;
     border-radius: 10px;
     background-color: #191935;
     transition: .5s;
@@ -366,6 +370,7 @@ nav h1 span {
 .video-container h6 {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .video-container h6 a {
@@ -465,7 +470,6 @@ nav h1 span {
     color: #856404;
     background-color: #fff3cd;
     border-color: #ffeeba;
-    display: none;
 }
 
 .wait-for-div p {
@@ -488,7 +492,7 @@ nav h1 span {
     margin: 8px;
     border: 8px solid #fff;
     border-radius: 50%;
-    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: lds-ring 1.2s cubic-bezier(.5, 0, .5, 1) infinite;
     border-color: #856404 transparent transparent transparent;
 }
 
@@ -514,52 +518,194 @@ nav h1 span {
     }
 }
 
+/* Video details view style */
+
+.video-details-container {
+    height: fit-content;
+    padding: .5rem;
+    border-radius: 10px;
+    background-color: #191935;
+    max-width: 50vw;
+}
+
+.video-details-container h3, h4 {
+    text-align: center;
+}
+
+.video-details-container h4 {
+    margin-block: 1rem;
+}
+
+.video-details-container video {
+    margin-block: .5rem;
+    border-radius: 10px;
+    width: 50vw;
+    height: 50vh;
+    background-color: black;
+}
+
+.video-details-container h6 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.video-details-container h6 div {
+    display: flex;
+}
+
+.video-details-container h6 a {
+    display: flex;
+}
+
+.video-details-container h6 img {
+    width: 1.5rem;
+    transition: .5s;
+    margin-left: .5rem;
+    border-radius: 10px;
+    padding: 5px;
+    background: rgba(0, 0, 0, .75);
+}
+
+.video-details-container h6 img:hover {
+    filter: brightness(1.35);
+}
+
+/* Edit video view style */
+
+.edit-video-form {
+    min-width: 50vw;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, .75);
+    border: 1px solid #191935;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.edit-video-form h2 {
+    margin-bottom: 1.5rem;
+}
+
+.edit-video-form input {
+    width: 80%;
+    height: 1.5rem;
+    margin-bottom: 1rem;
+    padding-inline: 1rem;
+    border: none;
+    color: ghostwhite;
+    border-bottom: 1px solid ghostwhite;
+    background-color: transparent;
+    text-align: center;
+}
+
+.edit-video-form input:focus {
+    outline: none;
+}
+
+.edit-video-form button {
+    width: 100%;
+    height: 2rem;
+    border-radius: 10px;
+    color: #E50914;
+    border: 1px solid #E50914;
+    font-weight: bold;
+    background-color: transparent;
+    transition: .5s;
+    margin-top: 1rem;
+}
+
+.edit-video-form button:hover {
+    cursor: pointer;
+    background-color: #E50914;
+    color: white;
+    letter-spacing: 2.5px;
+}
+
+.edit-video-return-div {
+    display: flex;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #191935;
+}
+
+.edit-video-return-div a {
+    display: flex;
+}
+
+.edit-video-return-div img {
+    width: 1.5rem;
+    transition: .5s;
+    border-radius: 10px;
+    padding: 5px;
+    background: rgba(0, 0, 0, .75);
+}
+
+.edit-video-return-div img:hover {
+    filter: brightness(1.35);
+}
+
 /* Delete video view style */
 
 .delete-video-form {
-    text-align: center;
+    min-width: 50vw;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, .75);
+    border: 1px solid #191935;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 .delete-video-form h3 {
     margin-bottom: 1rem;
+    text-align: center;
 }
 
-.confirm-video-deletion-button {
-    padding-inline: 1rem;
-    padding-block: 0.5rem;
-    font-size: 16px;
-    margin-bottom: 1rem;
+.delete-video-form button {
+    width: 100%;
+    height: 2rem;
     border-radius: 10px;
+    color: #E50914;
+    border: 1px solid #E50914;
+    font-weight: bold;
+    background-color: transparent;
     transition: .5s;
+    margin-top: 1rem;
 }
 
-.confirm-video-deletion-button:hover {
-    color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545;
+.delete-video-form button:hover {
     cursor: pointer;
+    background-color: #E50914;
+    color: white;
+    letter-spacing: 2.5px;
 }
 
-.back-to-details-button {
-    margin-bottom: 1rem;
-}
-
-.back-to-details-button, .back-to-home-button {
-    padding-inline: 1rem;
-    padding-block: 0.5rem;
-    font-size: 16px;
+.delete-video-return-div {
+    display: flex;
+    padding: 5px;
     border-radius: 10px;
-    color: #004085;
-    background-color: #cce5ff;
-    border-color: #b8daff;
-    transition: .5s;
+    background-color: #191935;
 }
 
-.back-to-details-button:hover, .back-to-home-button:hover {
-    color: #fff;
-    background-color: #0069d9;
-    border-color: #0069d9;
-    cursor: pointer;
+.delete-video-return-div a {
+    display: flex;
+}
+
+.delete-video-return-div img {
+    width: 1.5rem;
+    transition: .5s;
+    border-radius: 10px;
+    padding: 5px;
+    background: rgba(0, 0, 0, .75);
+}
+
+.delete-video-return-div img:hover {
+    filter: brightness(1.35);
 }
 
 /* For smartphones */

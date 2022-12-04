@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.cache import cache_page
-from .forms import NewUserForm, NewVideoForm
+from .forms import NewUserForm, NewVideoForm, EditVideoForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Video
 from .tokens import account_activation_token
@@ -175,6 +175,33 @@ def see_video_details(request, pk):
     video_to_display = Video.objects.get(pk = pk)
 
     return render(request, 'videoflix/video-details.html', {'video': video_to_display})
+
+@login_required(login_url = '/login/')
+def edit_video(request, pk):
+
+    video_to_edit = Video.objects.get(pk = pk)
+
+    if request.method == "POST":
+        form = EditVideoForm(request.POST)
+
+        if form.is_valid():
+            video_to_edit.title = form.cleaned_data.get('title')
+            video_to_edit.description = form.cleaned_data.get('description')
+            video_to_edit.save()
+            form = EditVideoForm()
+            messages.success(request, "You have successfully edited the video!")
+            
+            return redirect_to_home(request)
+
+        else:
+            messages.error(request, "Video could not be edited. Please try it again.")
+            storage = get_messages(request)
+
+            return render(request, 'videoflix/edit-video.html', {'video': video_to_edit, 'messages': storage})
+
+    form = EditVideoForm()
+
+    return render(request, 'videoflix/edit-video.html', {'video': video_to_edit})
 
 @login_required(login_url = '/login/')
 def delete_video(request, pk):

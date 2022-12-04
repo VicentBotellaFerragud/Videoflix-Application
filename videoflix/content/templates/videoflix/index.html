@@ -25,11 +25,11 @@
         <h2>Add Video</h2>
 
         {% csrf_token %}
-        <input type="text" id="titleInput" name="title" placeholder="Title" required />
-        <input type="text" id="descriptionInput" name="description" placeholder="Description" required />
+        <input type="text" id="titleInput" name="title" placeholder="Title" maxlength="30" required />
+        <input type="text" id="descriptionInput" name="description" placeholder="Description" maxlength="400" required />
         <input type="file" id="videoFileInput" name="video_file" class="video-file-input" accept="video/*" required />
 
-        <div id="waitForDiv" class="wait-for-div">
+        <div id="waitForDiv" class="wait-for-div" style="display: none;">
             <p>Please wait a few seconds...</p>
             <p>
                 The app is analyzing your upload speed to choose the best conversion
@@ -65,11 +65,11 @@
         <h2>Add Video</h2>
 
         {% csrf_token %}
-        <input type="text" id="titleInput" name="title" placeholder="Title" required />
-        <input type="text" id="descriptionInput" name="description" placeholder="Description" required />
+        <input type="text" id="titleInput" name="title" placeholder="Title" maxlength="30" required />
+        <input type="text" id="descriptionInput" name="description" placeholder="Description" maxlength="400" required />
         <input type="file" id="videoFileInput" name="video_file" class="video-file-input" accept="video/*" required />
 
-        <div id="waitForDiv" class="wait-for-div" style="display: none">
+        <div id="waitForDiv" class="wait-for-div" style="display: none;">
             <p>Please wait a few seconds...</p>
             <p>
                 The app is analyzing your upload speed to choose the best conversion
