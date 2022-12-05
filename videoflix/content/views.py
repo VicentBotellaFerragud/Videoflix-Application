@@ -6,7 +6,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.cache import cache_page
 from .forms import NewUserForm, NewVideoForm, EditVideoForm
-from django.contrib.auth.forms import AuthenticationForm
 from .models import Video
 from .tokens import account_activation_token
 from django.template.loader import render_to_string
@@ -17,6 +16,8 @@ from django.core.mail import EmailMessage
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.contrib.messages import get_messages
+from .utils import authenticate_user_from_form
+
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
@@ -29,28 +30,25 @@ def redirect_to_home(request):
     return response
 
 def log_in(request):
-
     redirect = request.GET.get('next')
     
     if request.method == "POST":
         form = AuthenticationForm(request, data = request.POST)
 
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username = username, password = password)
+            user = authenticate_user_from_form(form)
 
             if user is not None:
                 login(request, user)
 
+                # return success_response_after_login() # Todo
+            
                 if redirect:
                     messages.success(request, "You have successfully logged in!")
-
                     return HttpResponseRedirect(request.POST.get('next'))
 
                 else:
                     messages.success(request, "You have successfully logged in!")
-
                     return redirect_to_home(request)
 
             else:
@@ -86,7 +84,7 @@ def sign_up(request):
         else:
 
             for error in form.errors:
-
+                # TODO get_error_message(error)
                 if error == 'username':
                     messages.error(request, "Unfortunately this username is already in use.")
 
@@ -150,9 +148,7 @@ def activate_user(request, uidb64, token):
 
 @login_required(login_url = '/login/')
 def home(request):
-
-    videos = Video.objects.filter(creator = request.user) 
-    
+    videos = Video.objects.all()
     return render(request, 'videoflix/home.html', {'videos': videos})
 
 @login_required(login_url = '/login/')
