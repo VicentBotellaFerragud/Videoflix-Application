@@ -1,35 +1,10 @@
-const usernameInput = document.getElementById("usernameInput");
 const passwordInput = document.getElementById("passwordInput");
-
-const form = document.getElementById("addVideoForm");
-const openOrCloseFormButton = document.getElementById("openOrCloseFormbutton");
 
 const titleInput = document.getElementById("titleInput");
 const descriptionInput = document.getElementById("descriptionInput");
 const videoFileInput = document.getElementById("videoFileInput");
 const waitForDiv = document.getElementById("waitForDiv");
 const addVideoButton = document.getElementById("addVideoButton");
-
-function openOrCloseForm() {
-
-    form.classList.toggle("hidden");
-
-    const defaultSrc = openOrCloseFormButton.getAttribute("default-src");
-    const alternativeSrc = openOrCloseFormButton.getAttribute("alternative-src");
-
-    if (form.className === "add-video-form hidden") {
-
-        addVideoButton.classList.add("transition-none");
-        openOrCloseFormButton.setAttribute("src", defaultSrc);
-
-    } else {
-
-        addVideoButton.classList.remove("transition-none");
-        openOrCloseFormButton.setAttribute("src", alternativeSrc);
-
-    }
-
-}
 
 function closeMessage() {
 

@@ -9,7 +9,7 @@ import speedtest
 def calculate_upload_speed():
     
     speed_test = speedtest.Speedtest(secure = True)
-    speed_test.get_best_server()
+    # speed_test.get_best_server() see if this returns something
     upload_speed = speed_test.upload() 
     upload_speed_in_mbs = round(upload_speed / (10**6), 2)
 
@@ -20,6 +20,8 @@ def video_post_save(sender, instance, created, **kwargs):
 
     if created:
         upload_speed_in_mbs = calculate_upload_speed()
+
+        # see how ifs are evaluated by python
 
         if upload_speed_in_mbs <= 5:
             queue = django_rq.get_queue('default', autocommit = True)
@@ -50,10 +52,10 @@ def video_post_save(sender, instance, created, **kwargs):
 @receiver(post_delete, sender = Video)
 def video_post_delete(sender, instance, **kwargs): 
     
-    if instance.video_file:
+    if instance.video_file: # think of changing file names before storing videos in the database file_exists = exists(path_to_file) from os.path import exists
 
-        if os.path.isfile(instance.video_file.path):
-            os.remove(instance.video_file.path)
+        if os.path.isfile(instance.video_file.path): # ../../Sunset.mp4  ../../Sunset_480p.mp4 
+            os.remove(instance.video_file.path) # try python "file exists"
             delete_converted_videos(instance.video_file.path, 480)
             delete_converted_videos(instance.video_file.path, 720)
             delete_converted_videos(instance.video_file.path, 1080)

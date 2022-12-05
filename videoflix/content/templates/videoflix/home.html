@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block content %}
+
+{% if videos %}
+
+<div class="videos-wrapper">
+    {% for video in videos %}
+
+    <div class="video-container">
+        <h3>{{ video.title }}</h3>
+        <video controls>
+            <source src="{{ video.video_file.url }}" type="video/mp4" />
+        </video>
+
+        {% load static %}
+        <h6>
+            {{ video.created_at }}
+            <a href="/video-details/{{ video.pk }}"><img src="{% static 'img/info.png' %}"></a>
+        </h6>
+    </div>
+
+    {% endfor %}
+
+    {% load static %}
+   <a href="/create-video/"><img src="{% static 'img/add.png' %}" class="add-video-button"></a>
+</div>
+
+{% else %}
+
+<div class="wrapper">
+    <span class="no-videos-span">You have not yet uploaded any videos to the platform. Click the "+" button
+        in the bottom right corner to start uploading content.</span>
+
+    {% load static %}
+    <a href="/create-video/"><img src="{% static 'img/add.png' %}" class="add-video-button"></a>
+</div>
+
+{% endif %} 
+
+{% endblock %}

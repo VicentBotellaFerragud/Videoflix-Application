@@ -170,7 +170,7 @@ nav h1 span {
     transition: none !important;
 }
 
-/* Login style */
+/* Login view style */
 
 .login-form {
     min-width: 30vw;
@@ -236,7 +236,7 @@ nav h1 span {
     color: lightgray;
 }
 
-/* Signup style */
+/* Signup view style */
 
 .signup-form {
     min-width: 30vw;
@@ -324,7 +324,7 @@ nav h1 span {
     color: lightgray;
 }
 
-/* Videoflix home page style */
+/* Home view style */
 
 .no-videos-span {
     text-align: center;
@@ -395,11 +395,35 @@ nav h1 span {
     position: absolute;
     bottom: 1rem;
     right: 1rem;
-    width: 3rem;
+    width: 2rem;
     transition: .5s;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #191935;
 }
 
 .add-video-button:hover {
+    filter: brightness(1.35);
+}
+
+/* Create video view style */
+
+.back-to-home-button {
+    display: flex;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    width: 2rem;
+    transition: .5s;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #191935;
+}
+
+.back-to-home-button:hover {
     filter: brightness(1.35);
 }
 
@@ -442,6 +466,10 @@ nav h1 span {
     margin-top: 1rem;
     width: fit-content !important;
     border-bottom: none !important;
+}
+
+.add-video-form h6 {
+    margin-bottom: 1rem;
 }
 
 .add-video-form button {

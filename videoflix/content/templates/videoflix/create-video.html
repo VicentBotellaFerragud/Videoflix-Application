@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block content %}
+
+<form id="addVideoForm" class="add-video-form" action="/create-video/" method="POST" enctype="multipart/form-data"
+    return false>
+    <h2>Add Video</h2>
+
+    {% csrf_token %}
+    <input type="text" id="titleInput" name="title" placeholder="Title" maxlength="30" required />
+    <input type="text" id="descriptionInput" name="description" placeholder="Description" maxlength="400" required />
+    <input type="file" id="videoFileInput" name="video_file" class="video-file-input" accept="video/*" required />
+    <h6>*Please note that the videos you upload can have a maximum size of 25mb, larger files will not be uploaded.</h6>
+
+    <div id="waitForDiv" class="wait-for-div" style="display: none;">
+        <p>Please wait a few seconds...</p>
+        <p>The app is analyzing the upload speed to choose the best conversion format for your video.</p>
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <button id="addVideoButton" onclick="displayWaitForDivAndHideAddVideoButton()">Add Video</button>
+</form>
+
+{% load static %}
+<a href="/home/"><img src="{% static 'img/home.png' %}" class="back-to-home-button"></a>
+
+{% endblock %}

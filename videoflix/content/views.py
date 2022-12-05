@@ -140,7 +140,7 @@ def activate_user(request, uidb64, token):
         messages.success(request, "You have successfully signed up!")
         storage = get_messages(request)
 
-        return render(request, 'videoflix/index.html', {'messages': storage})
+        return render(request, 'videoflix/home.html', {'messages': storage})
     
     else:
         messages.error(request, "The activation link has expired. Please repeat the whole process from the beginning.")
@@ -149,9 +149,14 @@ def activate_user(request, uidb64, token):
         return render(request, 'auth/login.html', {'messages': storage})
 
 @login_required(login_url = '/login/')
-def index(request):
+def home(request):
 
     videos = Video.objects.filter(creator = request.user) 
+    
+    return render(request, 'videoflix/home.html', {'videos': videos})
+
+@login_required(login_url = '/login/')
+def create_video(request):
 
     if request.method == "POST":
         form = NewVideoForm(request.POST, request.FILES)
@@ -166,8 +171,8 @@ def index(request):
             return redirect_to_home(request)
 
     form = NewVideoForm()
-    
-    return render(request, 'videoflix/index.html', {'videos': videos})
+
+    return render(request, 'videoflix/create-video.html')
 
 @login_required(login_url = '/login/')
 def see_video_details(request, pk):
