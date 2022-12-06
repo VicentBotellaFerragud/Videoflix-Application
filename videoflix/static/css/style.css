@@ -345,7 +345,7 @@ nav h1 span {
 .video-container {
     height: fit-content;
     width: calc(20% - 1rem - 1rem);
-    margin: auto;
+    margin-inline: 0.5rem;
     padding: .5rem;
     border-radius: 10px;
     background-color: #191935;

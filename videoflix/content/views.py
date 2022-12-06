@@ -3,7 +3,7 @@ from django.conf import settings
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.views.decorators.cache import cache_page
 from .forms import NewUserForm, NewVideoForm, EditVideoForm
 from .models import Video
@@ -13,18 +13,16 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
-from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.contrib.messages import get_messages
-from .utils import authenticate_user_from_form
-
+from .utils import authenticate_user_from_form, success_response_after_login, error_response_after_login_attempt, error_response_after_signup_attempt, send_email, find_encrypted_user, success_response_after_signup, error_response_after_activation_link_expires
+from django.contrib.auth.forms import AuthenticationForm
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 # Create your views here.
 
 def redirect_to_home(request):
-
     response = redirect('/home/')
     
     return response
@@ -37,37 +35,18 @@ def log_in(request):
 
         if form.is_valid():
             user = authenticate_user_from_form(form)
+            login(request, user)
+            success_response_after_login(request, redirect = "")
 
-            if user is not None:
-                login(request, user)
-
-                # return success_response_after_login() # Todo
-            
-                if redirect:
-                    messages.success(request, "You have successfully logged in!")
-                    return HttpResponseRedirect(request.POST.get('next'))
-
-                else:
-                    messages.success(request, "You have successfully logged in!")
-                    return redirect_to_home(request)
-
-            else:
-                messages.error(request, "You have entered an invalid username or password.")
-                storage = get_messages(request)
-
-                return render(request, 'auth/login.html', {'messages': storage})
         else:
-            messages.error(request, "You have entered an invalid username or password.")
-            storage = get_messages(request)
-
-            return render(request, 'auth/login.html', {'messages': storage})
+            error_response_after_login_attempt(request)
 
     form = AuthenticationForm()
 
     return render(request, 'auth/login.html', {'redirect': redirect})
 
-def sign_up(request):
 
+def sign_up(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
 
@@ -76,79 +55,36 @@ def sign_up(request):
             user.is_active = False
             user.save()
             send_email(request, user, form.cleaned_data.get('email'))
-            form = NewUserForm()
             storage = get_messages(request)
 
             return render(request, 'auth/signup.html', {'messages': storage})
         
         else:
-
-            for error in form.errors:
-                # TODO get_error_message(error)
-                if error == 'username':
-                    messages.error(request, "Unfortunately this username is already in use.")
-
-                elif error == 'email':
-                    messages.error(request, "Please check the email format. It's not correct.")
-
-                else:
-                    messages.error(request, "Please remember that your password has to be the same in both fields.")
-
-                storage = get_messages(request)
-
-                return render(request, 'auth/signup.html', {'messages': storage})
+            error_response_after_signup_attempt(request, form.errors)
 
     form = NewUserForm()
     
     return render(request, 'auth/signup.html')
 
-def send_email(request, user, to_email):
-
-    email_subject = 'Activate your user'
-    email_body = render_to_string('auth/activate-user-email.html', {
-        'user': user.username,
-        'domain': get_current_site(request).domain,
-        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-        'token': account_activation_token.make_token(user),
-        'protocol': 'https' if request.is_secure() else 'http'
-    })
-    whole_email = EmailMessage(email_subject, email_body, to = [to_email])
-
-    if whole_email.send():
-        messages.warning(request, 'Confirmation email was sent to "{}". Please click on the link inside to activate your user and finish the signup process.'.format(to_email))
-
-    else:
-        messages.error('It was not possible to send an email to "{}"'.format(to_email))
 
 def activate_user(request, uidb64, token):
-
     User = get_user_model()
-
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk = uid)
-    
-    except:
-        user = None
+    user = find_encrypted_user(User, uidb64)
 
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
         login(request, user)
-        messages.success(request, "You have successfully signed up!")
-        storage = get_messages(request)
+        success_response_after_signup(request)
 
-        return render(request, 'videoflix/home.html', {'messages': storage})
-    
     else:
-        messages.error(request, "The activation link has expired. Please repeat the whole process from the beginning.")
-        storage = get_messages(request)
+        error_response_after_activation_link_expires(request)
 
-        return render(request, 'auth/login.html', {'messages': storage})
 
 @login_required(login_url = '/login/')
 def home(request):
     videos = Video.objects.all()
+    
     return render(request, 'videoflix/home.html', {'videos': videos})
 
 @login_required(login_url = '/login/')
