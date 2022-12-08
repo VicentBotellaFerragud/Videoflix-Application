@@ -4,7 +4,7 @@
 
     {% if not request.user.is_authenticated %}
 
-    <form class="login-form" id="myForm" action="/login/" method="POST" return false>
+    <form class="login-form" method="POST" return false>
 
         <h3>Log In</h3>
 
@@ -28,7 +28,7 @@
 
     {% else %}
 
-    <span>You are already logged in! Click <a href="/home/">here</a> to go back to the Videoflix home page.</span>
+    <span class="redirect-to-home-span">You are already logged in! Click <a href="/home/">here</a> to go back to the Videoflix home page.</span>
 
     {% endif %}
 

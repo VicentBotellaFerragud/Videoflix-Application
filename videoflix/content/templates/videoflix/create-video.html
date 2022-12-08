@@ -1,30 +1,29 @@
 {% extends "base.html" %} {% block content %}
 
-<form id="addVideoForm" class="add-video-form" action="/create-video/" method="POST" enctype="multipart/form-data"
-    return false>
-    <h2>Add Video</h2>
+<div class="wrapper">
 
-    {% csrf_token %}
-    <input type="text" id="titleInput" name="title" placeholder="Title" maxlength="30" required />
-    <input type="text" id="descriptionInput" name="description" placeholder="Description" maxlength="400" required />
-    <input type="file" id="videoFileInput" name="video_file" class="video-file-input" accept="video/*" required />
-    <h6>*Please note that the videos you upload can have a maximum size of 25mb, larger files will not be uploaded.</h6>
+    <form id="addVideoForm" class="add-video-form" action="/create-video/" method="POST" return false>
 
-    <div id="waitForDiv" class="wait-for-div" style="display: none;">
-        <p>Please wait a few seconds...</p>
-        <p>The app is analyzing the upload speed to choose the best conversion format for your video.</p>
-        <div class="lds-ring">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+        <h3>Add Video</h3>
+
+        {% csrf_token %}
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="titleInput" name="title" maxlength="30" required>
+            <label class="mdl-textfield__label" for="titleInput">Title</label>
         </div>
-    </div>
 
-    <button id="addVideoButton" onclick="displayWaitForDivAndHideAddVideoButton()">Add Video</button>
-</form>
+        <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" id="descriptionInput" name="description" maxlength="400" required></textarea>
+            <label class="mdl-textfield__label" for="descriptionInput">Description</label>
+        </div>
 
-{% load static %}
-<a href="/home/"><img src="{% static 'img/home.png' %}" class="back-to-home-button"></a>
+        <input type="file" id="videoFileInput" name="video_file" accept="video/*" required>
+        <div class="mdl-tooltip" data-mdl-for="videoFileInput">Please choose a video smaller than 25mb</div>
+
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Add Video</button>
+
+    </form>
+
+</div>
 
 {% endblock %}

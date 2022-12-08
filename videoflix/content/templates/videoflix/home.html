@@ -27,11 +27,12 @@
 {% else %}
 
 <div class="wrapper">
-    <span class="no-videos-span">You have not yet uploaded any videos to the platform. Click the "+" button
+    <span class="no-videos-span">No videos were uploaded to the platform yet. Click the "+" button
         in the bottom right corner to start uploading content.</span>
 
-    {% load static %}
-    <a href="/create-video/"><img src="{% static 'img/add.png' %}" class="add-video-button"></a>
+    <a href="/create-video/">
+        <button class="mdl-button mdl-js-button mdl-button--fab add-video-button"><i class="material-icons">add</i></button>
+    </a>
 </div>
 
 {% endif %} 

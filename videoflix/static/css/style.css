@@ -13,6 +13,11 @@
     border-radius: 10px;
 }
 
+.links a {
+    color: rgba(0,0,0,.87);
+    text-decoration: none !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -31,20 +36,17 @@ body {
 }
 
 nav {
-    height: 100px;
     display: flex;
     justify-content: center;
-    background-color: rgba(0, 0, 0, .75);
+    background-color: rgba(0, 0, 0, .5);
     position: relative;
     font-size: 25px;
 }
 
-nav a {
-    height: 25px;
-    width: 25px;
-    position: absolute;
+.menu {
+    position: absolute !important;
     right: 1rem;
-    top: 15px;
+    top: 16px;
 }
 
 nav img {
@@ -52,11 +54,8 @@ nav img {
     width: 25px;
 }
 
-nav h1 {
-    margin-inline: 16px;
-    display: flex;
-    align-items: center;
-    text-align: center;
+nav h4 {
+    margin-block: 16px;
     letter-spacing: 2.5px;
 }
 
@@ -64,7 +63,7 @@ nav h1 span {
     color: #E50914;
 }
 
-.log-out-buttnon {
+.log-out-button {
     transition: .5s;
 }
 
@@ -73,7 +72,7 @@ nav h1 span {
 }
 
 .dynamic-content-container {
-    height: calc(100vh - 100px - 2rem);
+    height: calc(100vh - 64px - 2rem);
     padding: 1rem;
     position: relative;
 }
@@ -202,7 +201,7 @@ nav h1 span {
 
 .login-form button {
     background-color: #d50000 !important;
-    margin-block: 20px;
+    margin-block: 24px;
 }
 
 .mdl-textfield__label {
@@ -211,6 +210,16 @@ nav h1 span {
 
 .redirect-to-signup-span {
     color: #737373;
+}
+
+.redirect-to-home-span {
+    color: white;
+}
+
+.redirect-to-home-span a {
+    color: white;
+    color: white;
+    text-decoration: underline;
 }
 
 .redirect-to-signup-span a {
@@ -319,8 +328,7 @@ nav h1 span {
     text-align: center;
     padding: 2rem;
     background-color: rgba(0, 0, 0, .75);
-    border: 1px solid #191935;
-    border-radius: 10px;
+    border-radius: 4px;
 }
 
 .videos-wrapper {
@@ -377,18 +385,10 @@ nav h1 span {
 }
 
 .add-video-button {
-    display: flex;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-    position: absolute;
+    position: absolute !important;
+    background-color: #d50000 !important;
     bottom: 1rem;
     right: 1rem;
-    width: 2rem;
-    transition: .5s;
-    padding: 5px;
-    border-radius: 10px;
-    background-color: #191935;
 }
 
 .add-video-button:hover {
@@ -417,67 +417,20 @@ nav h1 span {
 }
 
 .add-video-form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 50vw;
     padding: 2rem;
     background-color: rgba(0, 0, 0, .75);
-    border: 1px solid #191935;
-    border-radius: 10px;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-.add-video-form h2 {
-    margin-bottom: 1.5rem;
-}
-
-.add-video-form input {
-    width: 80%;
-    height: 1.5rem;
-    margin-bottom: 1rem;
-    padding-inline: 1rem;
-    border: none;
-    color: ghostwhite;
-    border-bottom: 1px solid ghostwhite;
-    background-color: transparent;
-    text-align: center;
-}
-
-.add-video-form input:focus {
-    outline: none;
-}
-
-.video-file-input {
-    margin-top: 1rem;
-    width: fit-content !important;
-    border-bottom: none !important;
-}
-
-.add-video-form h6 {
-    margin-bottom: 1rem;
+.add-video-form h3 {
+    font-weight: bold;
 }
 
 .add-video-form button {
-    width: 100%;
-    height: 2rem;
-    border-radius: 10px;
-    color: #E50914;
-    border: 1px solid #E50914;
-    font-weight: bold;
-    background-color: transparent;
-    transition: .5s;
-    margin-top: 1rem;
-}
-
-.add-video-form button:hover {
-    cursor: pointer;
-    background-color: #E50914;
-    color: white;
-    letter-spacing: 2.5px;
+    background-color: #d50000 !important;
+    margin-block: 24px;
 }
 
 .wait-for-div {

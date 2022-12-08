@@ -4,6 +4,7 @@ from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.urls import reverse
 from django.views.decorators.cache import cache_page
 from .forms import NewUserForm, NewVideoForm, EditVideoForm
 from .models import Video
@@ -40,13 +41,14 @@ def log_in(request):
             # success_response_after_login(request, redirect)
             if redirect:
                 messages.success(request, "You have successfully logged in!")
-                print('hiii')
+                print(redirect)
 
-                return redirect(request.POST.get('next'))
+                return HttpResponseRedirect(reverse(redirect))
 
             else:
                 messages.success(request, "You have successfully logged in!")
-                print('heee')
+                print('holahola')
+    
                 redirect_to_home(request)
 
         else:
@@ -93,7 +95,7 @@ def activate_user(request, uidb64, token):
 
 
 @login_required(login_url = '/login/')
-def home(request):
+def home_view(request):
     videos = Video.objects.all()
     
     return render(request, 'videoflix/home.html', {'videos': videos})

@@ -23,19 +23,21 @@
     {% if request.user.is_authenticated %}
     <nav>
 
-        {% if request.user.is_authenticated %}
+        <h4>Welcome {{ request.user }}!</h4>
 
-        {% load static %}
-        <a href="/logout/"><img src="{% static 'img/logout.png' %}" class="log-out-buttnon"></a>
-
-        <h1>Welcome {{ request.user }}!</h1>
-
-        {% else %}
-
-        <h1>Video<span>flix</span></h1>
-
-        {% endif %}
-
+        <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon menu">
+            <i class="material-icons">more_vert</i>
+        </button>
+    
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect links" for="demo-menu-lower-right">
+            <a href="/home/"><li class="mdl-menu__item">Home</li></a>
+            <a href="/create-video/"><li class="mdl-menu__item">Add video</li></a>
+            <li class="mdl-menu__item">Another Action</li>
+            <li class="mdl-menu__item">My videos</li>
+            <li class="mdl-menu__item">Edit user</li>
+            <a href="/logout/"><li class="mdl-menu__item">Log out</li></a>
+        </ul>
+        
     </nav>
     {% endif %}
 
