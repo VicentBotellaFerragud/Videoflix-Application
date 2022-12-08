@@ -12,10 +12,15 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script defer src="{% static 'js/script.js' %}"></script>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
 </head>
 
 <body>
 
+    {% if request.user.is_authenticated %}
     <nav>
 
         {% if request.user.is_authenticated %}
@@ -32,10 +37,11 @@
         {% endif %}
 
     </nav>
+    {% endif %}
 
-    <div class="dynamic-content-container">
+    <div class="{% if request.user.is_authenticated %} dynamic-content-container {% else %} full-height {% endif %}">
 
-        <div class="messages-div">
+        <div class="{% if request.user.is_authenticated %} messages-div {% else %} messages-div-adjusted {% endif %}">
 
             {% include 'messages.html' %}
 

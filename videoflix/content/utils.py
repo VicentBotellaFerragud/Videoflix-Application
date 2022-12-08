@@ -20,16 +20,19 @@ def authenticate_user_from_form(form):
     return user
 
 
-def success_response_after_login(request, redirect = ""):
-    if redirect:
+def success_response_after_login(request, redirection = ""):
+    if redirection:
         messages.success(request, "You have successfully logged in!")
+        print('hiii')
 
-        return HttpResponseRedirect(request.POST.get('next'))
+        return redirect(request.POST.get('next'))
 
     else:
         messages.success(request, "You have successfully logged in!")
-
-        return HttpResponseRedirect('/home/')
+        print('heee')
+        response = redirect('/home/')
+    
+        return response
 
 
 def error_response_after_login_attempt(request):

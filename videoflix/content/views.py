@@ -23,6 +23,7 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 # Create your views here.
 
 def redirect_to_home(request):
+    print('called')
     response = redirect('/home/')
     
     return response
@@ -36,7 +37,17 @@ def log_in(request):
         if form.is_valid():
             user = authenticate_user_from_form(form)
             login(request, user)
-            success_response_after_login(request, redirect = "")
+            # success_response_after_login(request, redirect)
+            if redirect:
+                messages.success(request, "You have successfully logged in!")
+                print('hiii')
+
+                return redirect(request.POST.get('next'))
+
+            else:
+                messages.success(request, "You have successfully logged in!")
+                print('heee')
+                redirect_to_home(request)
 
         else:
             error_response_after_login_attempt(request)

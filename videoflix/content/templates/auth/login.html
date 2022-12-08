@@ -4,21 +4,27 @@
 
     {% if not request.user.is_authenticated %}
 
-    <form class="login-form" action="/login/" method="POST" return false>
+    <form class="login-form" id="myForm" action="/login/" method="POST" return false>
 
-        <h2>Log In</h2>
+        <h3>Log In</h3>
 
         {% csrf_token %}
         <input type="hidden" name="redirect" value="{{ redirect }}">
-        <input type="text" name="username" placeholder="Enter your username" required>
-        <input type="password" name="password" placeholder="Enter your password" required>
 
-        <button>Log In</button>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="username" type="text" id="username" required>
+            <label class="mdl-textfield__label" for="username">Username</label>
+        </div>
 
-        <span class="redirect-to-signup-span"><span style="color: rgb(142, 142, 142);">new to videoflix? </span><a href="/signup/">Join Now</a></span>
-    </form>
-
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="password" name="password" id="password" required>
+            <label class="mdl-textfield__label" for="username">Password</label>
+        </div>
     
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Log In</button>
+
+        <span class="redirect-to-signup-span">New to Videoflix?<a href="/signup/">Sign up now</a></span>
+    </form>
 
     {% else %}
 
