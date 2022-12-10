@@ -98,15 +98,7 @@ function searchForVideos() {
 
     for (i = 0; i < videos.length; i++) {
         let videoTitle = videos[i].childNodes[3].innerText;
-        console.log(videoTitle);
-        /*
-        if (videoTitle.toUpperCase().indexOf(filter) > -1) {
-            // console.log(`video title ${videoTitle} is included in the search`);
-            video.style.display = 'block';
-        } else {
-            // console.log(`video title ${videoTitle} is NOT included in the search`);
-            video.style.display = 'none';
-        }
-        */
+        
+        videoTitle.toUpperCase().indexOf(filter) > -1 ? video.style.display = 'block' : video.style.display = 'none';
     }
 }
