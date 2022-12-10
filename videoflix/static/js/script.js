@@ -94,16 +94,17 @@ function searchForVideos() {
     input = document.getElementById('searchBar');
     filter = input.value.toUpperCase();
     container = document.getElementById('videosWrapper');
-    videos = container.querySelectorAll('.video-container');
-
-    for (i = 0; i < videos.length; i++) {
-        let video = videos[i];
-        let videoTitle = video.childNodes[3].innerText;
+    videoTitles = container.querySelectorAll('.video-title');
+    
+    for (i = 0; i < videoTitles.length; i++) {
+        let videoTitle1 = videoTitles[i].innerHTML;
+        let videoTitle2 = videoTitles[i].innerText;
+        console.log(videoTitle1);
+        console.log(videoTitle2);
         
-        console.log(videoTitle);
-        console.log(videoTitle.length);
+      /*
         if (videoTitle.length <= 30) {
             videoTitle.toUpperCase().indexOf(filter) > -1 ? video.style.display = 'block' : video.style.display = 'none';
-        }
+        }*/
     }
 }
