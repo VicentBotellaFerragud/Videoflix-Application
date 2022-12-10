@@ -97,8 +97,9 @@ function searchForVideos() {
     videos = container.querySelectorAll('.video-container');
 
     for (i = 0; i < videos.length; i++) {
-        let videoTitle = videos[i].childNodes[3].innerText;
-        
+        let video = videos[i];
+        let videoTitle = video.childNodes[3].innerText;
+
         videoTitle.toUpperCase().indexOf(filter) > -1 ? video.style.display = 'block' : video.style.display = 'none';
     }
 }
