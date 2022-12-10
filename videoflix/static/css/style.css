@@ -298,7 +298,7 @@ nav a:hover {
     display: flex;
     flex-wrap: wrap;
     overflow-y: auto;
-    row-gap: 1rem;
+    /* row-gap: 2rem; */
 }
 
 .video-container {
