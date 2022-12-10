@@ -100,6 +100,7 @@ function searchForVideos() {
         let video = videos[i];
         let videoTitle = video.childNodes[3].innerText;
         
+        console.log(videoTitle);
         console.log(videoTitle.length);
         if (videoTitle.length <= 30) {
             videoTitle.toUpperCase().indexOf(filter) > -1 ? video.style.display = 'block' : video.style.display = 'none';
