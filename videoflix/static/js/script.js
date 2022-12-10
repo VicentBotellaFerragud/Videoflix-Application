@@ -96,13 +96,17 @@ function searchForVideos() {
     container = document.getElementById('videosWrapper');
     videos = container.querySelectorAll('.video-container');
 
+    console.log(`search is ${filter}`)
+
     for (i = 0; i < videos.length; i++) {
         let video = videos[i];
         let videoTitle = video.outerText;
 
         if (videoTitle.toUpperCase().indexOf(filter) > -1) {
+            console.log(`video title ${videoTitle} is included in the search`);
             video.style.display = 'block';
         } else {
+            console.log(`video title ${videoTitle} is NOT included in the search`);
             video.style.display = 'none';
         }
     }
