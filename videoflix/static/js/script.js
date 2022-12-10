@@ -101,12 +101,13 @@ function searchForVideos() {
     for (i = 0; i < videos.length; i++) {
         let video = videos[i];
         let videoTitle = video.outerText;
+        console.log(videoTitle);
 
         if (videoTitle.toUpperCase().indexOf(filter) > -1) {
-            console.log(`video title ${videoTitle} is included in the search`);
+            // console.log(`video title ${videoTitle} is included in the search`);
             video.style.display = 'block';
         } else {
-            console.log(`video title ${videoTitle} is NOT included in the search`);
+            // console.log(`video title ${videoTitle} is NOT included in the search`);
             video.style.display = 'none';
         }
     }
