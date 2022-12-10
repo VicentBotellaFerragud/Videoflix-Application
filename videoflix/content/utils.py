@@ -1,14 +1,14 @@
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from django.contrib.messages import get_messages
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage
+from .forms import NewVideoForm, EditVideoForm
 
 # log_in utils:
 
@@ -81,8 +81,6 @@ def error_response_after_signup_attempt(request, errors):
         return render(request, 'auth/signup.html', {'messages': storage})
 
 
-# activate_user utils:
-
 def find_encrypted_user(user_model, uidb64):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
@@ -94,3 +92,30 @@ def find_encrypted_user(user_model, uidb64):
         user = None
 
         return None
+
+
+# create_video utils:
+
+def save_new_video(request, form):
+    instance = form.save(commit = False)
+    instance.creator = request.user
+    instance.save()
+    form = NewVideoForm()
+    messages.success(request, "You have successfully added a video!")
+
+
+# edit_video utils:
+
+def save_changes(request, video_to_edit, form):
+    video_to_edit.title = form.cleaned_data.get('title')
+    video_to_edit.description = form.cleaned_data.get('description')
+    video_to_edit.save()
+    form = EditVideoForm()
+    messages.success(request, "You have successfully edited the video!")
+
+
+def error_response_after_video_edition_attempt(request, video_to_edit):
+    messages.error(request, "Video could not be edited. Please try it again.")
+    storage = get_messages(request)
+
+    return render(request, 'videoflix/edit-video.html', {'video': video_to_edit, 'messages': storage})
