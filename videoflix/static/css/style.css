@@ -30,10 +30,10 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgb(20, 20, 20);
     position: relative;
     font-size: 25px;
-    padding-inline: 2rem;
+    padding-inline: 7rem;
 }
 
 nav a:hover {
@@ -42,6 +42,11 @@ nav a:hover {
 
 .full-height {
     height: 100vh;
+}
+
+.items-center {
+    display: flex;
+    align-items: center;
 }
 
 .py-20 {
@@ -76,8 +81,9 @@ nav a:hover {
 }
 
 .dynamic-content-container {
-    height: calc(100vh - 64px - 4rem);
-    padding: 2rem;
+    height: calc(100vh - 67.4px - 4rem);
+    padding-inline: 7rem;
+    padding-block: 2rem;
     position: relative;
     overflow: auto;
 }
