@@ -97,14 +97,12 @@ function searchForVideos() {
     videoTitles = container.querySelectorAll('.video-title');
     
     for (i = 0; i < videoTitles.length; i++) {
-        let videoTitle1 = videoTitles[i].innerHTML;
-        let videoTitle2 = videoTitles[i].innerText;
-        console.log(videoTitle1);
-        console.log(videoTitle2);
-        
-      /*
-        if (videoTitle.length <= 30) {
-            videoTitle.toUpperCase().indexOf(filter) > -1 ? video.style.display = 'block' : video.style.display = 'none';
-        }*/
+        let videoTitleFirstOption = videoTitles[i].innerHTML;
+        let videoTitleSecondOption = videoTitles[i].innerText;
+        console.log(videoTitleFirstOption);
+        console.log(videoTitleSecondOption);
+  
+        videoTitleFirstOption.toUpperCase().indexOf(filter) > -1 || 
+        videoTitleSecondOption.toUpperCase().indexOf(filter) > -1 ? video.style.display = 'block' : video.style.display = 'none';
     }
 }
