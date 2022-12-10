@@ -80,9 +80,15 @@ def activate_user(request, uidb64, token):
         user.save()
         login(request, user)
         success_response_after_signup(request)
+        storage = get_messages(request)
+
+        return render(request, 'videoflix/home.html', {'messages': storage})
 
     else:
         error_response_after_activation_link_expires(request)
+        storage = get_messages(request)
+
+        return render(request, 'auth/login.html', {'messages': storage})
 
 
 @login_required(login_url = '/login/')

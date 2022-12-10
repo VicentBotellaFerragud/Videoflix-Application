@@ -53,16 +53,10 @@ def send_email(request, user, email):
 
 def success_response_after_signup(request):
     messages.success(request, "You have successfully signed up!")
-    storage = get_messages(request)
-
-    return render(request, 'videoflix/home.html', {'messages': storage})
 
 
 def error_response_after_activation_link_expires(request):
     messages.error(request, "The activation link has expired. Please repeat the whole process from the beginning.")
-    storage = get_messages(request)
-
-    return render(request, 'auth/login.html', {'messages': storage})
 
 
 def error_response_after_signup_attempt(request, errors):
