@@ -6,16 +6,27 @@
     {% for video in videos %}
 
     <div class="video-container">
-        <h3>{{ video.title }}</h3>
         <video controls>
-            <source src="{{ video.video_file.url | default_if_none:'#' }}" type="video/mp4" />
+            <source src="{{ video.video_file.url }}" type="video/mp4" />
         </video>
 
         {% load static %}
-        <h6>
-            {{ video.created_at }}
-            <a href="/video-details/{{ video.pk }}"><img src="{% static 'img/info.png' %}"></a>
-        </h6>
+        <div class="video-container-footer">
+            
+
+            <img id="video{{ video.id }}" class="video-menu-arrow mdl-button mdl-js-button mdl-button--icon" src="{% static 'img/down-arrow.png' %}">
+
+            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                for="video{{ video.id }}">
+                <li class="mdl-menu__item">Rate</li>
+                <li class="mdl-menu__item">See details</li>
+                <li class="mdl-menu__item">Edit</li>
+                <li class="mdl-menu__item">Delete</li>
+            </ul>
+
+            <span>{{ video.title }}</span>
+        </div>
+        
     </div>
 
     {% endfor %}

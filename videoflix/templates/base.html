@@ -22,11 +22,10 @@
 
     {% if request.user.is_authenticated %}
     <nav>
+        <a class="videoflix-logo-navbar" href="/home/"><h4>Video<span>flix</span></h4></a>
 
-        <h4>Welcome {{ request.user }}!</h4>
-
-        <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon menu">
-            <i class="material-icons">more_vert</i>
+        <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">account_box</i>
         </button>
     
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect links" for="demo-menu-lower-right">
@@ -42,6 +41,10 @@
     {% endif %}
 
     <div class="{% if request.user.is_authenticated %} dynamic-content-container {% else %} full-height {% endif %}">
+
+        {% if not request.user.is_authenticated %}
+        <a class="videoflix-logo-login" href="/home/"><h4>Video<span>flix</span></h4></a>
+        {% endif %}
 
         <div class="{% if request.user.is_authenticated %} messages-div {% else %} messages-div-adjusted {% endif %}">
 

@@ -10,11 +10,15 @@
 
 ::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
+    border-radius: 4px;
+}
+
+.py-20 {
+    padding-block: 20px;
 }
 
 .links a {
-    color: rgba(0,0,0,.87);
+    /*color: rgba(0,0,0,.87);*/
     text-decoration: none !important;
 }
 
@@ -37,43 +41,40 @@ body {
 
 nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     background-color: rgba(0, 0, 0, .5);
     position: relative;
     font-size: 25px;
+    padding-inline: 2rem;
 }
 
-.menu {
-    position: absolute !important;
-    right: 1rem;
-    top: 16px;
+nav a:hover {
+    cursor: pointer;
 }
 
-nav img {
-    height: 25px;
-    width: 25px;
+.videoflix-logo-login {
+    position: absolute;
+    left: 2rem;
 }
 
-nav h4 {
+.videoflix-logo-navbar, .videoflix-logo-login {
+    text-decoration: none;
+}
+
+.videoflix-logo-navbar h4, .videoflix-logo-login h4 {
+    font-weight: bold;
     margin-block: 16px;
     letter-spacing: 2.5px;
 }
 
-nav h1 span {
-    color: #E50914;
-}
-
-.log-out-button {
-    transition: .5s;
-}
-
-.log-out-buttnon:hover {
-    filter: brightness(1.35);
+.videoflix-logo-navbar span, .videoflix-logo-login span {
+    color: #d50000;
 }
 
 .dynamic-content-container {
-    height: calc(100vh - 64px - 2rem);
-    padding: 1rem;
+    height: calc(100vh - 64px - 4rem);
+    padding: 2rem;
     position: relative;
 }
 
@@ -89,7 +90,7 @@ nav h1 span {
 
 .messages-div-adjusted {
     position: absolute;
-    top: 50px;
+    top: calc(64px + 2rem);
     left: 0;
     right: 0;
     margin-left: auto;
@@ -132,7 +133,7 @@ nav h1 span {
     text-align: center;
     padding-inline: 2rem;
     padding-block: 1rem;
-    border-radius: 10px;
+    border-radius: 4px;
     z-index: 100;
 }
 
@@ -208,9 +209,20 @@ nav h1 span {
     color: #737373 !important;
 }
 
-.redirect-to-signup-span {
+.redirect-to-signup-span, .redirect-to-login-span {
     color: #737373;
 }
+
+.redirect-to-signup-span a, .redirect-to-login-span a {
+    margin-left: 5px;
+    color: white;
+    text-decoration: none;
+}
+
+.redirect-to-signup-span a:hover, .redirect-to-login-span a:hover {
+    text-decoration: underline;
+}
+
 
 .redirect-to-home-span {
     color: white;
@@ -222,107 +234,57 @@ nav h1 span {
     text-decoration: underline;
 }
 
-.redirect-to-signup-span a {
-    margin-left: 5px;
-    color: white;
-    text-decoration: none;
-}
 
-.redirect-to-signup-span a:hover {
-    text-decoration: underline;
-}
+
 
 /* Signup view style */
 
 .signup-form {
-    min-width: 30vw;
     padding: 2rem;
     background-color: rgba(0, 0, 0, .75);
-    border: 1px solid #191935;
-    border-radius: 10px;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    font-size: 20px;
 }
 
-.signup-form h2 {
-    margin-bottom: 1.5rem;
-}
-
-.signup-form input {
-    width: 80%;
-    height: 2.5rem;
-    margin-bottom: 1rem;
-    padding-inline: 1rem;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    background-color: rgb(69, 69, 69);
-    text-align: center;
-}
-
-.signup-form input:focus {
-    outline: none;
+.signup-form h3 {
+    font-weight: bold;
 }
 
 .signup-form button {
-    width: 90%;
-    height: 3.5rem;
-    border-radius: 5px;
-    background-color: #E50914;
-    color: white;
-    border: 1px solid #E50914;
-    font-weight: bold;
-    transition: .5s;
-    margin-top: 1rem;
-    font-size: 18px;
-}
-
-.signup-form button:hover {
-    cursor: pointer;
-    background-color: #ae0009;
-    color: white;
+    background-color: #d50000 !important;
+    margin-block: 24px;
 }
 
 .password-constraints {
     font-size: 11px;
-    margin-block: 1rem;
 }
 
 .password-constraints li {
     display: flex;
     align-items: center;
-    margin-top: .5rem;
 }
 
 .valid {
-    width: 15px;
+    width: 20px;
     margin-right: .5rem;
     display: none;
 }
 
 .invalid {
-    width: 15px;
+    width: 20px;
     margin-right: .5rem;
 }
 
-.redirect-to-login-span {
-    margin-top: 1rem;
-    font-size: 18px;
-    text-align: center;
-}
-
-.redirect-to-login-span a {
-    transition: .5s;
-    text-decoration: none;
-}
-
-.redirect-to-login-span a:hover {
-    text-decoration: underline;
+.info-icon {
+    width: 20px;
 }
 
 /* Home view style */
+
+.video-menu-arrow {
+    background-color: #d50000 !important;
+}
 
 .no-videos-span {
     text-align: center;
@@ -341,54 +303,30 @@ nav h1 span {
 
 .video-container {
     height: fit-content;
-    width: calc(20% - 1rem - 1rem);
-    margin-inline: 0.5rem;
+    width: calc(20% - 1rem);
     padding: .5rem;
-    border-radius: 10px;
-    background-color: #191935;
-    transition: .5s;
-}
-
-.video-container:hover {
-    background-color: #262648;
-}
-
-.video-container h3 {
-    text-align: center;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
 }
 
 .video-container video {
-    margin-block: .5rem;
-    border-radius: 10px;
+    border-radius: 4px;
     width: 100%;
-    height: 25vh;
-    background-color: black;
+    background-color: #cac0c0;
+    height: 20vh;
 }
 
-.video-container h6 {
+.video-container-footer {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-}
-
-.video-container h6 a {
-    display: flex;
-}
-
-.video-container h6 img {
-    width: 1.25rem;
-    transition: .5s;
-}
-
-.video-container h6 img:hover {
-    filter: brightness(1.35);
+    justify-content: space-between;
 }
 
 .add-video-button {
     position: absolute !important;
     background-color: #d50000 !important;
-    bottom: 1rem;
-    right: 1rem;
+    bottom: 2rem;
+    right: 2rem;
 }
 
 .add-video-button:hover {
@@ -408,7 +346,7 @@ nav h1 span {
     width: 2rem;
     transition: .5s;
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 4px;
     background-color: #191935;
 }
 
@@ -437,7 +375,7 @@ nav h1 span {
     text-align: center;
     padding-inline: 2rem;
     padding-block: 1rem;
-    border-radius: 10px;
+    border-radius: 4px;
     color: #856404;
     background-color: #fff3cd;
     border-color: #ffeeba;
@@ -494,7 +432,7 @@ nav h1 span {
 .video-details-container {
     height: fit-content;
     padding: .5rem;
-    border-radius: 10px;
+    border-radius: 4px;
     background-color: #191935;
     max-width: 50vw;
 }
@@ -509,7 +447,7 @@ nav h1 span {
 
 .video-details-container video {
     margin-block: .5rem;
-    border-radius: 10px;
+    border-radius: 4px;
     width: 50vw;
     height: 50vh;
     background-color: black;
@@ -533,7 +471,7 @@ nav h1 span {
     width: 1.5rem;
     transition: .5s;
     margin-left: .5rem;
-    border-radius: 10px;
+    border-radius: 4px;
     padding: 5px;
     background: rgba(0, 0, 0, .75);
 }
@@ -549,7 +487,7 @@ nav h1 span {
     padding: 2rem;
     background-color: rgba(0, 0, 0, .75);
     border: 1px solid #191935;
-    border-radius: 10px;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -579,7 +517,7 @@ nav h1 span {
 .edit-video-form button {
     width: 100%;
     height: 2rem;
-    border-radius: 10px;
+    border-radius: 4px;
     color: #E50914;
     border: 1px solid #E50914;
     font-weight: bold;
@@ -598,7 +536,7 @@ nav h1 span {
 .edit-video-return-div {
     display: flex;
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 4px;
     background-color: #191935;
 }
 
@@ -609,7 +547,7 @@ nav h1 span {
 .edit-video-return-div img {
     width: 1.5rem;
     transition: .5s;
-    border-radius: 10px;
+    border-radius: 4px;
     padding: 5px;
     background: rgba(0, 0, 0, .75);
 }
@@ -625,7 +563,7 @@ nav h1 span {
     padding: 2rem;
     background-color: rgba(0, 0, 0, .75);
     border: 1px solid #191935;
-    border-radius: 10px;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -640,7 +578,7 @@ nav h1 span {
 .delete-video-form button {
     width: 100%;
     height: 2rem;
-    border-radius: 10px;
+    border-radius: 4px;
     color: #E50914;
     border: 1px solid #E50914;
     font-weight: bold;
@@ -659,7 +597,7 @@ nav h1 span {
 .delete-video-return-div {
     display: flex;
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 4px;
     background-color: #191935;
 }
 
@@ -670,7 +608,7 @@ nav h1 span {
 .delete-video-return-div img {
     width: 1.5rem;
     transition: .5s;
-    border-radius: 10px;
+    border-radius: 4px;
     padding: 5px;
     background: rgba(0, 0, 0, .75);
 }

@@ -17,10 +17,14 @@
             <label class="mdl-textfield__label" for="descriptionInput">Description</label>
         </div>
 
-        <input type="file" id="videoFileInput" name="video_file" accept="video/*" required>
+        <input class="py-20" type="file" id="videoFileInput" name="video_file" accept="video/*" required>
         <div class="mdl-tooltip" data-mdl-for="videoFileInput">Please choose a video smaller than 25mb</div>
 
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Add Video</button>
+
+        <div style="display: none">
+            <div class="mdl-spinner mdl-js-spinner is-active"></div>
+        </div>
 
     </form>
 

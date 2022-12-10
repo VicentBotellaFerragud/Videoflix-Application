@@ -4,7 +4,7 @@
 
     {% if not request.user.is_authenticated %}
 
-    <form class="login-form" method="POST" return false>
+    <form class="login-form" action="/login/" method="POST" return false>
 
         <h3>Log In</h3>
 

@@ -1,4 +1,4 @@
-const passwordInput = document.getElementById("passwordInput");
+const passwordInput = document.getElementById("passwordInput1");
 
 const titleInput = document.getElementById("titleInput");
 const descriptionInput = document.getElementById("descriptionInput");

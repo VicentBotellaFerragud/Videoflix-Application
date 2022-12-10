@@ -4,14 +4,29 @@
 
     <form class="signup-form" action="/signup/" method="POST" return false>
 
-        <h2>Sign Up</h2>
+        <h3>Sign Up</h3>
 
         {% csrf_token %}
-        <input id="usernameInput" type="text" name="username" placeholder="Enter a username" required>
-        <input type="email" name="email" placeholder="Enter an email" required>
-        <input id="passwordInput" type="password" name="password1" placeholder="Enter a password"
-            onkeyup="checkPasswordValidity()" required>
-        <input type="password" name="password2" placeholder="Repeat the password" required>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="username" type="text" id="usernameInput" required>
+            <label class="mdl-textfield__label" for="usernameInput">Enter a username</label>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="email" type="email" id="emailInput" required>
+            <label class="mdl-textfield__label" for="emailInput">Enter an email</label>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="password1" type="password" id="passwordInput1" 
+                onkeyup="checkPasswordValidity()" required>
+            <label class="mdl-textfield__label" for="passwordInput1">Enter a password</label>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="password2" type="password" id="passwordInput2" required>
+            <label class="mdl-textfield__label" for="passwordInput2">Repeat the password</label>
+        </div>
 
         <ul class="password-constraints">
             <span>Please consider this when choosing your password:</span>
@@ -35,13 +50,15 @@
             <li>
                 <img id="valid4" class="valid" src="{% static 'img/checked.png' %}">
                 <img id="invalid4" class="invalid" src="{% static 'img/close.png' %}">
-                It must contain at least 1 special character ([@_!#$%^&*()<>?/|}{~:]).
+                It must contain at least 1 special character.<img id="info" class="info-icon" src="{% static 'img/info.png' %}">
             </li>
         </ul>
 
-        <button>Sign Up</button>
+        <div class="mdl-tooltip" data-mdl-for="info">[@_!#$%^&*()<>?/|}{~:]</div>
 
-        <span class="redirect-to-login-span"><span style="color: rgb(142, 142, 142);">Already have an account?</span><a href="/login/"> Log In</a></span>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Sign Up</button>
+
+        <span class="redirect-to-login-span">Already have an account?<a href="/login/">Log In</a></span>
     </form>
 
 </div>
