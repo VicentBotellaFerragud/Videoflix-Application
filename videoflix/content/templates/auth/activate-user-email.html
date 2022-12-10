@@ -1,5 +1,12 @@
 {% autoescape off %}
-Hello {{ user }}! Please click on the link below to activate your user and finish the signup process:
+Hello {{ user }}!
+
+We are very happy to see that you want to be part of our community. 
+You are almost done with the signup process, just click on the link below to activate your user:
 
 https://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+Thank you very much for joining our platform.
+
+Sincerely, your Videoflix team.
 {% endautoescape %}

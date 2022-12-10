@@ -4,22 +4,24 @@
 
 <div class="wrapper">
 
-    <form class="edit-video-form" action="/edit-video/{{ video.pk }}" method="POST" enctype="multipart/form-data" return
-        false>
-        <h2>Edit Video</h2>
+    <form method="POST" class="edit-video-form" action="/edit-video/{{ video.pk }}" return false>
+        <h3>Edit Video</h3>
 
         {% csrf_token %}
-        <input type="text" name="title" value="{{ video.title }}" maxlength="30" required />
-        <input type="text" name="description" value="{{ video.description }}" maxlength="400" required />
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="newTitle" name="title" maxlength="30" 
+                value="{{ video.title }}" required>
+            <label class="mdl-textfield__label" for="newTitle">Title</label>
+        </div>
 
-        <button>Save Changes</button>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="newDescription" name="description" maxlength="400" 
+                value="{{ video.description }}" required></input>
+            <label class="mdl-textfield__label" for="newDescription">Description</label>
+        </div>
+
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Save Changes</button>
     </form>
-
-    {% load static %}
-    <div class="edit-video-return-div">
-        <a href="/home/"><img class="back-to-home" src="{% static 'img/home.png' %}"></a>
-        <a href="/video-details/{{ video.pk }}"><img src="{% static 'img/back.png' %}"></a>
-    </div>
 
 </div>
 

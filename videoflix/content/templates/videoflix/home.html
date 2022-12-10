@@ -16,17 +16,16 @@
 
             <img id="video{{ video.id }}" class="video-menu-arrow mdl-button mdl-js-button mdl-button--icon" src="{% static 'img/down-arrow.png' %}">
 
-            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect links"
                 for="video{{ video.id }}">
-                <li class="mdl-menu__item">Rate</li>
-                <li class="mdl-menu__item">See details</li>
-                <li class="mdl-menu__item">Edit</li>
-                <li class="mdl-menu__item">Delete</li>
+                <a href="/home/"><li class="mdl-menu__item">Rate</li></a>
+                <a href="/video-details/{{ video.pk }}"><li class="mdl-menu__item">See details</li></a>
+                <a href="/edit-video/{{ video.pk }}"><li class="mdl-menu__item">Edit</li></a>
+                <a href="/delete-video/{{ video.pk }}"><li class="mdl-menu__item">Delete</li></a>
             </ul>
 
             <span>{{ video.title }}</span>
         </div>
-        
     </div>
 
     {% endfor %}

@@ -24,7 +24,6 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 # Create your views here.
 
 def redirect_to_home(request):
-    print('called')
     response = redirect('/home/')
     
     return response
