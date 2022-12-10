@@ -87,3 +87,23 @@ function checkContainsAtLeastOneSpecialCharacter(string) {
         }
     }
 }
+
+function searchForVideos() {
+    let input, filter, container, videos;
+
+    input = document.getElementById('searchBar');
+    filter = input.value.toUpperCase();
+    container = document.getElementById('videosWrapper');
+    videos = container.querySelectorAll('.video-container');
+
+    for (i = 0; i < videos.length; i++) {
+        let video = videos[i];
+        let videoTitle = video.outerText;
+
+        if (videoTitle.toUpperCase().indexOf(filter) > -1) {
+            video.style.display = 'block';
+        } else {
+            video.style.display = 'none';
+        }
+    }
+}
