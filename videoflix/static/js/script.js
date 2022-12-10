@@ -89,7 +89,7 @@ function checkContainsAtLeastOneSpecialCharacter(string) {
 }
 
 function searchForVideos() {
-    let input, filter, container, videos;
+    let input, filter, container, videoTitles;
 
     input = document.getElementById('searchBar');
     filter = input.value.toUpperCase();
@@ -102,8 +102,6 @@ function searchForVideos() {
 
         let videoTitleFirstOption = videoTitle.innerHTML;
         let videoTitleSecondOption = videoTitle.innerText;
-        console.log(videoTitleFirstOption);
-        console.log(videoTitleSecondOption);
   
         videoTitleFirstOption.toUpperCase().indexOf(filter) > -1 || 
         videoTitleSecondOption.toUpperCase().indexOf(filter) > -1 ? 
