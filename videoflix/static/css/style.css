@@ -48,6 +48,12 @@ nav a:hover {
     padding-block: 20px;
 }
 
+.add-video-button {
+    background-color: #d50000 !important;
+    bottom: 2rem;
+    right: 2rem;
+}
+
 .links a {
     text-decoration: none !important;
 }
@@ -282,14 +288,6 @@ nav a:hover {
 
 .video-menu-arrow {
     background-color: #d50000 !important;
-}
-
-.add-video-button {
-    z-index: 100;
-    position: absolute !important;
-    background-color: #d50000 !important;
-    bottom: 2rem;
-    right: 2rem;
 }
 
 /* Video details view style */

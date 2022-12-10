@@ -24,18 +24,24 @@
     <nav>
         <a class="videoflix-logo-navbar" href="/home/"><h4>Video<span>flix</span></h4></a>
 
-        <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
-            <i class="material-icons">account_box</i>
-        </button>
+        <div>
+            <a href="/create-video/">
+                <button class="mdl-button mdl-js-button mdl-button--fab add-video-button"><i class="material-icons">add</i></button>
+            </a>
+        
+            <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">account_box</i>
+            </button>
     
-        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect links" for="demo-menu-lower-right">
-            <a href="/home/"><li class="mdl-menu__item">Home</li></a>
-            <a href="/create-video/"><li class="mdl-menu__item">Add video</li></a>
-            <li class="mdl-menu__item">Another Action</li>
-            <li class="mdl-menu__item">My videos</li>
-            <li class="mdl-menu__item">Edit user</li>
-            <a href="/logout/"><li class="mdl-menu__item">Log out</li></a>
-        </ul>  
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect links" for="demo-menu-lower-right">
+                <a href="/home/"><li class="mdl-menu__item">Home</li></a>
+                <a href="/create-video/"><li class="mdl-menu__item">Add video</li></a>
+                <li class="mdl-menu__item">Another Action</li>
+                <li class="mdl-menu__item">My videos</li>
+                <li class="mdl-menu__item">Edit user</li>
+                <a href="/logout/"><li class="mdl-menu__item">Log out</li></a>
+            </ul>  
+        </div>
     </nav>
     {% endif %}
 
@@ -55,10 +61,12 @@
 
         {% endblock %}
 
+        {% if not request.user.is_authenticated %}
         <div class="privacy-imprint-div">
             <a href="{% static 'pdf\Datenschutzerklärung.pdf' %}" target="_blank">Privacy</a>
             <a href="{% static 'pdf\Impressum.pdf' %}" target="_blank">Imprint</a>
         </div>
+        {% endif %}
 
     </div>
 
