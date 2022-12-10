@@ -97,12 +97,17 @@ function searchForVideos() {
     videoTitles = container.querySelectorAll('.video-title');
     
     for (i = 0; i < videoTitles.length; i++) {
-        let videoTitleFirstOption = videoTitles[i].innerHTML;
-        let videoTitleSecondOption = videoTitles[i].innerText;
+        let videoTitle = videoTitles[i];
+        let videoContainer = videoTitle.parentNode.parentNode;
+
+        let videoTitleFirstOption = videoTitle.innerHTML;
+        let videoTitleSecondOption = videoTitle.innerText;
         console.log(videoTitleFirstOption);
         console.log(videoTitleSecondOption);
   
         videoTitleFirstOption.toUpperCase().indexOf(filter) > -1 || 
-        videoTitleSecondOption.toUpperCase().indexOf(filter) > -1 ? video.style.display = 'block' : video.style.display = 'none';
+        videoTitleSecondOption.toUpperCase().indexOf(filter) > -1 ? 
+            videoContainer.style.display = 'block' : 
+            videoContainer.style.display = 'none';
     }
 }
