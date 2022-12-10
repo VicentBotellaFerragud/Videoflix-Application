@@ -40,6 +40,10 @@ nav a:hover {
     cursor: pointer;
 }
 
+.smartphone-visible {
+    display: none;
+}
+
 .full-height {
     height: 100vh;
 }
@@ -325,8 +329,25 @@ nav a:hover {
 
 /* For smartphones */
 
-@media (max-width: 520px) {
+@media (max-width: 720px) {
     .smartphone-dnone {
-        display: none;
+        display: none !important;
+    }
+
+    nav {
+        padding-inline: 2rem;
+    }
+
+    .video-container {
+        width: 100%;
+    }
+
+    .dynamic-content-container {
+        height: 100%;
+        padding-inline: 2rem;
+    }
+
+    .smartphone-visible {
+        display: block;
     }
 }

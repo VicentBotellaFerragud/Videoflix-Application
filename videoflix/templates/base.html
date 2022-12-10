@@ -22,9 +22,23 @@
 
     {% if request.user.is_authenticated %}
     <nav>
+        <div class="smartphone-visible">
+            <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">account_box</i>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect links" for="demo-menu-lower-right">
+                <a href="/home/"><li class="mdl-menu__item">Home</li></a>
+                <a href="/create-video/"><li class="mdl-menu__item">Add video</li></a>
+                <li class="mdl-menu__item">Another Action</li>
+                <li class="mdl-menu__item">My videos</li>
+                <li class="mdl-menu__item">Edit user</li>
+                <a href="/logout/"><li class="mdl-menu__item">Log out</li></a>
+            </ul>
+        </div>  
+
         <a class="videoflix-logo-navbar" href="/home/"><h4>Video<span>flix</span></h4></a>
 
-        <div class="items-center">
+        <div class="items-center smartphone-dnone">
             <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="text" id="searchBar" onkeyup="searchForVideos()">
                 <label class="mdl-textfield__label" for="searchBar">Search for a video...</label>
