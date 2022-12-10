@@ -81,8 +81,9 @@ def activate_user(request, uidb64, token):
         login(request, user)
         success_response_after_signup(request)
         storage = get_messages(request)
+        videos = Video.objects.all()
 
-        return render(request, 'videoflix/home.html', {'messages': storage})
+        return render(request, 'videoflix/home.html', {'messages': storage, 'videos': videos})
 
     else:
         error_response_after_activation_link_expires(request)
