@@ -98,6 +98,8 @@ def save_new_video(request, form):
     messages.success(request, "You have successfully added a video!")
 
 
+# rate_video utils:
+
 # edit_video utils:
 
 def save_changes(request, video_to_edit, form):

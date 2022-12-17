@@ -9,7 +9,7 @@
 
         {% csrf_token %}
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="newTitle" name="title" maxlength="30" 
+            <input class="mdl-textfield__input" type="text" id="newTitle" name="title" maxlength="20" 
                 value="{{ video.title }}" required>
             <label class="mdl-textfield__label" for="newTitle">Title</label>
         </div>

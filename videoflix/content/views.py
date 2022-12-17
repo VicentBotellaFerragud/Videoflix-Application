@@ -3,8 +3,8 @@ from django.conf import settings
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, get_user_model
-from .forms import NewUserForm, NewVideoForm, EditVideoForm
-from .models import Video
+from .forms import NewUserForm, NewVideoForm, EditVideoForm, RateVideoForm
+from .models import Video, Rating
 from .tokens import account_activation_token
 from django.contrib import messages
 from django.contrib.messages import get_messages
@@ -95,6 +95,21 @@ def activate_user(request, uidb64, token):
 @login_required(login_url = '/login/')
 def home_view(request):
     videos = Video.objects.all()
+
+    for video in videos:
+        ratings = Rating.objects.filter(video = video)
+
+        if len(ratings) > 0:
+            sum_of_ratings = 0
+
+            for rating in ratings:
+                sum_of_ratings += rating.rating
+            
+            average_rating = sum_of_ratings/len(ratings)
+            video.average_rating = "{:.1f}".format(average_rating)
+
+        else:
+            video.average_rating = "NR"
     
     return render(request, 'videoflix/home.html', {'videos': videos})
 
@@ -112,6 +127,31 @@ def create_video(request):
     form = NewVideoForm()
 
     return render(request, 'videoflix/create-video.html')
+
+
+@login_required(login_url = '/login/')
+def rate_video(request, pk):
+    video_to_rate = Video.objects.get(pk = pk)
+    user_ratings_for_this_video = Rating.objects.filter(author = request.user, video = video_to_rate)
+
+    if len(user_ratings_for_this_video) > 0:
+        user_ratings_for_this_video.delete()
+
+    if request.method == "POST":
+        form = RateVideoForm(request.POST)
+        
+        if form.is_valid():
+            rating_as_number = int(form.cleaned_data.get('rating'))
+            new_rating = Rating.objects.create(rating = rating_as_number, video = video_to_rate, author = request.user)
+            new_rating.save()
+            form = RateVideoForm()
+            messages.success(request, "You have successfully rated the video!")
+
+            return redirect_to_home(request)
+
+    form = RateVideoForm()
+
+    return render(request, 'videoflix/rate-video.html', {'video': video_to_rate})
 
 
 @login_required(login_url = '/login/')

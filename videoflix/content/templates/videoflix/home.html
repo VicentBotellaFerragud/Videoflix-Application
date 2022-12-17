@@ -1,43 +1,64 @@
-{% extends "base.html" %} {% block content %}
-
-{% if videos %}
+{% extends "base.html" %} {% block content %} {% if videos %}
 
 <div id="videosWrapper" class="videos-wrapper">
-    {% for video in videos %}
+  {% for video in videos %}
 
-    <div class="video-container">
-        <video controls>
-            <source src="{{ video.video_file.url }}" type="video/mp4" />
-        </video>
+  <div class="video-container">
+    <video controls>
+      <source src="{{ video.video_file.url }}" type="video/mp4" />
+    </video>
 
-        {% load static %}
-        <div class="video-container-footer">
-            
+    {% load static %}
+    <div class="video-container-footer">
+      <img
+        id="video{{ video.id }}"
+        class="video-menu-arrow mdl-button mdl-js-button mdl-button--icon"
+        src="{% static 'img/down-arrow.png' %}"
+      />
 
-            <img id="video{{ video.id }}" class="video-menu-arrow mdl-button mdl-js-button mdl-button--icon" src="{% static 'img/down-arrow.png' %}">
+      <ul
+        class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect links"
+        for="video{{ video.id }}"
+      >
+        <a href="/rate-video/{{ video.pk }}"
+          ><li class="mdl-menu__item">Rate</li></a
+        >
+        <a href="/video-details/{{ video.pk }}"
+          ><li class="mdl-menu__item">See details</li></a
+        >
+        <a href="/edit-video/{{ video.pk }}"
+          ><li class="mdl-menu__item">Edit</li></a
+        >
+        <a href="/delete-video/{{ video.pk }}"
+          ><li class="mdl-menu__item">Delete</li></a
+        >
+      </ul>
 
-            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect links"
-                for="video{{ video.id }}">
-                <a href="/home/"><li class="mdl-menu__item">Rate</li></a>
-                <a href="/video-details/{{ video.pk }}"><li class="mdl-menu__item">See details</li></a>
-                <a href="/edit-video/{{ video.pk }}"><li class="mdl-menu__item">Edit</li></a>
-                <a href="/delete-video/{{ video.pk }}"><li class="mdl-menu__item">Delete</li></a>
-            </ul>
-
-            <span class="video-title">{{ video.title }}</span>
+      <div class="items-center">
+        <span>{{ video.title }}</span>
+        <div class="ml-10">
+          <span class="fa fa-star orange"></span>
+          <span id="averageRating{{ video.id }}"
+            >{{ video.average_rating }}</span
+          >
+          <div class="mdl-tooltip" data-mdl-for="averageRating{{ video.id }}">
+            Video average rating. "NR" -> not rated yet.
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    {% endfor %}
+  {% endfor %}
 </div>
 
 {% else %}
 
 <div class="wrapper">
-    <span class="no-videos-span">No videos were uploaded to the platform yet. Click the "+" button
-        in the bottom right corner to start uploading content.</span>
+  <span class="no-videos-span"
+    >No videos were uploaded to the platform yet. Click the "+" button in the
+    bottom right corner to start uploading content.</span
+  >
 </div>
 
-{% endif %} 
-
-{% endblock %}
+{% endif %} {% endblock %}

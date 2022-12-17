@@ -53,8 +53,16 @@ nav a:hover {
     align-items: center;
 }
 
+.ml-10 {
+    margin-left: 10px;
+}
+
 .py-20 {
     padding-block: 20px;
+}
+
+.orange {
+    color: orange;
 }
 
 .add-video {
@@ -70,17 +78,20 @@ nav a:hover {
     left: 2rem;
 }
 
-.videoflix-logo-navbar, .videoflix-logo-login {
+.videoflix-logo-navbar,
+.videoflix-logo-login {
     text-decoration: none;
 }
 
-.videoflix-logo-navbar h4, .videoflix-logo-login h4 {
+.videoflix-logo-navbar h4,
+.videoflix-logo-login h4 {
     font-weight: bold;
     margin-block: 16px;
     letter-spacing: 2.5px;
 }
 
-.videoflix-logo-navbar span, .videoflix-logo-login span {
+.videoflix-logo-navbar span,
+.videoflix-logo-login span {
     color: #d50000;
 }
 
@@ -186,7 +197,12 @@ nav a:hover {
 
 /* Login, signup, create, edit and delete video views style */
 
-.login-form, .signup-form, .add-video-form, .edit-video-form, .delete-video-form {
+.login-form,
+.signup-form,
+.add-video-form,
+.rate-video-form,
+.edit-video-form,
+.delete-video-form {
     padding: 2rem;
     background-color: rgba(0, 0, 0, .75);
     border-radius: 4px;
@@ -194,11 +210,21 @@ nav a:hover {
     flex-direction: column;
 }
 
-.login-form h3, .signup-form h3, .add-video-form h3, .edit-video-form h3, .delete-video-form h3 {
+.login-form h3,
+.signup-form h3,
+.add-video-form h3,
+.rate-video-form h3,
+.edit-video-form h3,
+.delete-video-form h3 {
     font-weight: bold;
 }
 
-.login-form button, .signup-form button, .add-video-form button, .edit-video-form button, .delete-video-form button {
+.login-form button,
+.signup-form button,
+.add-video-form button,
+.rate-video-form button,
+.edit-video-form button,
+.delete-video-form button {
     background-color: #d50000 !important;
     margin-block: 24px;
 }
@@ -207,17 +233,20 @@ nav a:hover {
     color: #737373 !important;
 }
 
-.redirect-to-signup-span, .redirect-to-login-span {
+.redirect-to-signup-span,
+.redirect-to-login-span {
     color: #737373;
 }
 
-.redirect-to-signup-span a, .redirect-to-login-span a {
+.redirect-to-signup-span a,
+.redirect-to-login-span a {
     margin-left: 5px;
     color: white;
     text-decoration: none;
 }
 
-.redirect-to-signup-span a:hover, .redirect-to-login-span a:hover {
+.redirect-to-signup-span a:hover,
+.redirect-to-login-span a:hover {
     text-decoration: underline;
 }
 
@@ -299,6 +328,30 @@ nav a:hover {
     background-color: #d50000 !important;
 }
 
+/* Rate video view style */
+
+.stars-container {
+    display: flex;
+    justify-content: center;
+    margin-block: 24px;
+}
+
+.stars-container label {
+    margin-inline: 10px;
+}
+
+.stars-container input {
+    display: none;
+}
+
+.stars-container span {
+    font-size: 34px;
+}
+
+.stars-container span:hover {
+    cursor: pointer;
+}
+
 /* Video details view style */
 
 .video-details-container {
@@ -319,7 +372,7 @@ nav a:hover {
     border-radius: 4px;
     width: 50vw;
     height: 50vh;
-    background-color: #cac0c0; 
+    background-color: #cac0c0;
 }
 
 .video-details-container-bottom {

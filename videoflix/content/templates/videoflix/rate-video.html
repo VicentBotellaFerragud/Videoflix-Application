@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% block content %} {% if video %}
+
+<div class="wrapper">
+  <form
+    method="POST"
+    class="rate-video-form"
+    action="/rate-video/{{ video.pk }}"
+    return
+    false
+  >
+    <h3>Rate Video</h3>
+
+    <span>How many stars would you give to "{{ video.title }}"?</span>
+
+    {% csrf_token %}
+    <div class="stars-container">
+      <label>
+        <input type="radio" name="rating" value="1" />
+        <span
+          id="star1"
+          class="fa fa-star"
+          onmouseover="applyColorToCorrespondingStars(this)"
+          onmouseout="removeColorFromAllStars()"
+          onclick="applyPermanentColor(this)"
+        ></span>
+      </label>
+      <label>
+        <input type="radio" name="rating" value="2" />
+        <span
+          id="star2"
+          class="fa fa-star"
+          onmouseover="applyColorToCorrespondingStars(this)"
+          onmouseout="removeColorFromAllStars()"
+          onclick="applyPermanentColor(this)"
+        ></span>
+      </label>
+      <label>
+        <input type="radio" name="rating" value="3" />
+        <span
+          id="star3"
+          class="fa fa-star"
+          onmouseover="applyColorToCorrespondingStars(this)"
+          onmouseout="removeColorFromAllStars()"
+          onclick="applyPermanentColor(this)"
+        ></span>
+      </label>
+      <label>
+        <input type="radio" name="rating" value="4" />
+        <span
+          id="star4"
+          class="fa fa-star"
+          onmouseover="applyColorToCorrespondingStars(this)"
+          onmouseout="removeColorFromAllStars()"
+          onclick="applyPermanentColor(this)"
+        ></span>
+      </label>
+      <label>
+        <input type="radio" name="rating" value="5" />
+        <span
+          id="star5"
+          class="fa fa-star"
+          onmouseover="applyColorToCorrespondingStars(this)"
+          onmouseout="removeColorFromAllStars()"
+          onclick="applyPermanentColor(this)"
+        ></span>
+      </label>
+    </div>
+
+    <button
+      class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+    >
+      Rate
+    </button>
+  </form>
+</div>
+
+{% endif %} {% endblock %}
