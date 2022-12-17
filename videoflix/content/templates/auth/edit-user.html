@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="wrapper">
+  <form class="signup-form" action="/edit-user/" method="POST" return false>
+    <h3>Edit User</h3>
+
+    {% csrf_token %}
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input
+        class="mdl-textfield__input"
+        name="username"
+        type="text"
+        id="usernameInput"
+        value="{{ request.user.username }}"
+        required
+      />
+      <label class="mdl-textfield__label" for="usernameInput"
+        >Enter a new username</label
+      >
+    </div>
+
+    <button
+      class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+    >
+      Save Changes
+    </button>
+
+    <a href="/delete-account/">Delete account</a>
+  </form>
+</div>
+
+{% endblock %}

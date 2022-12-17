@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="wrapper">
+  <form
+    method="POST"
+    class="delete-video-form"
+    action="/delete-account/"
+    return
+    false
+  >
+    {% csrf_token %}
+    <h3>Permanently delete your account?</h3>
+    <button
+      class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+    >
+      Delete Account
+    </button>
+  </form>
+</div>
+
+{% endblock %}

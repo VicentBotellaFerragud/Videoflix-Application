@@ -3,7 +3,7 @@ from django.conf import settings
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, get_user_model
-from .forms import NewUserForm, NewVideoForm, EditVideoForm, RateVideoForm
+from .forms import NewUserForm, NewVideoForm, EditVideoForm, RateVideoForm, EditUserForm
 from .models import Video, Rating
 from .tokens import account_activation_token
 from django.contrib import messages
@@ -134,6 +134,29 @@ def my_videos(request):
     
     return render(request, 'videoflix/my-videos.html', {'videos': videos})
 
+@login_required(login_url = '/login/')
+def see_top_rated_videos(request):
+    videos = Video.objects.all()
+
+    for video in videos:
+        ratings = Rating.objects.filter(video = video)
+
+        if len(ratings) > 0:
+            sum_of_ratings = 0
+
+            for rating in ratings:
+                sum_of_ratings += rating.rating
+            
+            average_rating = sum_of_ratings/len(ratings)
+            video.average_rating = "{:.1f}".format(average_rating)
+
+        else:
+            video.average_rating = "NR"
+
+    # videos = videos.order_by('-average_rating')[0:5]
+    
+    return render(request, 'videoflix/top-rated.html', {'videos': videos})
+
 
 @login_required(login_url = '/login/')
 def create_video(request):
@@ -214,6 +237,38 @@ def delete_video(request, pk):
 
     return render(request, 'videoflix/delete-video.html', {'video': video_to_delete})
 
+
+def edit_user(request):
+    user = request.user
+
+    if request.method == "POST":
+        form = EditUserForm(request.POST)
+
+        if form.is_valid():
+            user.username = form.cleaned_data.get('username')
+            user.save()
+            messages.success(request, "You have successfully edited your username!")
+            
+            return redirect_to_home(request)
+
+        else:
+            messages.error(request, "Unfortunately this username is already in use.")
+            return render(request, 'auth/edit-user.html')
+
+    form = EditUserForm()
+    return render(request, 'auth/edit-user.html')
+
+
+def delete_account(request):
+    user = request.user
+
+    if request.method == "POST":
+        user.delete()
+        messages.success(request, "You have successfully delted your account.")
+
+        return redirect_to_home(request)
+
+    return render(request, 'auth/delete-account.html')
 
 def log_out(request):
     logout(request)
