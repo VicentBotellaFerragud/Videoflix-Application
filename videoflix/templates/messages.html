@@ -1,18 +1,16 @@
 {% if messages %}
 
 <ul>
+  {% for message in messages %}
 
-    {% for message in messages %}
+  <div class="alert {{ message.tags }}">
+    <button type="button" class="close-message-button" onclick="closeMessage()">
+      X
+    </button>
+    {{ message }}
+  </div>
 
-    <div class="alert {{ message.tags }}">
-
-        <button type="button" class="close-message-button" onclick="closeMessage()">X</button>
-        {{ message }}
-        
-    </div>
-
-    {% endfor %}
-
+  {% endfor %}
 </ul>
 
 {% endif %}
