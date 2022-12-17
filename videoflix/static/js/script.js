@@ -91,8 +91,7 @@ function searchForVideos() {
 
     for (i = 0; i < videoTitles.length; i++) {
         let videoTitle = videoTitles[i];
-        let videoContainer = videoTitle.parentNode.parentNode;
-
+        let videoContainer = videoTitle.parentNode.parentNode.parentNode;
         let videoTitleFirstOption = videoTitle.innerHTML;
         let videoTitleSecondOption = videoTitle.innerText;
 
