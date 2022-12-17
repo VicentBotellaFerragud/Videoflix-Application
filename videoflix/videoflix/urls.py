@@ -26,6 +26,7 @@ urlpatterns = [
     path('signup/', views.sign_up, name = 'signup'),
     path('activate/<uidb64>/<token>', views.activate_user, name = 'activate'),
     path('home/', views.home_view, name = 'home'),
+    path('my-videos/', views.my_videos, name = 'my-videos'),
     path('create-video/', views.create_video, name = 'create-video'),
     path('rate-video/<int:pk>', views.rate_video, name = 'rate-video'),
     path('video-details/<int:pk>', views.see_video_details, name = 'video-details'),

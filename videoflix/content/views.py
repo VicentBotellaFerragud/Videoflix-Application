@@ -113,6 +113,27 @@ def home_view(request):
     
     return render(request, 'videoflix/home.html', {'videos': videos})
 
+@login_required(login_url = '/login/')
+def my_videos(request):
+    videos = Video.objects.filter(creator = request.user)
+
+    for video in videos:
+        ratings = Rating.objects.filter(video = video)
+
+        if len(ratings) > 0:
+            sum_of_ratings = 0
+
+            for rating in ratings:
+                sum_of_ratings += rating.rating
+            
+            average_rating = sum_of_ratings/len(ratings)
+            video.average_rating = "{:.1f}".format(average_rating)
+
+        else:
+            video.average_rating = "NR"
+    
+    return render(request, 'videoflix/my-videos.html', {'videos': videos})
+
 
 @login_required(login_url = '/login/')
 def create_video(request):
