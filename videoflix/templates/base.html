@@ -50,7 +50,7 @@
     </a>
 
     <div class="items-center smartphone-dnone">
-      <div class="mdl-textfield mdl-js-textfield">
+      <div class="{% if request.path == '/home/' %} mdl-textfield mdl-js-textfield {% else %} invisible {% endif %}">
         <input class="mdl-textfield__input" type="text" id="searchBar" onkeyup="searchForVideos()" />
         <label class="mdl-textfield__label" for="searchBar">Search for a video...</label>
       </div>

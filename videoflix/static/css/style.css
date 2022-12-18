@@ -34,10 +34,15 @@ nav {
     position: relative;
     font-size: 25px;
     padding-inline: 7rem;
+    min-height: 67.4px;
 }
 
 nav a:hover {
     cursor: pointer;
+}
+
+.invisible {
+    visibility: hidden;
 }
 
 .smartphone-visible {
@@ -75,7 +80,7 @@ nav a:hover {
 
 .videoflix-logo-login {
     position: absolute;
-    left: 2rem;
+    left: 7rem;
 }
 
 .videoflix-logo-navbar,
@@ -86,8 +91,14 @@ nav a:hover {
 .videoflix-logo-navbar h4,
 .videoflix-logo-login h4 {
     font-weight: bold;
-    margin-block: 16px;
     letter-spacing: 2.5px;
+}
+
+.videoflix-logo-navbar h4 {
+    margin-block: 16px;
+}
+.videoflix-logo-login h4 {
+    margin-block: 17.5px;
 }
 
 .videoflix-logo-navbar span,
@@ -115,7 +126,7 @@ nav a:hover {
 
 .messages-div-adjusted {
     position: absolute;
-    top: calc(64px + 2rem);
+    top: calc(67.4px + 2rem);
     left: 0;
     right: 0;
     margin-left: auto;
