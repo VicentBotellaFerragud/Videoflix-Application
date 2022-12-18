@@ -232,19 +232,22 @@ nav a:hover {
 }
 
 .redirect-to-signup-span,
-.redirect-to-login-span {
+.redirect-to-login-span,
+.redirect-to-delete-account-span {
     color: #737373;
 }
 
 .redirect-to-signup-span a,
-.redirect-to-login-span a {
+.redirect-to-login-span a,
+.redirect-to-delete-account-span a {
     margin-left: 5px;
     color: white;
     text-decoration: none;
 }
 
 .redirect-to-signup-span a:hover,
-.redirect-to-login-span a:hover {
+.redirect-to-login-span a:hover,
+.redirect-to-delete-account-span a:hover {
     text-decoration: underline;
 }
 

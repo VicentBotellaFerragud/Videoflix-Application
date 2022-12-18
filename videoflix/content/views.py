@@ -227,7 +227,7 @@ def delete_account(request):
 
     if request.method == "POST":
         user.delete()
-        messages.success(request, "You have successfully deleted your account.")
+        messages.success(request, "You have successfully deleted your account. We hope to see you again soon on our platform!")
 
         return redirect_to_home(request)
 
