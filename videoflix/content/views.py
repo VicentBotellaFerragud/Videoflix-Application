@@ -8,6 +8,7 @@ from .models import Video, Rating
 from .tokens import account_activation_token
 from django.contrib import messages
 from django.contrib.messages import get_messages
+from django.contrib.auth.forms import AuthenticationForm
 from .utils import (
     authenticate_user_from_form, 
     success_response_after_login, 
@@ -20,12 +21,12 @@ from .utils import (
     save_new_video, 
     save_changes,
     error_response_after_video_edition_attempt,
-    set_average_rating,
+    set_average_rating_with_or_without_decimals,
     delete_user_ratings_if_already_exist,
     save_new_user_rating,
-    save_username_changes
+    save_username_changes,
+    save_average_rating_changes
 )
-from django.contrib.auth.forms import AuthenticationForm
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
@@ -101,7 +102,7 @@ def activate_user(request, uidb64, token):
 @login_required(login_url = '/login/')
 def home_view(request):
     videos = Video.objects.all()
-    videos = set_average_rating(videos)
+    videos = set_average_rating_with_or_without_decimals(videos, True)
     
     return render(request, 'videoflix/home.html', {'videos': videos})
 
@@ -109,7 +110,7 @@ def home_view(request):
 @login_required(login_url = '/login/')
 def my_videos(request):
     videos = Video.objects.filter(creator = request.user)
-    videos = set_average_rating(videos)
+    videos = set_average_rating_with_or_without_decimals(videos, True)
     
     return render(request, 'videoflix/my-videos.html', {'videos': videos})
 
@@ -117,9 +118,10 @@ def my_videos(request):
 @login_required(login_url = '/login/')
 def see_top_rated_videos(request):
     videos = Video.objects.all()
-    videos = set_average_rating(videos)
-    # videos = videos.order_by('-average_rating')[0:5]
-    
+    videos = set_average_rating_with_or_without_decimals(videos)
+    save_average_rating_changes(videos)
+    videos = videos.order_by('-average_rating')[0:5]
+
     return render(request, 'videoflix/top-rated.html', {'videos': videos})
 
 

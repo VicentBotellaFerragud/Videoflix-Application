@@ -91,7 +91,7 @@ def find_encrypted_user(user_model, uidb64):
 
 # home_view, my_videos and see_top_rated_videos utils:
 
-def set_average_rating(videos):
+def set_average_rating_with_or_without_decimals(videos, with_decimals = False):
     for video in videos:
         ratings = Rating.objects.filter(video = video)
 
@@ -101,13 +101,23 @@ def set_average_rating(videos):
             for rating in ratings:
                 sum_of_ratings += rating.rating
             
-            average_rating = sum_of_ratings/len(ratings)
-            video.average_rating = "{:.1f}".format(average_rating)
+            average_rating = sum_of_ratings / len(ratings)
+
+            if with_decimals:
+                video.average_rating = "{:.1f}".format(average_rating)
+
+            else:
+                video.average_rating = round(average_rating)
 
         else:
             video.average_rating = "NR"
 
     return videos
+
+
+def save_average_rating_changes(videos):
+    for video in videos:
+        video.save()
 
 
 # create_video utils:
