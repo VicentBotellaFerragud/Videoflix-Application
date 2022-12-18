@@ -25,6 +25,12 @@ urlpatterns = [
     path('login/', views.log_in, name = 'login'),
     path('signup/', views.sign_up, name = 'signup'),
     path('activate/<uidb64>/<token>', views.activate_user, name = 'activate'),
+    path('logout/', views.log_out, name = 'logout'),
+    path('edit-user/', views.edit_user, name = 'edit-user'),
+    path('delete-account/', views.delete_account, name = 'delete-account'),
+    path('admin/', admin.site.urls, name = 'admin'),
+    path('__debug__/', include('debug_toolbar.urls'), name = 'debug'),
+    path('django-rq/', include('django_rq.urls'), name = 'django-rq'),
     path('home/', views.home_view, name = 'home'),
     path('my-videos/', views.my_videos, name = 'my-videos'),
     path('top-rated/', views.see_top_rated_videos, name = 'top-rated'),
@@ -33,12 +39,6 @@ urlpatterns = [
     path('video-details/<int:pk>', views.see_video_details, name = 'video-details'),
     path('edit-video/<int:pk>', views.edit_video, name = 'edit-video'),
     path('delete-video/<int:pk>', views.delete_video, name = 'delete-video'),
-    path('edit-user/', views.edit_user, name = 'edit-user'),
-    path('delete-account/', views.delete_account, name = 'delete-account'),
-    path('logout/', views.log_out, name = 'logout'),
-    path('admin/', admin.site.urls, name = 'admin'),
-    path('__debug__/', include('debug_toolbar.urls'), name = 'debug'),
-    path('django-rq/', include('django_rq.urls'), name = 'django-rq'),
 ] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

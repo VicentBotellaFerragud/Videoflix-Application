@@ -19,7 +19,9 @@ from .utils import (
     error_response_after_activation_link_expires,
     save_new_video, 
     save_changes,
-    error_response_after_video_edition_attempt
+    error_response_after_video_edition_attempt,
+    set_average_rating,
+    delete_ratings_if_already_exist
 )
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -32,6 +34,7 @@ def redirect_to_home(request):
     
     return response
 
+
 def log_in(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data = request.POST)
@@ -40,6 +43,7 @@ def log_in(request):
             user = authenticate_user_from_form(form)
             login(request, user)
             success_response_after_login(request)
+
             return redirect_to_home(request)
 
         else:
@@ -95,64 +99,23 @@ def activate_user(request, uidb64, token):
 @login_required(login_url = '/login/')
 def home_view(request):
     videos = Video.objects.all()
-
-    for video in videos:
-        ratings = Rating.objects.filter(video = video)
-
-        if len(ratings) > 0:
-            sum_of_ratings = 0
-
-            for rating in ratings:
-                sum_of_ratings += rating.rating
-            
-            average_rating = sum_of_ratings/len(ratings)
-            video.average_rating = "{:.1f}".format(average_rating)
-
-        else:
-            video.average_rating = "NR"
+    videos = set_average_rating(videos)
     
     return render(request, 'videoflix/home.html', {'videos': videos})
+
 
 @login_required(login_url = '/login/')
 def my_videos(request):
     videos = Video.objects.filter(creator = request.user)
-
-    for video in videos:
-        ratings = Rating.objects.filter(video = video)
-
-        if len(ratings) > 0:
-            sum_of_ratings = 0
-
-            for rating in ratings:
-                sum_of_ratings += rating.rating
-            
-            average_rating = sum_of_ratings/len(ratings)
-            video.average_rating = "{:.1f}".format(average_rating)
-
-        else:
-            video.average_rating = "NR"
+    videos = set_average_rating(videos)
     
     return render(request, 'videoflix/my-videos.html', {'videos': videos})
+
 
 @login_required(login_url = '/login/')
 def see_top_rated_videos(request):
     videos = Video.objects.all()
-
-    for video in videos:
-        ratings = Rating.objects.filter(video = video)
-
-        if len(ratings) > 0:
-            sum_of_ratings = 0
-
-            for rating in ratings:
-                sum_of_ratings += rating.rating
-            
-            average_rating = sum_of_ratings/len(ratings)
-            video.average_rating = "{:.1f}".format(average_rating)
-
-        else:
-            video.average_rating = "NR"
-
+    videos = set_average_rating(videos)
     # videos = videos.order_by('-average_rating')[0:5]
     
     return render(request, 'videoflix/top-rated.html', {'videos': videos})
@@ -178,10 +141,8 @@ def rate_video(request, pk):
     video_to_rate = Video.objects.get(pk = pk)
     user_ratings_for_this_video = Rating.objects.filter(author = request.user, video = video_to_rate)
 
-    if len(user_ratings_for_this_video) > 0:
-        user_ratings_for_this_video.delete()
-
     if request.method == "POST":
+        delete_ratings_if_already_exist(user_ratings_for_this_video)
         form = RateVideoForm(request.POST)
         
         if form.is_valid():

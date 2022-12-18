@@ -1,4 +1,3 @@
-from django.db.models import Avg
 from django.db import models
 from datetime import date
 from django.contrib.auth.models import User
@@ -16,6 +15,7 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class Rating(models.Model):
     rating = models.IntegerField(validators = [MinValueValidator(0), MaxValueValidator(5)])

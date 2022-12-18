@@ -9,6 +9,7 @@ from django.utils.encoding import force_bytes, force_str
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage
 from .forms import NewVideoForm, EditVideoForm
+from .models import Video, Rating
 
 # log_in utils:
 
@@ -88,6 +89,27 @@ def find_encrypted_user(user_model, uidb64):
         return None
 
 
+# home_view, my_videos and see_top_rated_videos utils:
+
+def set_average_rating(videos):
+    for video in videos:
+        ratings = Rating.objects.filter(video = video)
+
+        if len(ratings) > 0:
+            sum_of_ratings = 0
+
+            for rating in ratings:
+                sum_of_ratings += rating.rating
+            
+            average_rating = sum_of_ratings/len(ratings)
+            video.average_rating = "{:.1f}".format(average_rating)
+
+        else:
+            video.average_rating = "NR"
+
+    return videos
+
+
 # create_video utils:
 
 def save_new_video(request, form):
@@ -99,6 +121,11 @@ def save_new_video(request, form):
 
 
 # rate_video utils:
+
+def delete_ratings_if_already_exist(ratings):
+    if len(ratings) > 0:
+        ratings.delete()
+
 
 # edit_video utils:
 
