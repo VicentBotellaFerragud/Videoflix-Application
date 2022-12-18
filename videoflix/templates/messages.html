@@ -4,9 +4,7 @@
   {% for message in messages %}
 
   <div class="alert {{ message.tags }}">
-    <button type="button" class="close-message-button" onclick="closeMessage()">
-      X
-    </button>
+    <button type="button" class="close-message-button" onclick="closeMessage()">X</button>
     {{ message }}
   </div>
 

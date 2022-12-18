@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
 
 <div class="wrapper">
-    <form class="add-video-form" action="/create-video/" enctype="multipart/form-data" method="POST" return false>
+    <form class="app-form" action="/create-video/" enctype="multipart/form-data" method="POST" return false>
         <h3>Add Video</h3>
 
         {% csrf_token %}

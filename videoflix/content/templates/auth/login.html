@@ -3,7 +3,7 @@
 <div class="wrapper">
     {% if not request.user.is_authenticated %}
 
-    <form class="login-form" action="/login/" method="POST" return false>
+    <form class="app-form" action="/login/" method="POST" return false>
         <h3>Log In</h3>
 
         {% csrf_token %}

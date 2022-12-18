@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %} {% if video %}
 
 <div class="wrapper">
-  <form method="POST" class="rate-video-form" action="/rate-video/{{ video.pk }}" return false>
+  <form method="POST" class="app-form" action="/rate-video/{{ video.pk }}" return false>
     <h3>Rate Video</h3>
 
     <span>How many stars would you give to "{{ video.title }}"?</span>

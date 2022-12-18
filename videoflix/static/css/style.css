@@ -195,14 +195,7 @@ nav a:hover {
     background-color: rgba(0, 0, 0, 0.15);
 }
 
-/* Login, signup, create, edit and delete video views style */
-
-.login-form,
-.signup-form,
-.add-video-form,
-.rate-video-form,
-.edit-video-form,
-.delete-video-form {
+.app-form {
     padding: 2rem;
     background-color: rgba(0, 0, 0, .75);
     border-radius: 4px;
@@ -210,27 +203,21 @@ nav a:hover {
     flex-direction: column;
 }
 
-.login-form h3,
-.signup-form h3,
-.add-video-form h3,
-.rate-video-form h3,
-.edit-video-form h3,
-.delete-video-form h3 {
+.app-form h3 {
     font-weight: bold;
 }
 
-.login-form button,
-.signup-form button,
-.add-video-form button,
-.rate-video-form button,
-.edit-video-form button,
-.delete-video-form button {
+.app-form button {
     background-color: #d50000 !important;
     margin-block: 24px;
 }
 
 .mdl-textfield__label {
     color: #737373 !important;
+}
+
+.mdl-progress {
+    width: auto !important;
 }
 
 .redirect-to-signup-span,
@@ -274,10 +261,6 @@ nav a:hover {
     width: 20px;
 }
 
-.mdl-progress {
-    width: auto !important;
-}
-
 .loading-bar-container {
     height: 36px;
     margin-block: 24px;
@@ -286,8 +269,6 @@ nav a:hover {
 .loading-bar-container span {
     font-size: 9px;
 }
-
-/* Home view style */
 
 .no-videos-span {
     text-align: center;
@@ -328,8 +309,6 @@ nav a:hover {
     background-color: #d50000 !important;
 }
 
-/* Rate video view style */
-
 .stars-container {
     display: flex;
     justify-content: center;
@@ -351,8 +330,6 @@ nav a:hover {
 .stars-container span:hover {
     cursor: pointer;
 }
-
-/* Video details view style */
 
 .video-details-container {
     height: fit-content;
@@ -380,15 +357,13 @@ nav a:hover {
     justify-content: center;
 }
 
-/* For smartphones */
-
 @media (max-width: 720px) {
-    .smartphone-dnone {
-        display: none !important;
-    }
-
     nav {
         padding-inline: 2rem;
+    }
+
+    .smartphone-dnone {
+        display: none !important;
     }
 
     .video-container {

@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %} {% if video %}
 
 <div class="wrapper">
-    <form method="POST" class="delete-video-form" action="/delete-video/{{ video.pk }}" return false>
+    <form method="POST" class="app-form" action="/delete-video/{{ video.pk }}" return false>
         {% csrf_token %}
         <h3>Delete video "{{ video.title }}"?</h3>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
