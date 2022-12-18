@@ -21,7 +21,9 @@ from .utils import (
     save_changes,
     error_response_after_video_edition_attempt,
     set_average_rating,
-    delete_ratings_if_already_exist
+    delete_user_ratings_if_already_exist,
+    save_new_user_rating,
+    save_username_changes
 )
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -142,15 +144,11 @@ def rate_video(request, pk):
     user_ratings_for_this_video = Rating.objects.filter(author = request.user, video = video_to_rate)
 
     if request.method == "POST":
-        delete_ratings_if_already_exist(user_ratings_for_this_video)
+        delete_user_ratings_if_already_exist(user_ratings_for_this_video)
         form = RateVideoForm(request.POST)
         
         if form.is_valid():
-            rating_as_number = int(form.cleaned_data.get('rating'))
-            new_rating = Rating.objects.create(rating = rating_as_number, video = video_to_rate, author = request.user)
-            new_rating.save()
-            form = RateVideoForm()
-            messages.success(request, "You have successfully rated the video!")
+            save_new_user_rating(request, form, video_to_rate)
 
             return redirect_to_home(request)
 
@@ -199,6 +197,7 @@ def delete_video(request, pk):
     return render(request, 'videoflix/delete-video.html', {'video': video_to_delete})
 
 
+@login_required(login_url = '/login/')
 def edit_user(request):
     user = request.user
 
@@ -206,31 +205,34 @@ def edit_user(request):
         form = EditUserForm(request.POST)
 
         if form.is_valid():
-            user.username = form.cleaned_data.get('username')
-            user.save()
-            messages.success(request, "You have successfully edited your username!")
+            save_username_changes(user, form, request)
             
             return redirect_to_home(request)
 
         else:
             messages.error(request, "Unfortunately this username is already in use.")
+
             return render(request, 'auth/edit-user.html')
 
     form = EditUserForm()
+
     return render(request, 'auth/edit-user.html')
 
 
+@login_required(login_url = '/login/')
 def delete_account(request):
     user = request.user
 
     if request.method == "POST":
         user.delete()
-        messages.success(request, "You have successfully delted your account.")
+        messages.success(request, "You have successfully deleted your account.")
 
         return redirect_to_home(request)
 
     return render(request, 'auth/delete-account.html')
 
+
+@login_required(login_url = '/login/')
 def log_out(request):
     logout(request)
     messages.success(request, "You have successfully logged out. See you soon!")

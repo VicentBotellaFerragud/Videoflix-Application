@@ -8,7 +8,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage
-from .forms import NewVideoForm, EditVideoForm
+from .forms import NewVideoForm, EditVideoForm, RateVideoForm
 from .models import Video, Rating
 
 # log_in utils:
@@ -122,9 +122,17 @@ def save_new_video(request, form):
 
 # rate_video utils:
 
-def delete_ratings_if_already_exist(ratings):
+def delete_user_ratings_if_already_exist(ratings):
     if len(ratings) > 0:
         ratings.delete()
+
+
+def save_new_user_rating(request, form, video_to_rate):
+    rating_as_number = int(form.cleaned_data.get('rating'))
+    new_rating = Rating.objects.create(rating = rating_as_number, video = video_to_rate, author = request.user)
+    new_rating.save()
+    form = RateVideoForm()
+    messages.success(request, "You have successfully rated the video!")
 
 
 # edit_video utils:
@@ -142,3 +150,12 @@ def error_response_after_video_edition_attempt(request, video_to_edit):
     storage = get_messages(request)
 
     return render(request, 'videoflix/edit-video.html', {'video': video_to_edit, 'messages': storage})
+
+
+# edit_user utils:
+
+def save_username_changes(user, form, request):
+    user.username = form.cleaned_data.get('username')
+    user.save()
+    messages.success(request, "You have successfully edited your username!")
+    
