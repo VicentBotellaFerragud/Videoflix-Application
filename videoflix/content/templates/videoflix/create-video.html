@@ -1,73 +1,37 @@
 {% extends "base.html" %} {% block content %}
 
 <div class="wrapper">
-  <form
-    class="add-video-form"
-    action="/create-video/"
-    enctype="multipart/form-data"
-    method="POST"
-    return
-    false
-  >
-    <h3>Add Video</h3>
+    <form class="add-video-form" action="/create-video/" enctype="multipart/form-data" method="POST" return false>
+        <h3>Add Video</h3>
 
-    {% csrf_token %}
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input
-        class="mdl-textfield__input"
-        type="text"
-        id="titleInput"
-        name="title"
-        maxlength="20"
-        required
-      />
-      <label class="mdl-textfield__label" for="titleInput">Title</label>
-    </div>
+        {% csrf_token %}
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="titleInput" name="title" maxlength="20" required />
+            <label class="mdl-textfield__label" for="titleInput">Title</label>
+        </div>
 
-    <div class="mdl-textfield mdl-js-textfield">
-      <textarea
-        class="mdl-textfield__input"
-        type="text"
-        id="descriptionInput"
-        name="description"
-        maxlength="400"
-        required
-      ></textarea>
-      <label class="mdl-textfield__label" for="descriptionInput"
-        >Description</label
-      >
-    </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" id="descriptionInput" name="description" maxlength="400"
+                required></textarea>
+            <label class="mdl-textfield__label" for="descriptionInput">Description</label>
+        </div>
 
-    <input
-      class="py-20"
-      type="file"
-      id="videoFileInput"
-      name="video_file"
-      accept="video/*"
-      required
-    />
-    <div class="mdl-tooltip" data-mdl-for="videoFileInput">
-      Please choose a video smaller than 25mb
-    </div>
+        <input class="py-20" type="file" id="videoFileInput" name="video_file" accept="video/*" required />
+        <div class="mdl-tooltip" data-mdl-for="videoFileInput">
+            Please choose a video smaller than 25mb
+        </div>
 
-    <button
-      id="addVideoButton"
-      class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-      onclick="displayLoadingBarAndHideAddVideoButton()"
-    >
-      Add Video
-    </button>
+        <button id="addVideoButton" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+            onclick="displayLoadingBarAndHideAddVideoButton()">
+            Add Video
+        </button>
 
-    <div id="loadingBar" class="loading-bar-container" style="display: none">
-      <div
-        class="mdl-progress mdl-js-progress mdl-progress__indeterminate"
-      ></div>
-      <span
-        >calculating upload speed to choose best format to convert your
-        video...</span
-      >
-    </div>
-  </form>
+        <div id="loadingBar" class="loading-bar-container" style="display: none">
+            <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+            <span>calculating upload speed to choose best format to convert your
+                video...</span>
+        </div>
+    </form>
 </div>
 
 {% endblock %}

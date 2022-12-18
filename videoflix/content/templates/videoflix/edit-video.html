@@ -9,13 +9,13 @@
 
         {% csrf_token %}
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="newTitle" name="title" maxlength="20" 
+            <input class="mdl-textfield__input" type="text" id="newTitle" name="title" maxlength="20"
                 value="{{ video.title }}" required>
             <label class="mdl-textfield__label" for="newTitle">Title</label>
         </div>
 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="newDescription" name="description" maxlength="400" 
+            <input class="mdl-textfield__input" type="text" id="newDescription" name="description" maxlength="400"
                 value="{{ video.description }}" required></input>
             <label class="mdl-textfield__label" for="newDescription">Description</label>
         </div>

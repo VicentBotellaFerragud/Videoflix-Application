@@ -1,55 +1,37 @@
 {% extends "base.html" %} {% block content %}
 
 <div class="wrapper">
-  {% if not request.user.is_authenticated %}
+    {% if not request.user.is_authenticated %}
 
-  <form class="login-form" action="/login/" method="POST" return false>
-    <h3>Log In</h3>
+    <form class="login-form" action="/login/" method="POST" return false>
+        <h3>Log In</h3>
 
-    {% csrf_token %}
-    <input type="hidden" name="redirect" value="{{ redirect }}" />
+        {% csrf_token %}
+        <input type="hidden" name="redirect" value="{{ redirect }}" />
 
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input
-        class="mdl-textfield__input"
-        name="username"
-        type="text"
-        id="username"
-        required
-      />
-      <label class="mdl-textfield__label" for="username">Username</label>
-    </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="username" type="text" id="username" required />
+            <label class="mdl-textfield__label" for="username">Username</label>
+        </div>
 
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input
-        class="mdl-textfield__input"
-        type="password"
-        name="password"
-        id="password"
-        required
-      />
-      <label class="mdl-textfield__label" for="username">Password</label>
-    </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="password" name="password" id="password" required />
+            <label class="mdl-textfield__label" for="username">Password</label>
+        </div>
 
-    <button
-      class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-    >
-      Log In
-    </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+            Log In
+        </button>
 
-    <span class="redirect-to-signup-span"
-      >New to Videoflix?<a href="/signup/">Sign up now</a></span
-    >
-  </form>
+        <span class="redirect-to-signup-span">New to Videoflix?<a href="/signup/">Sign up now</a></span>
+    </form>
 
-  {% else %}
+    {% else %}
 
-  <span class="redirect-to-home-span"
-    >You are already logged in! Click <a href="/home/">here</a> to go back to
-    the Videoflix home page.</span
-  >
+    <span class="redirect-to-home-span">You are already logged in! Click <a href="/home/">here</a> to go back to
+        the Videoflix home page.</span>
 
-  {% endif %}
+    {% endif %}
 </div>
 
 {% endblock %}

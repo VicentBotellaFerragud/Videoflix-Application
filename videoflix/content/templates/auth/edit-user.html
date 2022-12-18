@@ -6,22 +6,12 @@
 
     {% csrf_token %}
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input
-        class="mdl-textfield__input"
-        name="username"
-        type="text"
-        id="usernameInput"
-        value="{{ request.user.username }}"
-        required
-      />
-      <label class="mdl-textfield__label" for="usernameInput"
-        >Enter a new username</label
-      >
+      <input class="mdl-textfield__input" name="username" type="text" id="usernameInput"
+        value="{{ request.user.username }}" required />
+      <label class="mdl-textfield__label" for="usernameInput">Enter a new username</label>
     </div>
 
-    <button
-      class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-    >
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
       Save Changes
     </button>
 

@@ -1,105 +1,66 @@
 {% extends "base.html" %} {% block content %}
 
 <div class="wrapper">
-  <form class="signup-form" action="/signup/" method="POST" return false>
-    <h3>Sign Up</h3>
+    <form class="signup-form" action="/signup/" method="POST" return false>
+        <h3>Sign Up</h3>
 
-    {% csrf_token %}
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input
-        class="mdl-textfield__input"
-        name="username"
-        type="text"
-        id="usernameInput"
-        required
-      />
-      <label class="mdl-textfield__label" for="usernameInput"
-        >Enter a username</label
-      >
-    </div>
+        {% csrf_token %}
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="username" type="text" id="usernameInput" required />
+            <label class="mdl-textfield__label" for="usernameInput">Enter a username</label>
+        </div>
 
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input
-        class="mdl-textfield__input"
-        name="email"
-        type="email"
-        id="emailInput"
-        required
-      />
-      <label class="mdl-textfield__label" for="emailInput"
-        >Enter an email</label
-      >
-    </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="email" type="email" id="emailInput" required />
+            <label class="mdl-textfield__label" for="emailInput">Enter an email</label>
+        </div>
 
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input
-        class="mdl-textfield__input"
-        name="password1"
-        type="password"
-        id="passwordInput1"
-        onkeyup="checkPasswordValidity()"
-        required
-      />
-      <label class="mdl-textfield__label" for="passwordInput1"
-        >Enter a password</label
-      >
-    </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="password1" type="password" id="passwordInput1"
+                onkeyup="checkPasswordValidity()" required />
+            <label class="mdl-textfield__label" for="passwordInput1">Enter a password</label>
+        </div>
 
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input
-        class="mdl-textfield__input"
-        name="password2"
-        type="password"
-        id="passwordInput2"
-        required
-      />
-      <label class="mdl-textfield__label" for="passwordInput2"
-        >Repeat the password</label
-      >
-    </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="password2" type="password" id="passwordInput2" required />
+            <label class="mdl-textfield__label" for="passwordInput2">Repeat the password</label>
+        </div>
 
-    <ul class="password-constraints">
-      <span>Please consider this when choosing your password:</span>
+        <ul class="password-constraints">
+            <span>Please consider this when choosing your password:</span>
 
-      {% load static %}
-      <li>
-        <img id="valid1" class="valid" src="{% static 'img/checked.png' %}" />
-        <img id="invalid1" class="invalid" src="{% static 'img/close.png' %}" />
-        It must contain at least 10 characters.
-      </li>
-      <li>
-        <img id="valid2" class="valid" src="{% static 'img/checked.png' %}" />
-        <img id="invalid2" class="invalid" src="{% static 'img/close.png' %}" />
-        It must contain at least 1 letter.
-      </li>
-      <li>
-        <img id="valid3" class="valid" src="{% static 'img/checked.png' %}" />
-        <img id="invalid3" class="invalid" src="{% static 'img/close.png' %}" />
-        It must contain at least 1 number.
-      </li>
-      <li>
-        <img id="valid4" class="valid" src="{% static 'img/checked.png' %}" />
-        <img id="invalid4" class="invalid" src="{% static 'img/close.png' %}" />
-        It must contain at least 1 special character.<img
-          id="info"
-          class="info-icon"
-          src="{% static 'img/info.png' %}"
-        />
-      </li>
-    </ul>
+            {% load static %}
+            <li>
+                <img id="valid1" class="valid" src="{% static 'img/checked.png' %}" />
+                <img id="invalid1" class="invalid" src="{% static 'img/close.png' %}" />
+                It must contain at least 10 characters.
+            </li>
+            <li>
+                <img id="valid2" class="valid" src="{% static 'img/checked.png' %}" />
+                <img id="invalid2" class="invalid" src="{% static 'img/close.png' %}" />
+                It must contain at least 1 letter.
+            </li>
+            <li>
+                <img id="valid3" class="valid" src="{% static 'img/checked.png' %}" />
+                <img id="invalid3" class="invalid" src="{% static 'img/close.png' %}" />
+                It must contain at least 1 number.
+            </li>
+            <li>
+                <img id="valid4" class="valid" src="{% static 'img/checked.png' %}" />
+                <img id="invalid4" class="invalid" src="{% static 'img/close.png' %}" />
+                It must contain at least 1 special character.<img id="info" class="info-icon"
+                    src="{% static 'img/info.png' %}" />
+            </li>
+        </ul>
 
-    <div class="mdl-tooltip" data-mdl-for="info">[@_!#$%^&*()<>?/|}{~:]</div>
+        <div class="mdl-tooltip" data-mdl-for="info">[@_!#$%^&*()<>?/|}{~:]</div>
 
-    <button
-      class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-    >
-      Sign Up
-    </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+            Sign Up
+        </button>
 
-    <span class="redirect-to-login-span"
-      >Already have an account?<a href="/login/">Log in</a></span
-    >
-  </form>
+        <span class="redirect-to-login-span">Already have an account?<a href="/login/">Log in</a></span>
+    </form>
 </div>
 
 {% endblock %}
