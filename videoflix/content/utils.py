@@ -110,7 +110,11 @@ def set_average_rating_with_or_without_decimals(videos, with_decimals = False):
                 video.average_rating = round(average_rating)
 
         else:
-            video.average_rating = "NR"
+            if with_decimals:
+                video.average_rating = "NR"
+
+            else:
+                video.average_rating = 1
 
     return videos
 
