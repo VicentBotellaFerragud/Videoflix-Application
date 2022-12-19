@@ -194,10 +194,17 @@ def delete_video(request, pk):
     video_to_delete = Video.objects.get(pk = pk)
 
     if request.method == "POST":
-        video_to_delete.delete()
-        messages.success(request, 'You have successfully deleted the video "{}"!'.format(video_to_delete.title))
 
-        return redirect_to_home(request)
+        if video_to_delete.creator == request.user:
+            video_to_delete.delete()
+            messages.success(request, 'You have successfully deleted the video "{}"!'.format(video_to_delete.title))
+
+            return redirect_to_home(request)
+
+        else:
+            messages.error(request, 'Sorry, you cannot delete videos uploaded by other users.')
+
+            return redirect_to_home(request)
 
     return render(request, 'videoflix/delete-video.html', {'video': video_to_delete})
 
