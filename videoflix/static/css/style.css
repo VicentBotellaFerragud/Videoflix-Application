@@ -291,6 +291,19 @@ nav a:hover {
     border-radius: 4px;
 }
 
+.highest-rated-video-container {
+    height: 50vh; 
+    border-radius: 4px; 
+    background-color: rgba(0, 0, 0, .5);
+    margin-bottom: 2rem;
+}
+
+.highest-rated-video-container video {
+    border-radius: 4px;
+    width: 100%;
+    height: 50vh;
+}
+
 .videos-wrapper {
     max-height: 100%;
     display: flex;

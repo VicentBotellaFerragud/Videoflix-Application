@@ -1,5 +1,13 @@
 {% extends "base.html" %} {% block content %} {% if videos %}
 
+{% if highest_rated_video %}
+<div class="highest-rated-video-container">
+  <video controls>
+    <source src="{{ highest_rated_video.video_file.url }}" type="video/mp4" />
+  </video>
+</div>
+{% endif %}
+
 <div id="videosWrapper" class="videos-wrapper">
   {% for video in videos %}
 

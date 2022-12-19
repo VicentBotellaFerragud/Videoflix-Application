@@ -103,8 +103,11 @@ def activate_user(request, uidb64, token):
 def home_view(request):
     videos = Video.objects.all()
     videos = set_average_rating_with_or_without_decimals(videos, True)
+    videos_without_decimal_average_rating = set_average_rating_with_or_without_decimals(videos)
+    save_average_rating_changes(videos_without_decimal_average_rating)
+    highest_rated_video = videos_without_decimal_average_rating.order_by('-average_rating')[0]
     
-    return render(request, 'videoflix/home.html', {'videos': videos})
+    return render(request, 'videoflix/home.html', {'videos': videos, 'highest_rated_video': highest_rated_video})
 
 
 @login_required(login_url = '/login/')
