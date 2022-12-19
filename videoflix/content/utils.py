@@ -104,7 +104,7 @@ def set_average_rating_with_or_without_decimals(videos, with_decimals = False):
             average_rating = sum_of_ratings / len(ratings)
 
             if with_decimals:
-                video.average_rating = "{:.1f}".format(average_rating)
+                video.average_rating = "{:.1f}".format(average_rating) # string
 
             else:
                 video.average_rating = round(average_rating)
@@ -114,7 +114,7 @@ def set_average_rating_with_or_without_decimals(videos, with_decimals = False):
                 video.average_rating = "NR"
 
             else:
-                video.average_rating = 1 # must be an integer in oder tu use "order_by".
+                video.average_rating = 1 # must be an integer in order to use "order_by".
 
     return videos
 

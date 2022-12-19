@@ -115,7 +115,7 @@ def home_view(request):
 @login_required(login_url = '/login/')
 def my_videos(request):
     videos = Video.objects.filter(creator = request.user)
-    videos = set_average_rating_with_or_without_decimals(videos, True)
+    # videos = set_average_rating_with_or_without_decimals(videos, True)
     
     return render(request, 'videoflix/my-videos.html', {'videos': videos})
 
