@@ -10,7 +10,7 @@ class Video(models.Model):
     description = models.CharField(max_length = 400)
     created_at = models.DateField(default = date.today) 
     video_file = models.FileField(upload_to = 'videos')
-    average_rating = models.IntegerField(default = 1, validators = [MinValueValidator(0), MaxValueValidator(5)])
+    average_rating = models.FloatField(default = 0, validators = [MinValueValidator(0), MaxValueValidator(5)])
     creator = models.ForeignKey(User, on_delete = models.CASCADE)
 
     def __str__(self):
@@ -18,7 +18,7 @@ class Video(models.Model):
 
 
 class Rating(models.Model):
-    rating = models.IntegerField(validators = [MinValueValidator(0), MaxValueValidator(5)])
+    rating = models.FloatField(validators = [MinValueValidator(0), MaxValueValidator(5)])
     video = models.ForeignKey(Video, on_delete = models.CASCADE)
     author = models.ForeignKey(User, on_delete = models.CASCADE)
 

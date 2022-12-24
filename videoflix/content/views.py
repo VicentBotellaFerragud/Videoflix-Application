@@ -21,22 +21,17 @@ from .utils import (
     save_new_video, 
     save_changes,
     error_response_after_video_edition_attempt,
-    set_average_rating_with_or_without_decimals,
+    set_average_rating,
     delete_user_ratings_if_already_exist,
     save_new_user_rating,
     save_username_changes,
-    save_average_rating_changes
+    save_average_rating_changes,
+    display_default_value_for_unrated_videos
 )
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 # Create your views here.
-
-def redirect_to_home(request):
-    response = redirect('/home/')
-    
-    return response
-
 
 def log_in(request):
     if request.method == "POST":
@@ -101,31 +96,28 @@ def activate_user(request, uidb64, token):
 
 @login_required(login_url = '/login/')
 def home_view(request):
-    videos_1 = Video.objects.all()
-    videos_1 = set_average_rating_with_or_without_decimals(videos_1, True)
-
-    videos_2 = Video.objects.all()
-    videos_without_decimal_average_rating = set_average_rating_with_or_without_decimals(videos_2)
-    save_average_rating_changes(videos_without_decimal_average_rating)
-    highest_rated_video = videos_without_decimal_average_rating.order_by('-average_rating')[0]
+    videos = Video.objects.all()
+    videos = set_average_rating(videos)
+    save_average_rating_changes(videos)
+    highest_rated_video = videos.order_by('-average_rating')[0]
+    display_default_value_for_unrated_videos(videos)
     
-    return render(request, 'videoflix/home.html', {'videos': videos_1, 'highest_rated_video': highest_rated_video})
+    return render(request, 'videoflix/home.html', {'videos': videos, 'highest_rated_video': highest_rated_video})
 
 
 @login_required(login_url = '/login/')
 def my_videos(request):
     videos = Video.objects.filter(creator = request.user)
-    videos = set_average_rating_with_or_without_decimals(videos, True)
+    display_default_value_for_unrated_videos(videos)
     
     return render(request, 'videoflix/my-videos.html', {'videos': videos})
 
 
 @login_required(login_url = '/login/')
 def see_top_rated_videos(request):
-    videos = Video.objects.all()
-    videos = set_average_rating_with_or_without_decimals(videos)
-    save_average_rating_changes(videos)
+    videos = Video.objects.all() 
     videos = videos.order_by('-average_rating')[0:5]
+    display_default_value_for_unrated_videos(videos)
 
     return render(request, 'videoflix/top-rated.html', {'videos': videos})
 
@@ -252,3 +244,9 @@ def log_out(request):
     messages.success(request, "You have successfully logged out. See you soon!")
 
     return redirect_to_home(request)
+
+
+def redirect_to_home(request):
+    response = redirect('/home/')
+    
+    return response

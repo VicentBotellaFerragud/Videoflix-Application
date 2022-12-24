@@ -9,7 +9,7 @@ from django.utils.encoding import force_bytes, force_str
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage
 from .forms import NewVideoForm, EditVideoForm, RateVideoForm
-from .models import Video, Rating
+from .models import Rating
 
 # log_in utils:
 
@@ -91,7 +91,7 @@ def find_encrypted_user(user_model, uidb64):
 
 # home_view, my_videos and see_top_rated_videos utils:
 
-def set_average_rating_with_or_without_decimals(videos, with_decimals = False):
+def set_average_rating(videos):
     for video in videos:
         ratings = Rating.objects.filter(video = video)
 
@@ -102,19 +102,7 @@ def set_average_rating_with_or_without_decimals(videos, with_decimals = False):
                 sum_of_ratings += rating.rating
             
             average_rating = sum_of_ratings / len(ratings)
-
-            if with_decimals:
-                video.average_rating = "{:.1f}".format(average_rating) # string
-
-            else:
-                video.average_rating = round(average_rating)
-
-        else:
-            if with_decimals:
-                video.average_rating = "NR"
-
-            else:
-                video.average_rating = 1 # must be an integer in order to use "order_by".
+            video.average_rating = round(average_rating, 1)
 
     return videos
 
@@ -122,6 +110,12 @@ def set_average_rating_with_or_without_decimals(videos, with_decimals = False):
 def save_average_rating_changes(videos):
     for video in videos:
         video.save()
+
+
+def display_default_value_for_unrated_videos(videos):
+    for video in videos:
+        if video.average_rating == 0.0:
+            video.average_rating = "NR"
 
 
 # create_video utils:
