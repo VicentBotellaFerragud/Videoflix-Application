@@ -81,13 +81,13 @@ function checkContainsAtLeastOneSpecialCharacter(string) {
     }
 }
 
-function searchForVideos() {
+function searchForVideos(homeOrMyVideos) {
     let input, filter, container, videoTitles;
 
-    input = document.getElementById('searchBar');
+    input = document.getElementById(`searchBar${homeOrMyVideos}`);
     filter = input.value.toUpperCase();
-    container = document.getElementById('videosWrapper');
-    videoTitles = container.querySelectorAll('.video-title');
+    container = document.getElementById(`videosWrapper${homeOrMyVideos}`);
+    videoTitles = container.querySelectorAll(`.video-title-${homeOrMyVideos}`);
 
     for (i = 0; i < videoTitles.length; i++) {
         let videoTitle = videoTitles[i];

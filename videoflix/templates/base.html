@@ -53,10 +53,17 @@
     </a>
 
     <div class="items-center smartphone-dnone">
-      <div class="{% if request.path == '/home/' %} mdl-textfield mdl-js-textfield {% else %} invisible {% endif %}">
-        <input class="mdl-textfield__input" type="text" id="searchBar" onkeyup="searchForVideos()" />
-        <label class="mdl-textfield__label" for="searchBar">Search for a video...</label>
+      {% if request.path == '/my-videos/' %}
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="searchBarMyVideos" onkeyup="searchForVideos('MyVideos')" />
+        <label class="mdl-textfield__label" for="searchBarMyVideos">oha...</label>
       </div>
+      {% else %}
+      <div class="{% if request.path == '/home/' %} mdl-textfield mdl-js-textfield {% else %} invisible {% endif %}">
+        <input class="mdl-textfield__input" type="text" id="searchBarHome" onkeyup="searchForVideos('Home')" />
+        <label class="mdl-textfield__label" for="searchBarHome">Search for a video...</label>
+      </div>
+      {% endif %}
 
       <a href="/create-video/" class="add-video">
         <button class="mdl-button mdl-js-button mdl-button--icon">

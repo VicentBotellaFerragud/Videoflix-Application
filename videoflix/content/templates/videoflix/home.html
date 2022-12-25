@@ -1,6 +1,5 @@
 {% extends "base.html" %} {% block content %} {% if videos %}
 
-
 <span class="headline">Welcome to Videoflix {{ request.user }}!</span>
 {% if highest_rated_video %}
 <div class="highest-rated-video-container">
@@ -11,7 +10,7 @@
 {% endif %}
 
 <span class="subheadline">Take a look at all the videos uploaded to the platform...</span>
-<div id="videosWrapper" class="videos-wrapper">
+<div id="videosWrapperHome" class="videos-wrapper">
   {% for video in videos %}
 
   <div class="video-container">
@@ -40,7 +39,7 @@
       </ul>
 
       <div class="items-center">
-        <span class="video-title">{{ video.title }}</span>
+        <span class="video-title-Home">{{ video.title }}</span>
         <div class="ml-10">
           <span class="fa fa-star orange"></span>
           <span id="averageRating{{ video.id }}">{{ video.average_rating }}</span>

@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %} {% if videos %}
 
 <span class="subheadline">Take a look at the videos uploaded by you...</span>
-<div class="videos-wrapper">
+<div id="videosWrapperMyVideos" class="videos-wrapper">
   {% for video in videos %}
 
   <div class="video-container">
@@ -30,7 +30,7 @@
       </ul>
 
       <div class="items-center">
-        <span>{{ video.title }}</span>
+        <span class="video-title-MyVideos">{{ video.title }}</span>
         <div class="ml-10">
           <span class="fa fa-star orange"></span>
           <span id="averageRating{{ video.id }}">{{ video.average_rating }}</span>
