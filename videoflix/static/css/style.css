@@ -297,7 +297,8 @@ nav a:hover {
     font-size: 9px;
 }
 
-.no-videos-span {
+.no-videos-span,
+.no-smartphone-view {
     text-align: center;
     padding: 2rem;
     background-color: rgba(0, 0, 0, .75);
@@ -436,11 +437,24 @@ nav a:hover {
     }
 
     .dynamic-content-container {
-        height: 100%;
         padding-inline: 2rem;
     }
 
     .smartphone-visible {
         display: block;
+    }
+}
+
+@media (max-width: 420px) {
+    .mdl-textfield {
+        width: unset !important;
+    }
+
+    .headline {
+        font-size: 14px;
+    }
+    
+    .subheadline {
+        font-size: 10px;
     }
 }

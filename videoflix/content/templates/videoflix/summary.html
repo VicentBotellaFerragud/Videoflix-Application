@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %} {% if videos %}
 
-<table class="summary-table">
+<table class="summary-table smartphone-dnone">
     <thead>
         <tr>
             <th>Title</th>
@@ -13,7 +13,7 @@
     </thead>
     <tbody>
         {% for video in videos %}
-        
+
         <tr onclick="navigateUserToVideoDetailsView('{{ video.pk }}')">
             <td>{{ video.title }}</td>
             <td>{{ video.description }}</td>
@@ -34,6 +34,12 @@
         {% endfor %}
     </tbody>
 </table>
+
+<div class="smartphone-visible">
+    <div class="wrapper">
+        <span class="no-smartphone-view">View no available for smartphones.</span>
+    </div>
+</div>
 
 {% else %}
 

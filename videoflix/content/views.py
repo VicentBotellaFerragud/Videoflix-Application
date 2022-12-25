@@ -100,7 +100,7 @@ def home_view(request):
     videos = Video.objects.all()
     videos = set_average_rating(videos)
     save_average_rating_changes(videos)
-    highest_rated_video = videos.order_by('-average_rating')[0]
+    highest_rated_video = videos.order_by('-average_rating').first()
     display_default_value_for_unrated_videos(videos)
     
     return render(request, 'videoflix/home.html', {'videos': videos, 'highest_rated_video': highest_rated_video})
