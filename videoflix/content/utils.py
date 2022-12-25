@@ -160,6 +160,19 @@ def error_response_after_video_edition_attempt(request, video_to_edit):
     return render(request, 'videoflix/edit-video.html', {'video': video_to_edit, 'messages': storage})
 
 
+# see_summary utils:
+
+def set_number_of_ratings(videos):
+    for video in videos:
+        rated_by = Rating.objects.filter(video = video).count()
+
+        if rated_by == 0:
+            video.rated_by = "NR"
+
+        else:
+            video.rated_by = rated_by
+
+
 # edit_user utils:
 
 def save_username_changes(user, form, request):

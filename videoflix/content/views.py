@@ -26,7 +26,8 @@ from .utils import (
     save_new_user_rating,
     save_username_changes,
     save_average_rating_changes,
-    display_default_value_for_unrated_videos
+    display_default_value_for_unrated_videos,
+    set_number_of_ratings
 )
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
@@ -205,8 +206,11 @@ def delete_video(request, pk):
 
 @login_required(login_url = '/login/')
 def see_summary(request):
+    videos = Video.objects.all()
+    display_default_value_for_unrated_videos(videos)
+    set_number_of_ratings(videos)
 
-    return render(request, 'videoflix/summary.html')
+    return render(request, 'videoflix/summary.html', {'videos': videos})
 
 
 @login_required(login_url = '/login/')

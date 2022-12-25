@@ -145,3 +145,7 @@ function removeColorFromCorrespondingStars(star) {
         star.style.color = 'white';
     }
 }
+
+function navigateUserToVideoDetailsView(videoPk) {
+    window.location.href = `/video-details/${videoPk}`;
+}

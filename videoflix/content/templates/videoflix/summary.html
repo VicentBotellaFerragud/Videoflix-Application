@@ -1,26 +1,45 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% block content %} {% if videos %}
 
 <table class="summary-table">
     <thead>
-      <tr>
-        <th>Created at</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Average rating</th>
-        <th>Rated by</th>
-        <th>Uploaded by</th>
-      </tr>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Average rating</th>
+            <th>Rated by</th>
+            <th>Uploaded by</th>
+            <th>Created at</th>
+        </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>sere</td>
-        <td>15</td>
-        <td>The speed of the show/reveal</td>
-        <td>sere</td>
-        <td>sere</td>
-        <td>sere</td>
-      </tr>
-    </tbody>
-  </table>
+        {% for video in videos %}
+        
+        <tr onclick="navigateUserToVideoDetailsView('{{ video.pk }}')">
+            <td>{{ video.title }}</td>
+            <td>{{ video.description }}</td>
+            <td>{{ video.average_rating }}</td>
 
-{% endblock %}
+            {% if video.rated_by == "NR" %}
+            <td>{{ video.rated_by }}</td>
+            {% elif video.rated_by == 1 %}
+            <td>{{ video.rated_by }} user</td>
+            {% else %}
+            <td>{{ video.rated_by }} users</td>
+            {% endif %}
+
+            <td>{{ video.creator }}</td>
+            <td>{{ video.created_at }}</td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+
+<div class="wrapper">
+    <span class="no-videos-span">No videos were uploaded to the platform yet. Click the "+" button to start
+        uploading content.</span>
+</div>
+
+{% endif %} {% endblock %}
