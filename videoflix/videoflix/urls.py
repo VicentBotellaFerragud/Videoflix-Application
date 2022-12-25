@@ -39,6 +39,7 @@ urlpatterns = [
     path('video-details/<int:pk>', views.see_video_details, name = 'video-details'),
     path('edit-video/<int:pk>', views.edit_video, name = 'edit-video'),
     path('delete-video/<int:pk>', views.delete_video, name = 'delete-video'),
+    path('summary/', views.see_summary, name = 'summary'),
 ] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

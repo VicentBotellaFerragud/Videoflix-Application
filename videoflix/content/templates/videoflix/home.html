@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %} {% if videos %}
 
 
-<span>Welcome to Videoflix {{ request.user }}!</span>
+<span class="headline">Welcome to Videoflix {{ request.user }}!</span>
 {% if highest_rated_video %}
 <div class="highest-rated-video-container">
   <video controls>
@@ -10,7 +10,7 @@
 </div>
 {% endif %}
 
-<span>Take a look at all the videos uploaded to the platform...</span>
+<span class="subheadline">Take a look at all the videos uploaded to the platform...</span>
 <div id="videosWrapper" class="videos-wrapper">
   {% for video in videos %}
 

@@ -271,6 +271,19 @@ nav a:hover {
     margin-right: .5rem;
 }
 
+.headline, 
+.subheadline { 
+    font-weight: bold;
+}
+
+.headline {
+    font-size: 20px;
+}
+
+.subheadline {
+    font-size: 16px;
+}
+
 .info-icon {
     width: 20px;
 }
@@ -382,6 +395,31 @@ nav a:hover {
 .video-details-container-bottom {
     display: flex;
     justify-content: center;
+}
+
+.summary-table {
+    width: 100%;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);    
+}
+
+.summary-table thead {
+    background-color: rgb(20, 20, 20);
+}
+
+.summary-table tbody {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.summary-table thead th, 
+.summary-table tbody td {
+    text-align: center;
+    padding: 16px;
+}
+
+.summary-table tbody tr:hover {
+    cursor: pointer;
+    background-color: #d50000;
 }
 
 @media (max-width: 720px) {

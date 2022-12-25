@@ -204,6 +204,12 @@ def delete_video(request, pk):
 
 
 @login_required(login_url = '/login/')
+def see_summary(request):
+
+    return render(request, 'videoflix/summary.html')
+
+
+@login_required(login_url = '/login/')
 def edit_user(request):
     user = request.user
 
