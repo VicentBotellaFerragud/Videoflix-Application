@@ -1,37 +1,32 @@
 {% extends "base.html" %} {% block content %}
+<div>
 
-<div class="wrapper">
     {% if not request.user.is_authenticated %}
-
-    <form class="app-form" action="/login/" method="POST" return false>
-        <h3>Log In</h3>
+    <form class="app-form p-5" action="/login/" method="POST" return false>
+        <h1 class="mb-3">Log In</h1>
 
         {% csrf_token %}
         <input type="hidden" name="redirect" value="{{ redirect }}" />
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" name="username" type="text" id="username" required />
-            <label class="mdl-textfield__label" for="username">Username</label>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input name="username" type="text" class="form-control" id="username" placeholder="Enter username">
         </div>
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="password" name="password" id="password" required />
-            <label class="mdl-textfield__label" for="username">Password</label>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input name="password" type="password" class="form-control" id="password" placeholder="Enter password">
         </div>
 
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-            Log In
-        </button>
+        <button type="submit" class="btn my-3 w-100">Log In</button>
 
-        <span class="redirect-to-signup-span">New to Videoflix?<a href="/signup/">Sign up now</a></span>
+        <p class="app-grey">New to Videoflix?<a href="/signup/" class="ml-2">Sign up now</a></p>
     </form>
-
     {% else %}
 
-    <span class="redirect-to-home-span">You are already logged in! Click <a href="/home/">here</a> to go back to
-        the Videoflix home page.</span>
+    <p>You are already logged in! Click <a href="/home/">here</a> to go back to the Videoflix home page.</span>
 
-    {% endif %}
+        {% endif %}
+
 </div>
-
 {% endblock %}

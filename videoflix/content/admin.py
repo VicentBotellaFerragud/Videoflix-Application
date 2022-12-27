@@ -5,14 +5,17 @@ from import_export.admin import ImportExportModelAdmin
 
 # Register your models here.
 
+
 class VideoResource(resources.ModelResource):
     class Meta:
         model = Video
 
 
 class VideoAdmin(ImportExportModelAdmin):
-    fields = ('title', 'description', 'created_at', 'video_file', 'creator',)    
-    list_display = ('title', 'description', 'created_at', 'video_file','creator',)
+    fields = ('title', 'description', 'category',
+              'created_at', 'video_file', 'average_rating', 'creator',)
+    list_display = ('title', 'description', 'category', 'created_at',
+                    'video_file', 'average_rating', 'creator',)
 
 
 class RatingAdmin(admin.ModelAdmin):

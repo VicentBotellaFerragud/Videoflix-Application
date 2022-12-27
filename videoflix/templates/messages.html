@@ -3,9 +3,11 @@
 <ul>
   {% for message in messages %}
 
-  <div class="alert {{ message.tags }}">
-    <button type="button" class="close-message-button" onclick="closeMessage()">X</button>
+  <div class="alert {{ message.tags }} text-center">
     {{ message }}
+    <button type="button" class="close close-btn" aria-label="Close" onclick="closeMessage()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
 
   {% endfor %}

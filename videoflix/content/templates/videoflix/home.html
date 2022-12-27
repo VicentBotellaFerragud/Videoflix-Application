@@ -10,15 +10,14 @@
 </div>
 {% endif %}-->
 
-<span class="subheadline">Sports</span>
-<div id="center" class="video-row">
-  {% for video in videos %}
-
-  <div class="thumbnail-container">
-    {% load static %}
-    <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-
-    <!--
+<div class="block">
+  <span class="subheadline">Sports</span>
+  <div id="center1" class="video-row">
+    {% for video in videos %}
+    <div class="thumbnail-container">
+      {% load static %}
+      <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+      <!--
     {% load static %}
     <div class="thumbnail-container-footer">
       <img id="video{{ video.id }}" class="video-menu-arrow mdl-button mdl-js-button mdl-button--icon"
@@ -50,57 +49,112 @@
         </div>
       </div>
     </div>-->
+    </div>
+    {% endfor %}
   </div>
-
-  {% endfor %}
+  <div class="block-footer">
+    {% load static %}
+    <img id="slideLeft" src="{% static 'img/left.png' %}">
+    <img id="slideRight" src="{% static 'img/right.png' %}">
+  </div>
 </div>
 
-<span class="subheadline">Nature</span>
-<div id="center" class="video-row">
-  {% for video in videos %}
-
-  <div class="thumbnail-container">
+<div class="block">
+  <span class="subheadline">Sports</span>
+  <div id="center1" class="video-row">
+    {% for video in videos %}
+    <div class="thumbnail-container">
+      {% load static %}
+      <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+      <!--
     {% load static %}
-    <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-    <div class="items-center" style="font-size: 22px; justify-content: center;">
-      <span class="video-title-Home">{{ video.title }}</span>
-      <div class="ml-10">
-        <span class="fa fa-star orange"></span>
-        <span id="averageRating{{ video.id }}">{{ video.average_rating }}</span>
-        <div class="mdl-tooltip" data-mdl-for="averageRating{{ video.id }}">
-          Video average rating. "NR" -> not rated yet.
+    <div class="thumbnail-container-footer">
+      <img id="video{{ video.id }}" class="video-menu-arrow mdl-button mdl-js-button mdl-button--icon"
+        src="{% static 'img/down-arrow.png' %}" />
+
+      <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect links" for="video{{ video.id }}">
+        <a href="/rate-video/{{ video.pk }}">
+          <li class="mdl-menu__item">Rate</li>
+        </a>
+        <a href="/video-details/{{ video.pk }}">
+          <li class="mdl-menu__item">See details</li>
+        </a>
+        <a href="/edit-video/{{ video.pk }}">
+          <li class="mdl-menu__item">Edit</li>
+        </a>
+        <a href="/delete-video/{{ video.pk }}">
+          <li class="mdl-menu__item">Delete</li>
+        </a>
+      </ul>
+
+      <div class="items-center">
+        <span class="video-title-Home">{{ video.title }}</span>
+        <div class="ml-10">
+          <span class="fa fa-star orange"></span>
+          <span id="averageRating{{ video.id }}">{{ video.average_rating }}</span>
+          <div class="mdl-tooltip" data-mdl-for="averageRating{{ video.id }}">
+            Video average rating. "NR" -> not rated yet.
+          </div>
         </div>
       </div>
+    </div>-->
     </div>
+    {% endfor %}
   </div>
-
-
-
-  {% endfor %}
+  <div class="block-footer">
+    {% load static %}
+    <img id="slideLeft" src="{% static 'img/left.png' %}">
+    <img id="slideRight" src="{% static 'img/right.png' %}">
+  </div>
 </div>
 
-<span class="subheadline">Funny</span>
-<div id="center" class="video-row">
-  {% for video in videos %}
-
-  <div class="thumbnail-container">
+<div class="block">
+  <span class="subheadline">Sports</span>
+  <div id="videoRowSports" class="video-row">
+    {% for video in videos %}
+    <div class="thumbnail-container">
+      {% load static %}
+      <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+      <!--
     {% load static %}
-    <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+    <div class="thumbnail-container-footer">
+      <img id="video{{ video.id }}" class="video-menu-arrow mdl-button mdl-js-button mdl-button--icon"
+        src="{% static 'img/down-arrow.png' %}" />
+
+      <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect links" for="video{{ video.id }}">
+        <a href="/rate-video/{{ video.pk }}">
+          <li class="mdl-menu__item">Rate</li>
+        </a>
+        <a href="/video-details/{{ video.pk }}">
+          <li class="mdl-menu__item">See details</li>
+        </a>
+        <a href="/edit-video/{{ video.pk }}">
+          <li class="mdl-menu__item">Edit</li>
+        </a>
+        <a href="/delete-video/{{ video.pk }}">
+          <li class="mdl-menu__item">Delete</li>
+        </a>
+      </ul>
+
+      <div class="items-center">
+        <span class="video-title-Home">{{ video.title }}</span>
+        <div class="ml-10">
+          <span class="fa fa-star orange"></span>
+          <span id="averageRating{{ video.id }}">{{ video.average_rating }}</span>
+          <div class="mdl-tooltip" data-mdl-for="averageRating{{ video.id }}">
+            Video average rating. "NR" -> not rated yet.
+          </div>
+        </div>
+      </div>
+    </div>-->
+    </div>
+    {% endfor %}
   </div>
-
-  {% endfor %}
-</div>
-
-<span class="subheadline">Terror</span>
-<div id="center" class="video-row">
-  {% for video in videos %}
-
-  <div class="thumbnail-container">
+  <div class="block-footer">
     {% load static %}
-    <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+    <img onclick="scrollToLeft('Sports')" src="{% static 'img/left.png' %}">
+    <img onclick="scrollToRight('Sports')" src="{% static 'img/right.png' %}">
   </div>
-
-  {% endfor %}
 </div>
 
 {% else %}

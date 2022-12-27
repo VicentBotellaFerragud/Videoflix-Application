@@ -4,6 +4,38 @@
     <form class="app-form" action="/create-video/" enctype="multipart/form-data" method="POST" return false>
         <h3>Add Video</h3>
 
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown button
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+
+        <div class="mdl-textfield mdl-js-textfield">
+            <label for="cars">Category</label>
+            <select class="hehe" name="cars" id="cars" style="padding: 5px; border-radius: 4px; background-color: transparent;" aria-placeholder="hehe">
+                <option value="volvo">Film & Animation</option>
+                <option value="saab">Autos & Vehicles</option>
+                <option value="opel">Music</option>
+                <option value="audi">Pets & Animals</option>
+                <option value="audi">Sports</option>
+                <option value="audi">Travel & Events</option>
+                <option value="audi">Gaming</option>
+                <option value="audi">People & Blogs</option>
+                <option value="audi">Comedy</option>
+                <option value="audi">Entertainment</option>
+                <option value="audi">News & Politics</option>
+                <option value="audi">Howto & Style</option>
+                <option value="audi">Education</option>
+                <option value="audi">Science & Technology</option>
+                <option value="audi">Nonprofits & Activism</option>
+            </select>
+        </div>
+
         {% csrf_token %}
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="text" id="titleInput" name="title" maxlength="20" required />
@@ -15,6 +47,8 @@
                 required></textarea>
             <label class="mdl-textfield__label" for="descriptionInput">Description</label>
         </div>
+
+
 
         <input class="py-20" type="file" id="videoFileInput" name="video_file" accept="video/*" required />
         <div class="mdl-tooltip" data-mdl-for="videoFileInput">

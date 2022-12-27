@@ -10,7 +10,7 @@ function closeMessage() {
     let alertMessages = document.querySelectorAll(".alert");
 
     for (var i = 0; i < alertMessages.length; i++) {
-        alertMessages[i].classList.add("hidden");
+        alertMessages[i].style.display = 'none';
     }
 }
 
@@ -149,3 +149,22 @@ function removeColorFromCorrespondingStars(star) {
 function navigateUserToVideoDetailsView(videoPk) {
     window.location.href = `/video-details/${videoPk}`;
 }
+
+function scrollToLeft(videoRow) {
+    document.getElementById(`videoRow${videoRow}`).scrollLeft += 1000;
+    console.log(document.getElementById(`videoRow${videoRow}`));
+}
+
+function scrollToRight(videoRow) {
+    document.getElementById(`videoRow${videoRow}`).scrollLeft -= 1000;
+}
+
+$(function () {
+    $('[data-toggle="popover"]').popover()
+})
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
+$('#yourStyle').circleType({radius: 800});
