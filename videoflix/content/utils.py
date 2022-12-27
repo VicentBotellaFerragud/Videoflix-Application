@@ -122,10 +122,12 @@ def display_default_value_for_unrated_videos(videos):
 
 def save_new_video(request, form):
     instance = form.save(commit = False)
+    instance.thumbnail_image = instance.video_file.path[:-4] + '.png'
     instance.creator = request.user
     instance.save()
     form = NewVideoForm()
     messages.success(request, "You have successfully added a video!")
+    print(instance.video_file.path[:-4] + '.png')
 
 
 # rate_video utils:

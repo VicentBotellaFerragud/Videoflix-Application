@@ -102,6 +102,8 @@ def home_view(request):
     save_average_rating_changes(videos)
     highest_rated_video = videos.order_by('-average_rating').first()
     display_default_value_for_unrated_videos(videos)
+    for video in videos:
+        video.thumbnail_picture = video.video_file.url[:-4] + '.png'
     
     return render(request, 'videoflix/home.html', {'videos': videos, 'highest_rated_video': highest_rated_video})
 

@@ -2,7 +2,7 @@ import os
 from django.dispatch import receiver
 from .models import Video
 from django.db.models.signals import post_save, post_delete
-from .tasks import convert_video
+from .tasks import convert_video, get_thumbnail_picture_from_video
 import django_rq
 import speedtest
 
@@ -36,6 +36,9 @@ def video_post_save(sender, instance, created, **kwargs):
 
         else:
             print("Video could not be converted due to slow upload speed")
+
+        queue = django_rq.get_queue('default', autocommit = True)
+        queue.enqueue(get_thumbnail_picture_from_video, instance.video_file.path)
 
 
 # Here using "file_exists = exists(path_to_file)" (from os.path import exists) could be a better idea.

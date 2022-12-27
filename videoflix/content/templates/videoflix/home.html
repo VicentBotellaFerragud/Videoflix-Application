@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% block content %} {% if videos %}
 
+<!--
 <span class="headline">Welcome to Videoflix {{ request.user }}!</span>
 {% if highest_rated_video %}
 <div class="highest-rated-video-container">
@@ -7,19 +8,19 @@
     <source src="{{ highest_rated_video.video_file.url }}" type="video/mp4" />
   </video>
 </div>
-{% endif %}
+{% endif %}-->
 
-<span class="subheadline">Take a look at all the videos uploaded to the platform...</span>
-<div id="videosWrapperHome" class="videos-wrapper">
+<span class="subheadline">Sports</span>
+<div id="center" class="video-row">
   {% for video in videos %}
 
-  <div class="video-container">
-    <video controls>
-      <source src="{{ video.video_file.url }}" type="video/mp4" />
-    </video>
-
+  <div class="thumbnail-container">
     {% load static %}
-    <div class="video-container-footer">
+    <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+
+    <!--
+    {% load static %}
+    <div class="thumbnail-container-footer">
       <img id="video{{ video.id }}" class="video-menu-arrow mdl-button mdl-js-button mdl-button--icon"
         src="{% static 'img/down-arrow.png' %}" />
 
@@ -48,7 +49,55 @@
           </div>
         </div>
       </div>
+    </div>-->
+  </div>
+
+  {% endfor %}
+</div>
+
+<span class="subheadline">Nature</span>
+<div id="center" class="video-row">
+  {% for video in videos %}
+
+  <div class="thumbnail-container">
+    {% load static %}
+    <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+    <div class="items-center" style="font-size: 22px; justify-content: center;">
+      <span class="video-title-Home">{{ video.title }}</span>
+      <div class="ml-10">
+        <span class="fa fa-star orange"></span>
+        <span id="averageRating{{ video.id }}">{{ video.average_rating }}</span>
+        <div class="mdl-tooltip" data-mdl-for="averageRating{{ video.id }}">
+          Video average rating. "NR" -> not rated yet.
+        </div>
+      </div>
     </div>
+  </div>
+
+
+
+  {% endfor %}
+</div>
+
+<span class="subheadline">Funny</span>
+<div id="center" class="video-row">
+  {% for video in videos %}
+
+  <div class="thumbnail-container">
+    {% load static %}
+    <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+  </div>
+
+  {% endfor %}
+</div>
+
+<span class="subheadline">Terror</span>
+<div id="center" class="video-row">
+  {% for video in videos %}
+
+  <div class="thumbnail-container">
+    {% load static %}
+    <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
   </div>
 
   {% endfor %}
