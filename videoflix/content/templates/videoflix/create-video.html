@@ -1,71 +1,62 @@
 {% extends "base.html" %} {% block content %}
+<div class="h-100 d-flex align-items-center justify-content-center">
 
-<div class="wrapper">
-    <form class="app-form" action="/create-video/" enctype="multipart/form-data" method="POST" return false>
-        <h3>Add Video</h3>
+    <form class="app-form p-5" action="/create-video/" enctype="multipart/form-data" method="POST" return false>
+        <h1 class="mb-3">Add Video</h1>
 
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown button
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div>
-
-        <div class="mdl-textfield mdl-js-textfield">
-            <label for="cars">Category</label>
-            <select class="hehe" name="cars" id="cars" style="padding: 5px; border-radius: 4px; background-color: transparent;" aria-placeholder="hehe">
-                <option value="volvo">Film & Animation</option>
-                <option value="saab">Autos & Vehicles</option>
-                <option value="opel">Music</option>
-                <option value="audi">Pets & Animals</option>
-                <option value="audi">Sports</option>
-                <option value="audi">Travel & Events</option>
-                <option value="audi">Gaming</option>
-                <option value="audi">People & Blogs</option>
-                <option value="audi">Comedy</option>
-                <option value="audi">Entertainment</option>
-                <option value="audi">News & Politics</option>
-                <option value="audi">Howto & Style</option>
-                <option value="audi">Education</option>
-                <option value="audi">Science & Technology</option>
-                <option value="audi">Nonprofits & Activism</option>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="categoryInput">Category</label>
+            <select name="category" class="form-control" id="categoryInput" required>
+                <option value="Film & Animation">Film & Animation</option>
+                <option value="Autos & Vehicles">Autos & Vehicles</option>
+                <option value="Music">Music</option>
+                <option value="Pets & Animals">Pets & Animals</option>
+                <option value="Sports">Sports</option>
+                <option value="Travel & Events">Travel & Events</option>
+                <option value="Gaming">Gaming</option>
+                <option value="People & Blogs">People & Blogs</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="News & Politics">News & Politics</option>
+                <option value="Howto & Style">Howto & Style</option>
+                <option value="Education">Education</option>
+                <option value="Science & Technology">Science & Technology</option>
+                <option value="Nonprofits & Activism">Nonprofits & Activism</option>
             </select>
         </div>
 
-        {% csrf_token %}
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="titleInput" name="title" maxlength="20" required />
-            <label class="mdl-textfield__label" for="titleInput">Title</label>
+        <div class="form-group">
+            <label for="titleInput">Title</label>
+            <input type="text" id="titleInput" name="title" maxlength="20" class="form-control"
+                placeholder="Enter title" required>
         </div>
 
-        <div class="mdl-textfield mdl-js-textfield">
-            <textarea class="mdl-textfield__input" type="text" id="descriptionInput" name="description" maxlength="400"
-                required></textarea>
-            <label class="mdl-textfield__label" for="descriptionInput">Description</label>
+        <div class="form-group">
+            <label for="descriptionInput">Description</label>
+            <textarea name="description" class="form-control" type="text" id="descriptionInput" rows="2" maxlength="400"
+                placeholder="Enter description" required></textarea>
         </div>
 
-
-
-        <input class="py-20" type="file" id="videoFileInput" name="video_file" accept="video/*" required />
-        <div class="mdl-tooltip" data-mdl-for="videoFileInput">
-            Please choose a video smaller than 25mb
+        <div class="mb-3">
+            <label for="videoFileInput" class="form-label">File</label>
+            <input class="form-control" type="file" id="videoFileInput" name="video_file" accept="video/*" required>
         </div>
 
-        <button id="addVideoButton" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-            onclick="displayLoadingBarAndHideAddVideoButton()">
-            Add Video
-        </button>
+        <button id="addVideoButton" type="submit" class="btn my-3 w-100"
+            onclick="displayLoadingBarAndHideAddVideoButton()">Add Video</button>
 
-        <div id="loadingBar" class="loading-bar-container" style="display: none">
-            <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
-            <span>calculating upload speed to choose best format to convert your
-                video...</span>
+        <div class="text-center">
+            <div id="loadingBar" class="lds-ellipsis" style="display: none">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p id="waitInfo" style="display: none">Just a moment please...</p>
         </div>
     </form>
+
 </div>
 
 {% endblock %}

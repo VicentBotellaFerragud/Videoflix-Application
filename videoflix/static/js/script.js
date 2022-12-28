@@ -1,10 +1,10 @@
-const passwordInput = document.getElementById("passwordInput1");
-
+const categoryInput = document.getElementById("categoryInput");
 const titleInput = document.getElementById("titleInput");
 const descriptionInput = document.getElementById("descriptionInput");
 const videoFileInput = document.getElementById("videoFileInput");
-const loadingBar = document.getElementById("loadingBar");
 const addVideoButton = document.getElementById("addVideoButton");
+const loadingBar = document.getElementById("loadingBar");
+const waitInfo = document.getElementById("waitInfo");
 
 function closeMessage() {
     let alertMessages = document.querySelectorAll(".alert");
@@ -14,70 +14,11 @@ function closeMessage() {
     }
 }
 
-function checkPasswordValidity() {
-    const passwordValue = passwordInput.value;
-
-    checkNumberOfCharacters(passwordValue);
-    checkHasAtLeastOneLetter(passwordValue);
-    checkHasAtLeastOneNumber(passwordValue);
-    checkContainsAtLeastOneSpecialCharacter(passwordValue);
-}
-
-function checkNumberOfCharacters(string) {
-    if (string.length >= 10) {
-        valid1.style.display = 'block';
-        invalid1.style.display = 'none';
-    } else {
-        valid1.style.display = 'none';
-        invalid1.style.display = 'block';
-    }
-}
-
-function checkHasAtLeastOneLetter(string) {
-    if (string.length === 0) {
-        valid2.style.display = 'none';
-        invalid2.style.display = 'block';
-    } else {
-        if (/[a-zA-Z]/g.test(string)) {
-            valid2.style.display = 'block';
-            invalid2.style.display = 'none';
-        } else {
-            valid2.style.display = 'none';
-            invalid2.style.display = 'block';
-        }
-    }
-}
-
-function checkHasAtLeastOneNumber(string) {
-    if (string.length === 0) {
-        valid3.style.display = 'none';
-        invalid3.style.display = 'block';
-    } else {
-        if (/\d/.test(string)) {
-            valid3.style.display = 'block';
-            invalid3.style.display = 'none';
-        } else {
-            valid3.style.display = 'none';
-            invalid3.style.display = 'block';
-        }
-    }
-}
-
-function checkContainsAtLeastOneSpecialCharacter(string) {
-    const stringAsArray = string.split('');
-    const specialCharacters = "[@_!#$%^&*()<>?/|}{~:]";
-
-    if (string.length === 0) {
-        valid4.style.display = 'none';
-        invalid4.style.display = 'block';
-    } else {
-        if (stringAsArray.some(char => specialCharacters.includes(char))) {
-            valid4.style.display = 'block';
-            invalid4.style.display = 'none';
-        } else {
-            valid4.style.display = 'none';
-            invalid4.style.display = 'block';
-        }
+function displayLoadingBarAndHideAddVideoButton() {
+    if (categoryInput.value !== "" && titleInput.value !== "" && descriptionInput.value !== "" && videoFileInput.value !== "") {
+        loadingBar.style.display = loadingBar.style.display === 'none' ? '' : 'none';
+        waitInfo.style.display = waitInfo.style.display === 'none' ? '' : 'none';
+        addVideoButton.style.display = 'none';
     }
 }
 
@@ -102,12 +43,7 @@ function searchForVideos(homeOrMyVideos) {
     }
 }
 
-function displayLoadingBarAndHideAddVideoButton() {
-    if (titleInput.value !== "" && descriptionInput.value !== "" && videoFileInput.value !== "") {
-        loadingBar.style.display = loadingBar.style.display === 'none' ? '' : 'none';
-        addVideoButton.style.display = 'none';
-    }
-}
+
 
 function applyColorToCorrespondingStars(star) {
     const starId = Number(star.id.slice(-1));
@@ -166,5 +102,3 @@ $(function () {
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
-
-$('#yourStyle').circleType({radius: 800});
