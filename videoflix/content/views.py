@@ -103,22 +103,26 @@ def home_view(request):
     all_videos = set_average_rating(all_videos)
     save_average_rating_changes(all_videos)
     highest_rated_video = all_videos.order_by('-average_rating').first()
-    display_default_value_for_unrated_videos(all_videos)
 
     film_and_animation_videos = Video.objects.filter(category = 'Film & Animation')
     set_thumbnail_picture(film_and_animation_videos)
+    display_default_value_for_unrated_videos(film_and_animation_videos)
 
     autos_and_vehicles_videos = Video.objects.filter(category = 'Autos & Vehicles')
     set_thumbnail_picture(autos_and_vehicles_videos)
+    display_default_value_for_unrated_videos(autos_and_vehicles_videos)
 
     music_videos = Video.objects.filter(category = 'Music')
     set_thumbnail_picture(music_videos)
+    display_default_value_for_unrated_videos(music_videos)
 
     pets_and_animals_videos = Video.objects.filter(category = 'Pets & Animals')
     set_thumbnail_picture(pets_and_animals_videos)
+    display_default_value_for_unrated_videos(pets_and_animals_videos)
 
     sport_videos = Video.objects.filter(category = 'Sports')
     set_thumbnail_picture(sport_videos)
+    display_default_value_for_unrated_videos(sport_videos)
 
     travel_and_events_videos = Video.objects.filter(category = 'Travel & Events')
     set_thumbnail_picture(travel_and_events_videos)

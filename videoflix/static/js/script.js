@@ -39,27 +39,6 @@ function displayLoadingBarAndHideAddVideoButton() {
     }
 }
 
-function searchForVideos(homeOrMyVideos) {
-    let input, filter, container, videoTitles;
-
-    input = document.getElementById(`searchBar${homeOrMyVideos}`);
-    filter = input.value.toUpperCase();
-    container = document.getElementById(`videosWrapper${homeOrMyVideos}`);
-    videoTitles = container.querySelectorAll(`.video-title-${homeOrMyVideos}`);
-
-    for (i = 0; i < videoTitles.length; i++) {
-        let videoTitle = videoTitles[i];
-        let videoContainer = videoTitle.parentNode.parentNode.parentNode;
-        let videoTitleFirstOption = videoTitle.innerHTML;
-        let videoTitleSecondOption = videoTitle.innerText;
-
-        videoTitleFirstOption.toUpperCase().indexOf(filter) > -1 ||
-            videoTitleSecondOption.toUpperCase().indexOf(filter) > -1 ?
-            videoContainer.style.display = 'block' :
-            videoContainer.style.display = 'none';
-    }
-}
-
 function applyColorToCorrespondingStars(star) {
     const starId = Number(star.id.slice(-1));
     for (let i = starId; i > 0; i--) {
