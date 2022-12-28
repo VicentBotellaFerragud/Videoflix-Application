@@ -2,6 +2,7 @@
 <div>
 
     {% if not request.user.is_authenticated %}
+
     <form class="app-form p-5" action="/login/" method="POST" return false>
         <h1 class="mb-3">Log In</h1>
 
@@ -23,6 +24,7 @@
 
         <p class="app-grey">New to Videoflix?<a href="/signup/" class="ml-2">Sign up now</a></p>
     </form>
+    
     {% else %}
 
     <p>You are already logged in! Click <a href="/home/">here</a> to go back to the Videoflix home page.</span>

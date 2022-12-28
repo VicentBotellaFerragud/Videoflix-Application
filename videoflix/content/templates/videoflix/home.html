@@ -1,57 +1,104 @@
-{% extends "base.html" %} {% block content %} {% if videos %}
+{% extends "base.html" %} {% block content %}
+
+{% if all_videos %}
 
 <div class="category-row">
-  <p>Sports</p>
-  <div id="center1" class="video-row">
+  <p class="category-row-header mb-2">Film & Animation</p>
+  <div id="center1" class="center-row d-flex align-items-center">
 
     {% load static %}
-    <img id="slideLeft" src="{% static 'img/left.png' %}">
+    <img onclick="scrollToRight('Film&Animation')" class="arrow" src="{% static 'img/before.png' %}">
 
-    <div class="d-flex">
-      {% for video in videos %}
-      <div class="thumbnail-container">
+    <div id="videoRowFilm&Animation" class="video-row d-flex mx-2">
+
+      {% for video in film_and_animation_videos %}
+      <div class="thumbnail-container p-1">
         {% load static %}
         <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
       </div>
       {% endfor %}
+
     </div>
 
     {% load static %}
-    <img id="slideRight" src="{% static 'img/right.png' %}">
-
-  </div>
-  <div class="category-footer">
-    {% load static %}
-    <img id="slideLeft" src="{% static 'img/left.png' %}">
-    <img id="slideRight" src="{% static 'img/right.png' %}">
+    <img onclick="scrollToLeft('Film&Animation')" class="arrow" src="{% static 'img/next.png' %}">
   </div>
 </div>
 
 <div class="category-row">
-  <p>Sports</p>
-  <div id="center1" class="video-row">
+  <p class="category-row-header mb-2">Autos & Vehicles</p>
+  <div id="center1" class="center-row d-flex align-items-center">
 
-    <!--
-      {% for video in videos %}
-      <div class="thumbnail-container">
+    {% load static %}
+    <img onclick="scrollToRight('Autos&Vehicles')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowAutos&Vehicles" class="video-row d-flex mx-2">
+
+      {% for video in autos_and_vehicles_videos %}
+      <div class="thumbnail-container p-1">
         {% load static %}
         <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
       </div>
-      {% endfor %}-->
+      {% endfor %}
 
-  </div>
-  <div class="category-footer">
+    </div>
+
     {% load static %}
-    <img id="slideLeft" src="{% static 'img/left.png' %}">
-    <img id="slideRight" src="{% static 'img/right.png' %}">
+    <img onclick="scrollToLeft('Autos&Vehicles')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<div class="category-row">
+  <p class="category-row-header mb-2">Sports</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('Sports')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowSports" class="video-row d-flex mx-2">
+
+      {% for video in sport_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('Film&Sports')" class="arrow" src="{% static 'img/next.png' %}">
   </div>
 </div>
 
 {% else %}
 
-<div class="wrapper">
-  <span class="no-videos-span">No videos were uploaded to the platform yet. Click the "+" button to start
-    uploading content.</span>
+<div class="full-height-minus-navbar d-flex align-items-center justify-content-center">
+  <p>No videos were uploaded to the platform yet. Click the "+" button to start
+    uploading content.</p>
 </div>
 
-{% endif %} {% endblock %}
+{% endif %}
+
+{% endblock %}

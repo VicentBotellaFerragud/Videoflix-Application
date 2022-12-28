@@ -6,12 +6,29 @@ const addVideoButton = document.getElementById("addVideoButton");
 const loadingBar = document.getElementById("loadingBar");
 const waitInfo = document.getElementById("waitInfo");
 
+$(function () {
+    $('[data-toggle="popover"]').popover()
+})
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
 function closeMessage() {
     let alertMessages = document.querySelectorAll(".alert");
 
     for (var i = 0; i < alertMessages.length; i++) {
         alertMessages[i].style.display = 'none';
     }
+}
+
+function scrollToLeft(videoRow) {
+    document.getElementById(`videoRow${videoRow}`).scrollLeft += 1000;
+    console.log(document.getElementById(`videoRow${videoRow}`));
+}
+
+function scrollToRight(videoRow) {
+    document.getElementById(`videoRow${videoRow}`).scrollLeft -= 1000;
 }
 
 function displayLoadingBarAndHideAddVideoButton() {
@@ -42,8 +59,6 @@ function searchForVideos(homeOrMyVideos) {
             videoContainer.style.display = 'none';
     }
 }
-
-
 
 function applyColorToCorrespondingStars(star) {
     const starId = Number(star.id.slice(-1));
@@ -85,20 +100,3 @@ function removeColorFromCorrespondingStars(star) {
 function navigateUserToVideoDetailsView(videoPk) {
     window.location.href = `/video-details/${videoPk}`;
 }
-
-function scrollToLeft(videoRow) {
-    document.getElementById(`videoRow${videoRow}`).scrollLeft += 1000;
-    console.log(document.getElementById(`videoRow${videoRow}`));
-}
-
-function scrollToRight(videoRow) {
-    document.getElementById(`videoRow${videoRow}`).scrollLeft -= 1000;
-}
-
-$(function () {
-    $('[data-toggle="popover"]').popover()
-})
-
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-})

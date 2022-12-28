@@ -9,15 +9,16 @@ from django.utils.encoding import force_bytes, force_str
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage
 from .forms import NewVideoForm, EditVideoForm, RateVideoForm
-from .models import Rating
+from .models import Video, Rating
 
 # log_in utils:
+
 
 def authenticate_user_from_form(form):
     username = form.cleaned_data.get('username')
     password = form.cleaned_data.get('password')
-    user = authenticate(username = username, password = password)
-    
+    user = authenticate(username=username, password=password)
+
     return user
 
 
@@ -26,7 +27,8 @@ def success_response_after_login(request):
 
 
 def error_response_after_login_attempt(request):
-    messages.error(request, "You have entered an invalid username or password.")
+    messages.error(
+        request, "You have entered an invalid username or password.")
     storage = get_messages(request)
 
     return render(request, 'auth/login.html', {'messages': storage})
@@ -43,13 +45,15 @@ def send_email(request, user, email):
         'token': account_activation_token.make_token(user),
         'protocol': 'https' if request.is_secure() else 'http'
     })
-    whole_email = EmailMessage(email_subject, email_body, to = [email])
+    whole_email = EmailMessage(email_subject, email_body, to=[email])
 
     if whole_email.send():
-        messages.warning(request, 'Confirmation email was sent to "{}". Please click on the link inside to activate your user and finish the signup process.'.format(email))
+        messages.warning(
+            request, 'Confirmation email was sent to "{}". Please click on the link inside to activate your user and finish the signup process.'.format(email))
 
     else:
-        messages.error('It was not possible to send an email to "{}"'.format(email))
+        messages.error(
+            'It was not possible to send an email to "{}"'.format(email))
 
 
 def success_response_after_signup(request):
@@ -57,19 +61,23 @@ def success_response_after_signup(request):
 
 
 def error_response_after_activation_link_expires(request):
-    messages.error(request, "The activation link has expired. Please repeat the whole process from the beginning.")
+    messages.error(
+        request, "The activation link has expired. Please repeat the whole process from the beginning.")
 
 
 def error_response_after_signup_attempt(request, errors):
     for error in errors:
         if error == 'username':
-                messages.error(request, "Unfortunately this username is already in use.")
+            messages.error(
+                request, "Unfortunately this username is already in use.")
 
         elif error == 'email':
-                 messages.error(request, "Please check the email format. It's not correct.")
+            messages.error(
+                request, "Please check the email format. It's not correct.")
 
         else:
-            messages.error(request, "Please remember that your password has to be the same in both fields.")
+            messages.error(
+                request, "Please remember that your password has to be the same in both fields.")
 
         storage = get_messages(request)
 
@@ -79,10 +87,10 @@ def error_response_after_signup_attempt(request, errors):
 def find_encrypted_user(user_model, uidb64):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
-        user = user_model.objects.get(pk = uid)
+        user = user_model.objects.get(pk=uid)
 
         return user
-    
+
     except:
         user = None
 
@@ -93,14 +101,14 @@ def find_encrypted_user(user_model, uidb64):
 
 def set_average_rating(videos):
     for video in videos:
-        ratings = Rating.objects.filter(video = video)
+        ratings = Rating.objects.filter(video=video)
 
         if len(ratings) > 0:
             sum_of_ratings = 0
 
             for rating in ratings:
                 sum_of_ratings += rating.rating
-            
+
             average_rating = sum_of_ratings / len(ratings)
             video.average_rating = round(average_rating, 1)
 
@@ -118,10 +126,16 @@ def display_default_value_for_unrated_videos(videos):
             video.average_rating = "NR"
 
 
+def set_thumbnail_picture(videos):
+    for video in videos:
+        video.thumbnail_picture = video.video_file.url[:-4] + '.png'
+
+
 # create_video utils:
 
+
 def save_new_video(request, form):
-    instance = form.save(commit = False)
+    instance = form.save(commit=False)
     instance.thumbnail_image = instance.video_file.path[:-4] + '.png'
     instance.creator = request.user
     instance.save()
@@ -139,7 +153,8 @@ def delete_user_ratings_if_already_exist(ratings):
 
 def save_new_user_rating(request, form, video_to_rate):
     rating_as_number = int(form.cleaned_data.get('rating'))
-    new_rating = Rating.objects.create(rating = rating_as_number, video = video_to_rate, author = request.user)
+    new_rating = Rating.objects.create(
+        rating=rating_as_number, video=video_to_rate, author=request.user)
     new_rating.save()
     form = RateVideoForm()
     messages.success(request, "You have successfully rated the video!")
@@ -166,7 +181,7 @@ def error_response_after_video_edition_attempt(request, video_to_edit):
 
 def set_number_of_ratings(videos):
     for video in videos:
-        rated_by = Rating.objects.filter(video = video).count()
+        rated_by = Rating.objects.filter(video=video).count()
 
         if rated_by == 0:
             video.rated_by = "NR"
@@ -181,4 +196,3 @@ def save_username_changes(user, form, request):
     user.username = form.cleaned_data.get('username')
     user.save()
     messages.success(request, "You have successfully edited your username!")
-    

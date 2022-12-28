@@ -26,6 +26,10 @@ option,
     color: #212529 !important;
 }
 
+.fa-star {
+    color: orange;
+}
+
 .close-btn:focus {
     outline: none !important;
 }
@@ -40,6 +44,10 @@ option,
     color: #fff !important;
 }
 
+.full-height-minus-navbar {
+    height: calc(100vh - 66.8px);;
+}
+
 .app-grey {
     color: #737373;
 }
@@ -48,21 +56,18 @@ option,
     color: #e50914;
 }
 
-.auth-view {
-    height: calc(100vh - 66.8px);
-    background: url("/static/img/auth-bg.png");
+.auth-view, .not-auth-view {
+    height: 100vh;
+    background: url("/static/img/videoflix-bg.png");
+    overflow: auto;
     background-size: cover;
     position: relative;
 }
 
 .not-auth-view {
-    height: 100vh;
-    background: url("/static/img/videoflix-bg.png");
-    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 
 .not-auth-view .logo {
@@ -152,13 +157,43 @@ option,
     padding: 3rem;
 }
 
-.thumbnail-container img {
-    height: 20vh;
-    width: 20vw;
+.category-row-header {
+    color: #e5e5e5;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: calc(32px + .5rem);
 }
 
-.category-footer img {
-    width: 20px;
+.center-row .arrow {
+    width: 2rem;
+}
+
+.center-row .arrow:hover {
+    cursor: pointer;
+}
+
+.video-row {
+    border-radius: 4px;
+    background-color: rgb(20, 20, 20);
+    width: calc(100vw - 6rem - 64px - 1rem);
+    overflow: hidden;
+}
+
+.thumbnail-container {
+    transition: .5s;
+    height: calc(20vh + .5rem);
+    width: calc(15vw + .5rem);
+}
+
+.thumbnail-container:hover {
+    cursor: pointer;
+    transform: scale(0.75);
+}
+
+.thumbnail-container img {
+    border-radius: 4px;
+    height: 20vh;
+    width: 15vw;
 }
 
 .lds-ellipsis div:nth-child(1) {
