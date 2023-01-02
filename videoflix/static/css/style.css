@@ -45,7 +45,7 @@ option,
 }
 
 .full-height-minus-navbar {
-    height: calc(100vh - 66.8px);;
+    height: calc(100vh - 66.8px);
 }
 
 .app-grey {
@@ -56,15 +56,21 @@ option,
     color: #e50914;
 }
 
-.auth-view, .not-auth-view {
+.auth-view,
+.not-auth-view {
     height: 100vh;
-    background: url("/static/img/videoflix-bg.png");
     overflow: auto;
-    background-size: cover;
     position: relative;
 }
 
+.auth-view {
+    background: url("/static/img/videoflix-bg-darker.png");
+    background-size: cover;
+}
+
 .not-auth-view {
+    background: url("/static/img/videoflix-bg.png");
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
