@@ -13,17 +13,19 @@
     <div id="videoRowFilm&Animation" class="video-row d-flex mx-2">
 
       {% for video in film_and_animation_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>

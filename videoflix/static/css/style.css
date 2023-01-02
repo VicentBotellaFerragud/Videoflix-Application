@@ -128,6 +128,11 @@ option,
     box-shadow: 0 0 0 0.2rem #930d13;
 }
 
+.app-form video {
+    max-height: 35vh;
+    width: 100%;
+}
+
 .info-icon {
     width: 20px;
 }
@@ -183,6 +188,10 @@ option,
     background-color: rgb(20, 20, 20);
     width: calc(100vw - 6rem - 64px - 1rem);
     overflow: hidden;
+}
+
+.video-row a {
+    text-decoration: none !important;
 }
 
 .thumbnail-container {

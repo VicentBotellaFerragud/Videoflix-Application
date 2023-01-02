@@ -126,6 +126,11 @@ def display_default_value_for_unrated_videos(videos):
             video.average_rating = "NR"
 
 
+def display_default_value_for_unrated_video(video):
+    if video.average_rating == 0.0:
+        video.average_rating = "NR"
+
+
 def set_thumbnail_picture(videos):
     for video in videos:
         video.thumbnail_picture = video.video_file.url[:-4] + '.png'

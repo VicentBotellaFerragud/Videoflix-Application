@@ -27,6 +27,7 @@ from .utils import (
     save_username_changes,
     save_average_rating_changes,
     display_default_value_for_unrated_videos,
+    display_default_value_for_unrated_video,
     set_number_of_ratings,
     set_thumbnail_picture
 )
@@ -237,6 +238,7 @@ def rate_video(request, pk):
 @login_required(login_url='/login/')
 def see_video_details(request, pk):
     video_to_display = Video.objects.get(pk=pk)
+    display_default_value_for_unrated_video(video_to_display)
 
     return render(request, 'videoflix/video-details.html', {'video': video_to_display})
 
