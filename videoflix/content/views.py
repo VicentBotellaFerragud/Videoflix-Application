@@ -182,19 +182,21 @@ def home_view(request):
 
 @login_required(login_url='/login/')
 def my_videos(request):
-    videos = Video.objects.filter(creator=request.user)
-    display_default_value_for_unrated_videos(videos)
+    my_videos = Video.objects.filter(creator=request.user)
+    display_default_value_for_unrated_videos(my_videos)
+    set_thumbnail_picture(my_videos)
 
-    return render(request, 'videoflix/my-videos.html', {'videos': videos})
+    return render(request, 'videoflix/my-videos.html', {'my_videos': my_videos})
 
 
 @login_required(login_url='/login/')
 def see_top_rated_videos(request):
     videos = Video.objects.all()
-    videos = videos.order_by('-average_rating')[0:5]
-    display_default_value_for_unrated_videos(videos)
+    top_rated_videos = videos.order_by('-average_rating')[0:10]
+    display_default_value_for_unrated_videos(top_rated_videos)
+    set_thumbnail_picture(top_rated_videos)
 
-    return render(request, 'videoflix/top-rated.html', {'videos': videos})
+    return render(request, 'videoflix/top-rated.html', {'top_rated_videos': top_rated_videos})
 
 
 @login_required(login_url='/login/')
@@ -278,7 +280,7 @@ def delete_video(request, pk):
 
             return redirect_to_home(request)
 
-    return render(request, 'videoflix/delete-video.html', {'video': video_to_delete})
+    return render(request, 'videoflix/delete-video.html', {'video_to_delete': video_to_delete})
 
 
 @login_required(login_url='/login/')

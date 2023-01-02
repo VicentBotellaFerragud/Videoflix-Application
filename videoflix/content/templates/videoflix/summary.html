@@ -1,51 +1,53 @@
-{% extends "base.html" %} {% block content %} {% if videos %}
+{% extends "base.html" %} {% block content %}
 
-<table class="summary-table smartphone-dnone">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Average rating</th>
-            <th>Rated by</th>
-            <th>Uploaded by</th>
-            <th>Created at</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for video in videos %}
+{% if videos %}
 
-        <tr onclick="navigateUserToVideoDetailsView('{{ video.pk }}')">
-            <td>{{ video.title }}</td>
-            <td>{{ video.description }}</td>
-            <td>{{ video.average_rating }}</td>
+<div class="table-container">
 
-            {% if video.rated_by == "NR" %}
-            <td>{{ video.rated_by }}</td>
-            {% elif video.rated_by == 1 %}
-            <td>{{ video.rated_by }} user</td>
-            {% else %}
-            <td>{{ video.rated_by }} users</td>
-            {% endif %}
+    <table class="summary-table smartphone-dnone">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Average rating</th>
+                <th>Rated by</th>
+                <th>Uploaded by</th>
+                <th>Created at</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for video in videos %}
 
-            <td>{{ video.creator }}</td>
-            <td>{{ video.created_at }}</td>
-        </tr>
+            <tr onclick="navigateUserToVideoDetailsView('{{ video.pk }}')">
+                <td>{{ video.title }}</td>
+                <td>{{ video.description }}</td>
+                <td>{{ video.average_rating }}</td>
 
-        {% endfor %}
-    </tbody>
-</table>
+                {% if video.rated_by == "NR" %}
+                <td>{{ video.rated_by }}</td>
+                {% elif video.rated_by == 1 %}
+                <td>{{ video.rated_by }} user</td>
+                {% else %}
+                <td>{{ video.rated_by }} users</td>
+                {% endif %}
 
-<div class="smartphone-visible">
-    <div class="wrapper">
-        <span class="no-smartphone-view">View no available for smartphones.</span>
-    </div>
+                <td>{{ video.creator }}</td>
+                <td>{{ video.created_at }}</td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
 </div>
 
 {% else %}
 
-<div class="wrapper">
-    <span class="no-videos-span">No videos were uploaded to the platform yet. Click the "+" button to start
-        uploading content.</span>
+<div class="full-height-minus-navbar d-flex align-items-center justify-content-center">
+    <p>No videos were uploaded to the platform yet. Click the "+" button to start
+        uploading content</p>
 </div>
 
-{% endif %} {% endblock %}
+{% endif %}
+
+{% endblock %}

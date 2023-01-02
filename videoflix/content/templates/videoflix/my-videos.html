@@ -1,55 +1,47 @@
-{% extends "base.html" %} {% block content %} {% if videos %}
+{% extends "base.html" %} {% block content %}
 
-<span class="subheadline">Take a look at the videos uploaded by you...</span>
-<div id="videosWrapperMyVideos" class="videos-wrapper">
-  {% for video in videos %}
+{% if my_videos %}
 
-  <div class="video-container">
-    <video controls>
-      <source src="{{ video.video_file.url }}" type="video/mp4" />
-    </video>
+<!-- My videos -->
+<div class="category-row">
+  <p class="category-row-header mb-2">My videos</p>
+  <div id="center1" class="center-row d-flex align-items-center">
 
     {% load static %}
-    <div class="video-container-footer">
-      <img id="video{{ video.id }}" class="video-menu-arrow mdl-button mdl-js-button mdl-button--icon"
-        src="{% static 'img/down-arrow.png' %}" />
+    <img onclick="scrollToRight('MyVideos')" class="arrow" src="{% static 'img/before.png' %}">
 
-      <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect links" for="video{{ video.id }}">
-        <a href="/rate-video/{{ video.pk }}">
-          <li class="mdl-menu__item">Rate</li>
-        </a>
-        <a href="/video-details/{{ video.pk }}">
-          <li class="mdl-menu__item">See details</li>
-        </a>
-        <a href="/edit-video/{{ video.pk }}">
-          <li class="mdl-menu__item">Edit</li>
-        </a>
-        <a href="/delete-video/{{ video.pk }}">
-          <li class="mdl-menu__item">Delete</li>
-        </a>
-      </ul>
+    <div id="videoRowMyVideos" class="video-row d-flex mx-2">
 
-      <div class="items-center">
-        <span class="video-title-MyVideos">{{ video.title }}</span>
-        <div class="ml-10">
-          <span class="fa fa-star orange"></span>
-          <span id="averageRating{{ video.id }}">{{ video.average_rating }}</span>
-          <div class="mdl-tooltip" data-mdl-for="averageRating{{ video.id }}">
-            Video average rating. "NR" -> not rated yet.
+      {% for video in my_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+      {% endfor %}
 
-  {% endfor %}
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('MyVideos')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
 </div>
+
+<p>hallo</p>
 
 {% else %}
 
-<div class="wrapper">
-  <span class="no-videos-span">You haven't uploaded any videos to the platform yet. Click the "+" button
-    to start uploading content.</span>
+<div class="full-height-minus-navbar d-flex align-items-center justify-content-center">
+  <p>You haven't uploaded any videos to the platform yet. Click the "Add video" link
+    to start uploading content</p>
 </div>
 
-{% endif %} {% endblock %}
+{% endif %}
+
+{% endblock %}

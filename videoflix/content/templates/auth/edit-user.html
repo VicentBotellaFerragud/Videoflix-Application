@@ -1,22 +1,22 @@
 {% extends "base.html" %} {% block content %}
 
-<div class="wrapper">
-  <form class="app-form" action="/edit-user/" method="POST" return false>
-    <h3>Edit User</h3>
+<div class="full-height-minus-navbar d-flex align-items-center justify-content-center">
+
+  <form class="app-form p-5" action="/edit-user/" method="POST" return false>
+    <h1 class="mb-3">Edit User</h1>
 
     {% csrf_token %}
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" name="username" type="text" id="usernameInput"
-        value="{{ request.user.username }}" required />
-      <label class="mdl-textfield__label" for="usernameInput">Enter a new username</label>
+    <div class="form-group">
+      <label for="usernameInput">Username</label>
+      <input type="text" id="usernameInput" name="username" class="form-control" placeholder="Enter a new username"
+        value="{{ request.user.username }}" required>
     </div>
 
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-      Save Changes
-    </button>
+    <button id="addVideoButton" type="submit" class="btn my-3 w-100">Save Changes</button>
 
-    <span class="redirect-to-delete-account-span">Want to leave us?<a href="/delete-account/">Delete account</a></span>
+    <p class="app-grey">Want to leave us?<a href="/delete-account/" class="ml-2">Delete account</a></p>
   </form>
+
 </div>
 
 {% endblock %}

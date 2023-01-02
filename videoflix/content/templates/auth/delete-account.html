@@ -1,13 +1,13 @@
 {% extends "base.html" %} {% block content %}
 
-<div class="wrapper">
-  <form method="POST" class="app-form" action="/delete-account/" return false>
+<div class="full-height-minus-navbar d-flex align-items-center justify-content-center">
+
+  <form class="app-form p-5" action="/delete-account/" method="POST" return false>
     {% csrf_token %}
-    <h3>Permanently delete your account?</h3>
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-      Delete Account
-    </button>
+    <h1 class="mb-3">Permanently delete your account?</h1>
+    <button id="addVideoButton" type="submit" class="btn my-3 w-100">Delete Account</button>
   </form>
+
 </div>
 
 {% endblock %}

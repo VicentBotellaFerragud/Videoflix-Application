@@ -251,3 +251,32 @@ option,
         transform: translate(24px, 0);
     }
 }
+
+.table-container {
+    margin: 0.75rem 3rem;
+}
+
+.summary-table {
+    width: 100%;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.summary-table thead {
+    background-color: rgb(20, 20, 20);
+}
+
+.summary-table tbody {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.summary-table thead th,
+.summary-table tbody td {
+    text-align: center;
+    padding: 16px;
+}
+
+.summary-table tbody tr:hover {
+    cursor: pointer;
+    background-color: #e50914;
+}
