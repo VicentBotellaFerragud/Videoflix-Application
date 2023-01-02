@@ -24,7 +24,6 @@ function closeMessage() {
 
 function scrollToLeft(videoRow) {
     document.getElementById(`videoRow${videoRow}`).scrollLeft += 1000;
-    console.log(document.getElementById(`videoRow${videoRow}`));
 }
 
 function scrollToRight(videoRow) {

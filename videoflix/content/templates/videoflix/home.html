@@ -2,6 +2,7 @@
 
 {% if all_videos %}
 
+<!-- Film & Animation -->
 <div class="category-row">
   <p class="category-row-header mb-2">Film & Animation</p>
   <div id="center1" class="center-row d-flex align-items-center">
@@ -32,6 +33,7 @@
   </div>
 </div>
 
+<!-- Autos & Vehicles -->
 <div class="category-row">
   <p class="category-row-header mb-2">Autos & Vehicles</p>
   <div id="center1" class="center-row d-flex align-items-center">
@@ -62,6 +64,69 @@
   </div>
 </div>
 
+<!-- Music -->
+<div class="category-row">
+  <p class="category-row-header mb-2">Music</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('Music')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowMusic" class="video-row d-flex mx-2">
+
+      {% for video in music_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('Music')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<!-- Pets & Animals -->
+<div class="category-row">
+  <p class="category-row-header mb-2">Pets & Animals</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('Pets&Animals')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowPets&Animals" class="video-row d-flex mx-2">
+
+      {% for video in pets_and_animals_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('Pets&Animals')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<!-- Sports -->
 <div class="category-row">
   <p class="category-row-header mb-2">Sports</p>
   <div id="center1" class="center-row d-flex align-items-center">
@@ -89,6 +154,316 @@
 
     {% load static %}
     <img onclick="scrollToLeft('Film&Sports')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<!-- Travel & Events -->
+<div class="category-row">
+  <p class="category-row-header mb-2">Travel & Events</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('Travel&Events')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowTravel&Events" class="video-row d-flex mx-2">
+
+      {% for video in travel_and_events_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('Travel&Events')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<!-- Gaming -->
+<div class="category-row">
+  <p class="category-row-header mb-2">Gaming</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('Gaming')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowGaming" class="video-row d-flex mx-2">
+
+      {% for video in gaming_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('Gaming')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<!-- People & Blogs -->
+<div class="category-row">
+  <p class="category-row-header mb-2">People & Blogs</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('People&Blogs')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowPeople&Blogs" class="video-row d-flex mx-2">
+
+      {% for video in people_and_blogs_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('People&Blogs')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<!-- Comedy -->
+<div class="category-row">
+  <p class="category-row-header mb-2">Comedy</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('Comedy')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowComedy" class="video-row d-flex mx-2">
+
+      {% for video in comedy_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('Comedy')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<!-- Entertainment -->
+<div class="category-row">
+  <p class="category-row-header mb-2">Entertainment</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('Entertainment')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowEntertainment" class="video-row d-flex mx-2">
+
+      {% for video in entertainment_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('Entertainment')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<!-- News & Politics -->
+<div class="category-row">
+  <p class="category-row-header mb-2">News & Politics</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('News&Politics')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowNews&Politics" class="video-row d-flex mx-2">
+
+      {% for video in news_and_politics_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('News&Politics')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<!-- Howto & Style -->
+<div class="category-row">
+  <p class="category-row-header mb-2">Howto & Style</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('Howto&Style')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowHowto&Style" class="video-row d-flex mx-2">
+
+      {% for video in how_to_and_style_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('Howto&Style')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<!-- Education -->
+<div class="category-row">
+  <p class="category-row-header mb-2">Education</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('Education')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowEducation" class="video-row d-flex mx-2">
+
+      {% for video in education_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('Education')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<!-- Science & Technology -->
+<div class="category-row">
+  <p class="category-row-header mb-2">Science & Technology</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('Science&Technology')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowScience&Technology" class="video-row d-flex mx-2">
+
+      {% for video in science_and_technology_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('Science&Technology')" class="arrow" src="{% static 'img/next.png' %}">
+  </div>
+</div>
+
+<!-- Nonprofits & Activism -->
+<div class="category-row">
+  <p class="category-row-header mb-2">Nonprofits & Activism</p>
+  <div id="center1" class="center-row d-flex align-items-center">
+
+    {% load static %}
+    <img onclick="scrollToRight('Nonprofits&Activism')" class="arrow" src="{% static 'img/before.png' %}">
+
+    <div id="videoRowNonprofits&Activism" class="video-row d-flex mx-2">
+
+      {% for video in nonprofits_and_activism_videos %}
+      <div class="thumbnail-container p-1">
+        {% load static %}
+        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+        <div class="d-flex align-items-center justify-content-between">
+          <span>{{ video.title }}</span>
+          <div>
+            <span>{{ video.average_rating }}</span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    {% load static %}
+    <img onclick="scrollToLeft('Nonprofits&Activism')" class="arrow" src="{% static 'img/next.png' %}">
   </div>
 </div>
 

@@ -104,55 +104,60 @@ def home_view(request):
     save_average_rating_changes(all_videos)
     highest_rated_video = all_videos.order_by('-average_rating').first()
 
-    film_and_animation_videos = Video.objects.filter(category = 'Film & Animation')
-    set_thumbnail_picture(film_and_animation_videos)
-    display_default_value_for_unrated_videos(film_and_animation_videos)
+    videos_by_category = []
 
-    autos_and_vehicles_videos = Video.objects.filter(category = 'Autos & Vehicles')
-    set_thumbnail_picture(autos_and_vehicles_videos)
-    display_default_value_for_unrated_videos(autos_and_vehicles_videos)
+    film_and_animation_videos = Video.objects.filter(
+        category='Film & Animation')
+    videos_by_category.append(film_and_animation_videos)
 
-    music_videos = Video.objects.filter(category = 'Music')
-    set_thumbnail_picture(music_videos)
-    display_default_value_for_unrated_videos(music_videos)
+    autos_and_vehicles_videos = Video.objects.filter(
+        category='Autos & Vehicles')
+    videos_by_category.append(autos_and_vehicles_videos)
 
-    pets_and_animals_videos = Video.objects.filter(category = 'Pets & Animals')
-    set_thumbnail_picture(pets_and_animals_videos)
-    display_default_value_for_unrated_videos(pets_and_animals_videos)
+    music_videos = Video.objects.filter(category='Music')
+    videos_by_category.append(music_videos)
 
-    sport_videos = Video.objects.filter(category = 'Sports')
-    set_thumbnail_picture(sport_videos)
-    display_default_value_for_unrated_videos(sport_videos)
+    pets_and_animals_videos = Video.objects.filter(category='Pets & Animals')
+    videos_by_category.append(pets_and_animals_videos)
 
-    travel_and_events_videos = Video.objects.filter(category = 'Travel & Events')
-    set_thumbnail_picture(travel_and_events_videos)
+    sport_videos = Video.objects.filter(category='Sports')
+    videos_by_category.append(sport_videos)
 
-    gaming_videos = Video.objects.filter(category = 'Gaming')
-    set_thumbnail_picture(gaming_videos)
+    travel_and_events_videos = Video.objects.filter(category='Travel & Events')
+    videos_by_category.append(travel_and_events_videos)
 
-    people_and_blogs = Video.objects.filter(category = 'People & Blogs')
-    set_thumbnail_picture(people_and_blogs)
+    gaming_videos = Video.objects.filter(category='Gaming')
+    videos_by_category.append(gaming_videos)
 
-    comedy_videos = Video.objects.filter(category = 'Comedy')
-    set_thumbnail_picture(comedy_videos)
+    people_and_blogs_videos = Video.objects.filter(category='People & Blogs')
+    videos_by_category.append(people_and_blogs_videos)
 
-    entertainment_videos = Video.objects.filter(category = 'Entertainment')
-    set_thumbnail_picture(entertainment_videos)
+    comedy_videos = Video.objects.filter(category='Comedy')
+    videos_by_category.append(comedy_videos)
 
-    news_and_politics_videos = Video.objects.filter(category = 'News & Politics')
-    set_thumbnail_picture(news_and_politics_videos)
+    entertainment_videos = Video.objects.filter(category='Entertainment')
+    videos_by_category.append(entertainment_videos)
 
-    how_to_and_style_videos = Video.objects.filter(category = 'Howto & Style')
-    set_thumbnail_picture(how_to_and_style_videos)
+    news_and_politics_videos = Video.objects.filter(category='News & Politics')
+    videos_by_category.append(news_and_politics_videos)
 
-    education_videos = Video.objects.filter(category = 'Education')
-    set_thumbnail_picture(education_videos)
+    how_to_and_style_videos = Video.objects.filter(category='Howto & Style')
+    videos_by_category.append(how_to_and_style_videos)
 
-    science_and_technology = Video.objects.filter(category = 'Science & Technology')
-    set_thumbnail_picture(science_and_technology)
+    education_videos = Video.objects.filter(category='Education')
+    videos_by_category.append(education_videos)
 
-    nonprofits_and_activism = Video.objects.filter(category = 'Nonprofits & Activism')
-    set_thumbnail_picture(nonprofits_and_activism)
+    science_and_technology_videos = Video.objects.filter(
+        category='Science & Technology')
+    videos_by_category.append(science_and_technology_videos)
+
+    nonprofits_and_activism_videos = Video.objects.filter(
+        category='Nonprofits & Activism')
+    videos_by_category.append(nonprofits_and_activism_videos)
+
+    for collection in videos_by_category:
+        set_thumbnail_picture(collection)
+        display_default_value_for_unrated_videos(collection)
 
     return render(request, 'videoflix/home.html', {
         'all_videos': all_videos,
@@ -162,6 +167,16 @@ def home_view(request):
         'music_videos': music_videos,
         'pets_and_animals_videos': pets_and_animals_videos,
         'sport_videos': sport_videos,
+        'travel_and_events_videos': travel_and_events_videos,
+        'gaming_videos': gaming_videos,
+        'people_and_blogs_videos': people_and_blogs_videos,
+        'comedy_videos': comedy_videos,
+        'entertainment_videos': entertainment_videos,
+        'news_and_politics_videos': news_and_politics_videos,
+        'how_to_and_style_videos': how_to_and_style_videos,
+        'education_videos': education_videos,
+        'science_and_technology_videos': science_and_technology_videos,
+        'nonprofits_and_activism_videos': nonprofits_and_activism_videos
     })
 
 
