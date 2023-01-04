@@ -168,6 +168,7 @@ def save_new_user_rating(request, form, video_to_rate):
 # edit_video utils:
 
 def save_changes(request, video_to_edit, form):
+    video_to_edit.category = form.cleaned_data.get('category')
     video_to_edit.title = form.cleaned_data.get('title')
     video_to_edit.description = form.cleaned_data.get('description')
     video_to_edit.save()

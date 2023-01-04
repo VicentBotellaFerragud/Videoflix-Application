@@ -260,7 +260,7 @@ def edit_video(request, pk):
 
     form = EditVideoForm()
 
-    return render(request, 'videoflix/edit-video.html', {'video': video_to_edit})
+    return render(request, 'videoflix/edit-video.html', {'video_to_edit': video_to_edit})
 
 
 @login_required(login_url='/login/')

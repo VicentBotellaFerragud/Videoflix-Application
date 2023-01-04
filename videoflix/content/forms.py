@@ -37,7 +37,7 @@ class NewVideoForm(forms.ModelForm):
 class EditVideoForm(forms.ModelForm):
 	class Meta:
 		model = Video
-		fields = ("title", "description",)
+		fields = ("category", "title", "description",)
 
 
 class RateVideoForm(forms.ModelForm):

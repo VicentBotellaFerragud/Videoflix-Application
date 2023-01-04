@@ -13,10 +13,10 @@
                     Actions
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Rate video</a>
-                    <a class="dropdown-item" href="#">Edit video</a>
+                    <a class="dropdown-item" href="/rate-video/{{ video.pk }}">Rate video</a>
+                    <a class="dropdown-item" href="/edit-video/{{ video.pk }}">Edit video</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Delete video</a>
+                    <a class="dropdown-item" href="/delete-video/{{ video.pk }}">Delete video</a>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
             </div>
             <div>
                 <span>{{ video.average_rating }}</span>
-                <span class="fa fa-star"></span>
+                <span class="fa fa-star orange"></span>
             </div>
         </div>
     </div>

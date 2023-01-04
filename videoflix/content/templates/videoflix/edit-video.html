@@ -1,26 +1,50 @@
 {% extends "base.html" %} {% block content %}
 
-{% if video %}
+{% if video_to_edit %}
 
-<div class="wrapper">
+<div class="full-height-minus-navbar d-flex align-items-center justify-content-center">
 
-    <form method="POST" class="app-form" action="/edit-video/{{ video.pk }}" return false>
-        <h3>Edit Video</h3>
+    <form method="POST" class="app-form p-5" action="/edit-video/{{ video_to_edit.pk }}" return false>
+        <h1 class="mb-3">Edit Video</h1>
 
         {% csrf_token %}
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="newTitle" name="title" maxlength="20"
-                value="{{ video.title }}" required>
-            <label class="mdl-textfield__label" for="newTitle">Title</label>
+        <div class="form-group">
+            <label for="newCategory">Category</label>
+            <select name="category" class="form-control" id="newCategory" required>
+                <option value="{{ video_to_edit.category }}" selected hidden>
+                    {{ video_to_edit.category }}
+                </option>
+                <option value="Film & Animation">Film & Animation</option>
+                <option value="Autos & Vehicles">Autos & Vehicles</option>
+                <option value="Music">Music</option>
+                <option value="Pets & Animals">Pets & Animals</option>
+                <option value="Sports">Sports</option>
+                <option value="Travel & Events">Travel & Events</option>
+                <option value="Gaming">Gaming</option>
+                <option value="People & Blogs">People & Blogs</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="News & Politics">News & Politics</option>
+                <option value="Howto & Style">Howto & Style</option>
+                <option value="Education">Education</option>
+                <option value="Science & Technology">Science & Technology</option>
+                <option value="Nonprofits & Activism">Nonprofits & Activism</option>
+            </select>
         </div>
 
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="newDescription" name="description" maxlength="400"
-                value="{{ video.description }}" required></input>
-            <label class="mdl-textfield__label" for="newDescription">Description</label>
+        <div class="form-group">
+            <label for="newTitle">Title</label>
+            <input type="text" id="newTitle" name="title" maxlength="20" class="form-control" placeholder="Enter title"
+                value="{{ video_to_edit.title }}" required>
         </div>
 
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Save Changes</button>
+        <div class="form-group">
+            <label for="newDescription">Description</label>
+            <textarea name="description" class="form-control" type="text" id="newDescription" rows="2" maxlength="400"
+                placeholder="Enter description" required>{{ video_to_edit.description }}</textarea>
+        </div>
+
+        <button id="addVideoButton" type="submit" class="btn my-3 w-100">Save Changes</button>
     </form>
 
 </div>

@@ -1,13 +1,18 @@
-{% extends "base.html" %} {% block content %} {% if video %}
+{% extends "base.html" %}
 
-<div class="wrapper">
-  <form method="POST" class="app-form" action="/rate-video/{{ video.pk }}" return false>
-    <h3>Rate Video</h3>
+{% block content %}
 
-    <span>How many stars would you give to "{{ video.title }}"?</span>
+{% if video %}
+
+<div class="full-height-minus-navbar d-flex align-items-center justify-content-center">
+
+  <form method="POST" class="app-form p-5" action="/rate-video/{{ video.pk }}" return false>
+    <h1 class="mb-3">Rate Video</h1>
+
+    <p>How many stars would you give to "{{ video.title }}"?</p>
 
     {% csrf_token %}
-    <div class="stars-container">
+    <div class="stars-container mb-3">
       <label>
         <input type="radio" name="rating" value="1" />
         <span id="star1" class="fa fa-star" onmouseover="applyColorToCorrespondingStars(this)"
@@ -35,10 +40,11 @@
       </label>
     </div>
 
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-      Rate
-    </button>
+    <button type="submit" class="btn my-3 w-100">Rate</button>
   </form>
+
 </div>
 
-{% endif %} {% endblock %}
+{% endif %}
+
+{% endblock %}

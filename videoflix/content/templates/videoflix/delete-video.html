@@ -1,13 +1,18 @@
-{% extends "base.html" %} {% block content %} {% if video %}
+{% extends "base.html" %} {% block content %}
 
-<div class="wrapper">
-    <form method="POST" class="app-form" action="/delete-video/{{ video.pk }}" return false>
+{% if video_to_delete %}
+
+<div class="full-height-minus-navbar d-flex align-items-center justify-content-center">
+
+    <form method="POST" class="app-form p-5" action="/delete-video/{{ video_to_delete.pk }}" return false>
+        <h1 class="mb-3">Delete video "{{ video_to_delete.title }}"?</h1>
+
         {% csrf_token %}
-        <h3>Delete video "{{ video.title }}"?</h3>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-            Delete Video
-        </button>
+        <button type="submit" class="btn my-3 w-100">Delete Video</button>
     </form>
+
 </div>
 
-{% endif %} {% endblock %}
+{% endif %}
+
+{% endblock %}

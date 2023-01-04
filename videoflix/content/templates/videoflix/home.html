@@ -21,7 +21,7 @@
             <span>{{ video.title }}</span>
             <div>
               <span>{{ video.average_rating }}</span>
-              <span class="fa fa-star"></span>
+              <span class="fa fa-star orange"></span>
             </div>
           </div>
         </div>
@@ -46,17 +46,19 @@
     <div id="videoRowAutos&Vehicles" class="video-row d-flex mx-2">
 
       {% for video in autos_and_vehicles_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -77,17 +79,19 @@
     <div id="videoRowMusic" class="video-row d-flex mx-2">
 
       {% for video in music_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -108,17 +112,19 @@
     <div id="videoRowPets&Animals" class="video-row d-flex mx-2">
 
       {% for video in pets_and_animals_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -139,17 +145,19 @@
     <div id="videoRowSports" class="video-row d-flex mx-2">
 
       {% for video in sport_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -170,17 +178,19 @@
     <div id="videoRowTravel&Events" class="video-row d-flex mx-2">
 
       {% for video in travel_and_events_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -201,17 +211,19 @@
     <div id="videoRowGaming" class="video-row d-flex mx-2">
 
       {% for video in gaming_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -232,17 +244,19 @@
     <div id="videoRowPeople&Blogs" class="video-row d-flex mx-2">
 
       {% for video in people_and_blogs_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -263,17 +277,19 @@
     <div id="videoRowComedy" class="video-row d-flex mx-2">
 
       {% for video in comedy_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -294,17 +310,19 @@
     <div id="videoRowEntertainment" class="video-row d-flex mx-2">
 
       {% for video in entertainment_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -325,17 +343,19 @@
     <div id="videoRowNews&Politics" class="video-row d-flex mx-2">
 
       {% for video in news_and_politics_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -356,17 +376,19 @@
     <div id="videoRowHowto&Style" class="video-row d-flex mx-2">
 
       {% for video in how_to_and_style_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -387,17 +409,19 @@
     <div id="videoRowEducation" class="video-row d-flex mx-2">
 
       {% for video in education_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -418,17 +442,19 @@
     <div id="videoRowScience&Technology" class="video-row d-flex mx-2">
 
       {% for video in science_and_technology_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>
@@ -449,17 +475,19 @@
     <div id="videoRowNonprofits&Activism" class="video-row d-flex mx-2">
 
       {% for video in nonprofits_and_activism_videos %}
-      <div class="thumbnail-container p-1">
-        {% load static %}
-        <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
-        <div class="d-flex align-items-center justify-content-between">
-          <span>{{ video.title }}</span>
-          <div>
-            <span>{{ video.average_rating }}</span>
-            <span class="fa fa-star"></span>
+      <a href="/video-details/{{ video.pk }}">
+        <div class="thumbnail-container p-1">
+          {% load static %}
+          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <div class="d-flex align-items-center justify-content-between">
+            <span>{{ video.title }}</span>
+            <div>
+              <span>{{ video.average_rating }}</span>
+              <span class="fa fa-star orange"></span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
       {% endfor %}
 
     </div>

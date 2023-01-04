@@ -26,12 +26,12 @@ option,
     color: #212529 !important;
 }
 
-.fa-star {
-    color: orange;
-}
-
 .close-btn:focus {
     outline: none !important;
+}
+
+.orange {
+    color: orange;
 }
 
 .dropdown-item,
@@ -288,4 +288,25 @@ option,
 .summary-table tbody tr:hover {
     cursor: pointer;
     background-color: #e50914;
+}
+
+.stars-container {
+    display: flex;
+    justify-content: center;
+}
+
+.stars-container label {
+    margin-inline: 10px;
+}
+
+.stars-container input {
+    display: none;
+}
+
+.stars-container span {
+    font-size: 34px;
+}
+
+.stars-container span:hover {
+    cursor: pointer;
 }
