@@ -107,7 +107,7 @@ option,
 }
 
 .messages-div {
-    top: calc(1rem - 66.8px);
+    top: calc(1rem + 66.8px);
 }
 
 .messages-div-adjusted {
