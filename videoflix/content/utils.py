@@ -136,6 +136,10 @@ def set_thumbnail_picture(videos):
         video.thumbnail_picture = video.video_file.url[:-4] + '.png'
 
 
+def set_thumbnail_picture_single(video):
+    video.thumbnail_picture = video.video_file.url[:-4] + '.png'
+
+
 # create_video utils:
 
 

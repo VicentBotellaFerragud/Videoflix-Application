@@ -29,7 +29,8 @@ from .utils import (
     display_default_value_for_unrated_videos,
     display_default_value_for_unrated_video,
     set_number_of_ratings,
-    set_thumbnail_picture
+    set_thumbnail_picture,
+    set_thumbnail_picture_single
 )
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
@@ -104,6 +105,8 @@ def home_view(request):
     all_videos = set_average_rating(all_videos)
     save_average_rating_changes(all_videos)
     highest_rated_video = all_videos.order_by('-average_rating').first()
+
+    set_thumbnail_picture_single(highest_rated_video)
 
     videos_by_category = []
 
