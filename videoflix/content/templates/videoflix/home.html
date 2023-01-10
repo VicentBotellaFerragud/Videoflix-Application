@@ -3,15 +3,19 @@
 {% if highest_rated_video %}
 
 <div class="highest-rated-video-container w-100">
+
   <img class="w-100" src="{{ highest_rated_video.thumbnail_picture }}" />
   <div class="highest-rated-video-container-label">
     <h3 class="mb-3">{{ highest_rated_video.title }}</h3>
     <h5 class="font-italic mb-3">#1 in Videoflix</h5>
     <div class="mb-3">
-      <button type="button" class="btn btn-primary btn-lg">More info</button>
-      <button type="button" class="btn btn-secondary btn-lg">Rate</button>
+      <a href="/video-details/{{ highest_rated_video.pk }}"><button type="button" class="btn btn-primary btn-lg">More
+          info</button></a>
+      <a href="/rate-video/{{ highest_rated_video.pk }}"><button type="button"
+          class="btn btn-secondary btn-lg">Rate</button></a>
     </div>
   </div>
+
 </div>
 
 {% endif %}

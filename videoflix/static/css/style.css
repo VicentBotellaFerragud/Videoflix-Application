@@ -15,6 +15,7 @@ a:hover {
 
 nav {
     position: sticky !important;
+    position: relative;
     top: 0;
     z-index: 999;
     background: rgb(20, 20, 20);
@@ -96,22 +97,16 @@ option,
     width: 15px;
 }
 
-.messages-div,
-.messages-div-adjusted {
+.messages-div-auth-view,
+.messages-div-not-auth-view {
     position: absolute;
     left: 0;
     right: 0;
+    top: 5rem;
     margin-left: auto;
     margin-right: auto;
     width: 50vw;
-}
-
-.messages-div {
-    top: calc(1rem + 66.8px);
-}
-
-.messages-div-adjusted {
-    top: 1rem;
+    z-index: 999;
 }
 
 .app-form {
@@ -195,9 +190,12 @@ option,
 
 .center-row .arrow {
     width: 2rem;
+    opacity: .25;
+    transition: .5s;
 }
 
 .center-row .arrow:hover {
+    opacity: 1;
     cursor: pointer;
 }
 
@@ -208,7 +206,8 @@ option,
     overflow: hidden;
 }
 
-.video-row a {
+.video-row a,
+.thumbnails-container a {
     text-decoration: none !important;
 }
 
@@ -227,6 +226,40 @@ option,
     border-radius: 4px;
     height: 20vh;
     width: 15vw;
+}
+
+.thumbnails-container-wrapper {
+    padding: 3rem;
+}
+
+.thumbnails-container-header {
+    color: #e5e5e5;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.thumbnails-container {
+    border-radius: 4px;
+    background-color: rgb(20, 20, 20);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.thumbnail-container-top-rated-section {
+    transition: .5s;
+}
+
+.thumbnail-container-top-rated-section:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.thumbnail-container-top-rated-section img {
+    border-radius: 4px;
+    height: 20vh;
+    width: 16.25vw;
 }
 
 .lds-ellipsis div:nth-child(1) {

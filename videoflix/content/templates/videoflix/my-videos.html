@@ -1,22 +1,21 @@
 {% extends "base.html" %} {% block content %}
 
-{% if my_videos %}
+<div class="full-height-minus-navbar d-flex align-items-center justify-content-center">
 
-<!-- My videos -->
-<div class="category-row">
-  <p class="category-row-header mb-2">My videos</p>
-  <div id="center1" class="center-row d-flex align-items-center">
+  {% if my_videos %}
 
-    {% load static %}
-    <img onclick="scrollToRight('MyVideos')" class="arrow" src="{% static 'img/before.png' %}">
+  <!-- My videos -->
+  <div class="thumbnails-container-wrapper">
 
-    <div id="videoRowMyVideos" class="video-row d-flex mx-2">
+    <p class="thumbnails-container-header mb-2 text-center">My videos</p>
+
+    <div class="thumbnails-container">
 
       {% for video in my_videos %}
       <a href="/video-details/{{ video.pk }}">
-        <div class="thumbnail-container p-1">
+        <div class="thumbnail-container-top-rated-section p-3">
           {% load static %}
-          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <img src="{{ video.thumbnail_picture }}" />
           <div class="d-flex align-items-center justify-content-between">
             <span>{{ video.title }}</span>
             <div>
@@ -30,20 +29,14 @@
 
     </div>
 
-    {% load static %}
-    <img onclick="scrollToLeft('MyVideos')" class="arrow" src="{% static 'img/next.png' %}">
   </div>
+
+  {% else %}
+
+  <p>No videos were rated yet.</p>
+
+  {% endif %}
+
 </div>
-
-<p>hallo</p>
-
-{% else %}
-
-<div class="full-height-minus-navbar d-flex align-items-center justify-content-center">
-  <p>You haven't uploaded any videos to the platform yet. Click the "Add video" link
-    to start uploading content</p>
-</div>
-
-{% endif %}
 
 {% endblock %}

@@ -1,22 +1,21 @@
 {% extends "base.html" %} {% block content %}
 
-{% if top_rated_videos %}
+<div class="full-height-minus-navbar d-flex align-items-center justify-content-center">
 
-<!-- Top rated videos -->
-<div class="category-row">
-  <p class="category-row-header mb-2">Top rated videos</p>
-  <div id="center1" class="center-row d-flex align-items-center">
+  {% if top_rated_videos %}
 
-    {% load static %}
-    <img onclick="scrollToRight('TopRatedVideos')" class="arrow" src="{% static 'img/before.png' %}">
+  <!-- Top 10 rated videos -->
+  <div class="thumbnails-container-wrapper">
 
-    <div id="videoRowTopRatedVideos" class="video-row d-flex mx-2">
+    <p class="thumbnails-container-header mb-2 text-center">Top 10 rated videos</p>
+
+    <div class="thumbnails-container">
 
       {% for video in top_rated_videos %}
       <a href="/video-details/{{ video.pk }}">
-        <div class="thumbnail-container p-1">
+        <div class="thumbnail-container-top-rated-section p-3">
           {% load static %}
-          <img class="thumbnail-picture" src="{{ video.thumbnail_picture }}" />
+          <img src="{{ video.thumbnail_picture }}" />
           <div class="d-flex align-items-center justify-content-between">
             <span>{{ video.title }}</span>
             <div>
@@ -30,19 +29,14 @@
 
     </div>
 
-    {% load static %}
-    <img onclick="scrollToLeft('TopRatedVideos')" class="arrow" src="{% static 'img/next.png' %}">
   </div>
-</div>
 
-<p>hallo</p>
+  {% else %}
 
-{% else %}
-
-<div class="full-height-minus-navbar d-flex align-items-center justify-content-center">
   <p>No videos were rated yet.</p>
-</div>
 
-{% endif %}
+  {% endif %}
+
+</div>
 
 {% endblock %}
